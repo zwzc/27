@@ -605,5 +605,5 @@
     "cms.qdwght.com"
   ],
   "wallpaper": "https://tva1.sinaimg.cn/large/005SyZH5ly1h2i9z5l5xpj30z00h5whr.jpg",
-  "spider": "https://ghproxy.com/https://raw.githubusercontent.com/qq925067429/MMM/main/custom_spider.jar"
+  "spider": "https://ghproxy.com/https://raw.githubusercontent.com/qq925067429/TVBox/main/JAR/0625.jar"
 }
