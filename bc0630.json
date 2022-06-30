@@ -1,5 +1,5 @@
 {
-"spider":"https://www.gitclone.com/gogs/qq925067429/TVBox/raw/master/0630.jar",
+"spider":"https://gitea.com/qq925067429/TVBox/raw/branch/main/JAR/0630.jar",
 
 "lives":[{"group":"redirect","channels":[{"name":"live","urls":["proxy://do=live&type=txt&ext=Y2xhbjovL1RWQm94L3R2L2JjLnR4dA=="]}]}],
 
