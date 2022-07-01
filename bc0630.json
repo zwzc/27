@@ -1,7 +1,7 @@
 ﻿// 配置地址 --> https://github.com/TVbox/blob/main/bc.json
 
 {
-"spider":"https://gitea.com/zzzz27/27/raw/branch/main/JAR/0701.jar",
+"spider":"https://gitea.com/zzzz27/27/raw/branch/main/JAR/0701apple.jar",
 "lives":[{"group":"redirect","channels":[{"name":"live","urls":["proxy://do=live&type=txt&ext="]}]}],
 
 "sites":[
