@@ -1,5 +1,14 @@
 { //我就引流，咋地 https://t.me/douluodalu99999
   "sites": [
+      {
+      "key": "厂长影视",
+      "name": "厂长影视",
+      "type": 3,
+      "api": "csp_Czsapp",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
     {
       "key": "360",
       "name": "360",
@@ -63,15 +72,7 @@
       "quickSearch": 1,
       "filterable": 1
     },
-    {
-      "key": "厂长影视",
-      "name": "厂长影视",
-      "type": 3,
-      "api": "csp_Czsapp",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1
-    },
+  
     {
       "key": "小苹果",
       "name": "小苹果",
