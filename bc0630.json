@@ -14,7 +14,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-	  "spider": "https://gitea.com/wangxilin/1/raw/branch/main/6.jar"
+	  "jar": "https://gitea.com/wangxilin/1/raw/branch/main/6.jar"
     },
     {
       "key": "csp_MGTV",
@@ -24,7 +24,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-	  "spider": "https://gitea.com/wangxilin/1/raw/branch/main/6.jar"
+	  "jar": "https://gitea.com/wangxilin/1/raw/branch/main/6.jar"
     },
     {
       "key": "csp_IQIYI",
@@ -34,7 +34,7 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-	  "spider": "https://gitea.com/wangxilin/1/raw/branch/main/6.jar"
+	  "jar": "https://gitea.com/wangxilin/1/raw/branch/main/6.jar"
     },
 {"key":"小宝影院","name":"小宝影院","type":3,"api":"csp_Xiaoh","searchable":1,"quickSearch":1,"filterable":1},
 {"key":"If101","name":"If101","type":3,"api":"csp_If101","searchable":1,"quickSearch":1,"filterable":1},
