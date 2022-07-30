@@ -6,17 +6,14 @@
 {"key":"Kunyu77","name":"七七","type":3,"api":"csp_Kunyu77","searchable":1,"quickSearch":1,"filterable":1},
 //{"key":"Kmys","name":"酷猫","type":3,"api":"csp_Kmys","searchable":1,"quickSearch":1,"filterable":1},
 {"key":"Ikan","name":"Ikan","type":3,"api":"csp_IKan","searchable":1,"quickSearch":1,"filterable":1},
-{"key": "csp_QQ" ,"name":"腾讯(解析)","type":3,"api":"csp_QQ","searchable": 1,"quickSearch": 1,"filterable": 1,"jar": "https://gitea.com/gaigai/gougou/raw/branch/main/6.jar"},
-{"key": "csp_MGTV","name":"芒果(解析)","type":3,"api":"csp_MGTV","searchable":1,"quickSearch":0,"filterable":1,"jar": "https://gitea.com/gaigai/gougou/raw/branch/main/6.jar"},
-{"key": "csp_IQIYI" ,"name":"奇艺(解析)","type":3,"api":"csp_IQIYI","searchable":1,"quickSearch":0,"filterable":1,"jar": "https://gitea.com/gaigai/gougou/raw/branch/main/6.jar"},
 {"key":"小宝影院","name":"小宝影院","type":3,"api":"csp_Xiaoh","searchable":1,"quickSearch":1,"filterable":1},
-{"key":"If101","name":"If101","type":3,"api":"csp_If101","searchable":1,"quickSearch":1,"filterable":1},
+{"key":"If101","name":"If101[翻墙]","type":3,"api":"csp_If101","searchable":1,"quickSearch":1,"filterable":1},
 {"key":"Olevod","name":"Olevod","type":3,"api":"csp_Olevod","searchable":1,"quickSearch":1,"filterable":1},
 {"key":"小苹果","name":"小苹果","type":3,"api":"csp_LiteApple","searchable":1,"quickSearch":1,"filterable":1},
-{"key":"Lib","name":"Libvio","type":3,"api":"csp_Lib","searchable":1,"quickSearch":1,"filterable":1},
+{"key":"Lib","name":"Libvio[翻墙]","type":3,"api":"csp_Lib","searchable":1,"quickSearch":1,"filterable":1},
 {"key":"Nfyun","name":"Nf云","type":3,"api":"csp_Nfyun","searchable":1,"quickSearch":1,"filterable":1},
 {"key":"9E03","name":"9E03","type":3,"api":"csp_AppYsV2","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://vod.9e03.com/lvdou_api.php/v1.vod"},
-//{"key":"555电影","name":"555电影(XB)","type":3,"api":"csp_XBiubiu","searchable":1,"quickSearch":1,"filterable":0,"ext":"https://zzzz27.coding.net/p/tvbox/d/cat/git/raw/master/MaooXB/555电影.json"},
+{"key":"555电影","name":"555电影(XB)","type":3,"api":"csp_XBiubiu","searchable":1,"quickSearch":1,"filterable":0,"ext":"https://zzzz27.coding.net/p/tvbox/d/cat/git/raw/master/MaooXB/555电影.json"},
 {"key":"剧白白","name":"剧白白(XPF)","type":3,"api":"csp_XPathMacFilter","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://zzzz27.coding.net/p/tvbox/d/cat/git/raw/master/MaooXP/jubaibai.json"},
 {"key":"Kuaikan","name":"快看","type":3,"api":"csp_Kuaikan","searchable":1,"quickSearch":1,"filterable":1},
 {"key":"zxzj","name":"在线之家","type":3,"api":"csp_Zxzj","searchable":1,"quickSearch":1,"filterable":1},
@@ -131,6 +128,5 @@
 "qiu.xixiqiu.com",
 "cdnjs.hnfenxun.com",
 "cms.qdwght.com"],
-//"spider":"https://gitea.com/Pandora2277/TV/raw/branch/main/custom_spider.jar"
-"jar": "https://gitea.com/gaigai/gougou/raw/branch/main/6.jar"
+"spider":"https://gitea.com/Pandora2277/TV/raw/branch/main/custom_spider.jar"
 }
