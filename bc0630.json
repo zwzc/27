@@ -131,5 +131,6 @@
 "qiu.xixiqiu.com",
 "cdnjs.hnfenxun.com",
 "cms.qdwght.com"],
-"spider":"https://gitea.com/Pandora2277/TV/raw/branch/main/custom_spider.jar"
+//"spider":"https://gitea.com/Pandora2277/TV/raw/branch/main/custom_spider.jar"
+"jar": "https://gitea.com/gaigai/gougou/raw/branch/main/6.jar"
 }
