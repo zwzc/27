@@ -1,4 +1,4 @@
-﻿	{"spider":"http://home.jundie.top:81/jar/top91.jar",
+﻿	{"spider":"https://gitea.com/benzhen2022/TVB/raw/branch/main/ggtv.jar",
 "sites": [
 {"key": "csp_Kunyu77"    ,"name":"🐞首页推荐","type":3,"api":"csp_Kunyu77","searchable":1,"quickSearch":1,"filterable":1},
 {"key": "csp_SP360"      ,"name":"🐞360 影视","type":3,"api":"csp_SP360","searchable":1,"quickSearch":1,"filterable":1},
