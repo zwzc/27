@@ -1,6 +1,8 @@
 	{
 
-"spider":"https://gitea.com/wlcmc1972/TVBox/raw/branch/main/jar/cmc999.jar",
+//"spider":"https://gitea.com/wlcmc1972/TVBox/raw/branch/main/jar/cmc999.jar",
+"spider":"https://gitea.com/wlcmc1972/TVBox/raw/branch/main/jar/fh0515aiyt.jar",
+
 "lives":[{"group":"redirect","channels":[{"name":"redirect","urls":["proxy://do=live&type=txt&ext=aHR0cHM6Ly9naXRlYS5jb20vd2xjbWMxOTcyL1RWQm94L3Jhdy9icmFuY2gvbWFpbi90di9UVjAyLWxpdmUudHh0"]}]}],
 
 
