@@ -1,13 +1,12 @@
 {
-//我就引流，咋地https://t.me/douluodalu99999
 "sites":[
-{"key":"厂长影视","name":"厂长影视","type":3,"api":"csp_Czsapp","searchable":1,"quickSearch":1,"filterable":1},
-{"key":"360","name":"360","type":3,"api":"csp_SP360","searchable":1,"quickSearch":1,"filterable":1},
 {"key":"Kunyu77","name":"七七","type":3,"api":"csp_Kunyu77","searchable":1,"quickSearch":1,"filterable":1},
+//{"key":"厂长影视","name":"厂长影视","type":3,"api":"csp_Czsapp","searchable":1,"quickSearch":1,"filterable":1},
+{"key":"360","name":"360","type":3,"api":"csp_SP360","searchable":1,"quickSearch":1,"filterable":1},
 {"key":"Bili","name":"B站","type":3,"api":"csp_Bili","searchable":0,"quickSearch":0,"filterable":1,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/sub/Bili.json"},
-{"key":"GitCafe","name":"小纸条[高清]","type":3,"api":"csp_Gitcafe","searchable":1,"quickSearch":1,"filterable":1,"ext":"3a49cf29cf20410997247c6eb4509be9"},
+{"key":"GitCafe","name":"小纸条[高清搜索首选]","type":3,"api":"csp_Gitcafe","searchable":1,"quickSearch":1,"filterable":1,"ext":"3a49cf29cf20410997247c6eb4509be9"},
 {"key":"AliPS","name":"盘搜[高清仅支持搜索]","type":3,"api":"csp_AliPS","searchable":1,"quickSearch":1,"filterable":1,"ext":"3a49cf29cf20410997247c6eb4509be9"},
-{"key": "zhaozy","name": "找资源[高清仅仅搜索]","type": 3,"api": "csp_Zhaozy","searchable": 1,"quickSearch": 1,"filterable": 1,"ext":"3a49cf29cf20410997247c6eb4509be9"},
+{"key": "zhaozy","name": "找资源[高清仅支持搜索]","type": 3,"api": "csp_Zhaozy","searchable": 1,"quickSearch": 1,"filterable": 1,"ext":"3a49cf29cf20410997247c6eb4509be9"},
 //{"key":"Kmys","name":"酷猫","type":3,"api":"csp_Kmys","searchable":1,"quickSearch":1,"filterable":1},
 {"key": "小熊","name": "小熊TV","type": 3,"api": "csp_Xxys","searchable": 1,"quickSearch": 1,"filterable": 1},
 {"key": "神马影院","name": "神马影院","type": 3,"api": "csp_Smdyy","searchable": 1,"quickSearch": 1,"filterable": 1},
