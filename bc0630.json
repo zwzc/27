@@ -24,9 +24,9 @@
 {"key":"Cokemv","name":"Cokemv","type":3,"api":"csp_Cokemv","searchable":1,"quickSearch":1,"filterable":1},
 {"key":"Auete","name":"Auete","type":3,"api":"csp_Auete","searchable":1,"quickSearch":1,"filterable":1},
 {"key":"Bili","name":"B站","type":3,"api":"csp_Bili","searchable":0,"quickSearch":0,"filterable":1,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/sub/Bili.json"},
-{"key":"AliPS","name":"盘搜","type":3,"api":"csp_AliPS","searchable":1,"quickSearch":1,"filterable":1,"ext":"3a49cf29cf20410997247c6eb4509be9"},
 {"key":"GitCafe","name":"小纸条","type":3,"api":"csp_Gitcafe","searchable":1,"quickSearch":1,"filterable":1,"ext":"3a49cf29cf20410997247c6eb4509be9"},
-{"key": "zhaozy","name": "找资源","type": 3,"api": "csp_Zhaozy","searchable": 1,"quickSearch": 1,"filterable": 1,"ext":"3a49cf29cf20410997247c6eb4509be9"},
+{"key":"AliPS","name":"盘搜[仅搜索]","type":3,"api":"csp_AliPS","searchable":1,"quickSearch":1,"filterable":1,"ext":"3a49cf29cf20410997247c6eb4509be9"},
+{"key": "zhaozy","name": "找资源[仅搜索]","type": 3,"api": "csp_Zhaozy","searchable": 1,"quickSearch": 1,"filterable": 1,"ext":"3a49cf29cf20410997247c6eb4509be9"},
 {"key":"push_agent","name":"推送","type":3,"api":"csp_PushAgent","searchable":0,"quickSearch":0,"filterable":0,"ext":"3a49cf29cf20410997247c6eb4509be9"}],
 "lives":[{"group":"redirect","channels":[{"name":"redirect","urls":["proxy://do=live&type=txt&ext=https://codeberg.org/zzzz27/27/raw/branch/main/sub/Live.txt"]}]}],
 "flags":[""],
@@ -146,6 +146,6 @@
 "qiu.xixiqiu.com",
 "cdnjs.hnfenxun.com",
 "cms.qdwght.com"],
-//"spider":"https://codeberg.org/zzzz27/27/raw/branch/main/JAR/custom_spider.jar;md5;D63FE3DB21B48E04884C2D5303907BD1"
-"spider":"https://gitea.com/95369149/TVBox/raw/branch/main/top95.jar"
+"spider":"https://codeberg.org/zzzz27/27/raw/branch/main/JAR/custom_spider.jar;md5;D63FE3DB21B48E04884C2D5303907BD1"
+
 }
