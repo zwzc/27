@@ -25,6 +25,8 @@
 {"key":"小宝影院","name":"小宝影院[翻墙]","type":3,"api":"csp_Xiaoh","searchable":1,"quickSearch":1,"filterable":1},
 {"key":"If101","name":"If101[翻墙]","type":3,"api":"csp_If101","searchable":1,"quickSearch":1,"filterable":1},
 {"key":"csp_Nbys","name":"👑泥巴[翻墙]","type":3,"api":"csp_Nbys","searchable":1,"quickSearch":1,"filterable":1,"jar":"https://gitea.com/95369149/TVBox/raw/branch/main/top95.jar"},
+{"key": "csp_Yisou"    ,"name":"🐞易搜盘","type":3,"api":"csp_Yisou","searchable":1,"quickSearch":1,"filterable":0,"ext":"3a49cf29cf20410997247c6eb4509be9","jar":"https://codeberg.org/zzzz27/27/raw/branch/main/JAR/aliyuanhua.jar"},
+{"key": "剧荒TV（SP）","name": "🐞剧荒影视","type": 3,"api": "csp_Juhuang","searchable": 1,"quickSearch": 1,"filterable": 1,"jar":"https://codeberg.org/zzzz27/27/raw/branch/main/JAR/aliyuanhua.jar"},
 //{"key":"9E03","name":"9E03","type":3,"api":"csp_AppYsV2","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://vod.9e03.com/lvdou_api.php/v1.vod"},
 {"key":"csp_xpath_bttoo","name": "两个BT(XP)","type":3,"api":"csp_XPath","searchable":0,"quickSearch":0,"filterable":0,"ext":"https://codeberg.org/zzzz27/box/raw/branch/main/bt.json"},
 //{"key": "csp_xpath_czspp","name": "厂长资源(XP)","type": 3,"api": "csp_XPath","searchable": 1,"quickSearch": 1,"filterable": 0,"ext":"https://codeberg.org/zzzz27/box/raw/branch/main/czzy.json"},
