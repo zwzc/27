@@ -1,6 +1,7 @@
 {
 "sites":[
 {"key":"555电影","name":"555电影(XB)","type":3,"api":"csp_XBiubiu","searchable":1,"quickSearch":1,"filterable":0,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/sub/555.json"},
+{"key":"csp_Dy555","name":"555电影(sp)","type":3,"api":"csp_Dy555","searchable":1,"quickSearch":1,"filterable":1,"jar":"https://codeberg.org/zzzz27/27/raw/branch/main/JAR/555.jar"},
 //{"key":"厂长影视","name":"厂长影视","type":3,"api":"csp_Czsapp","searchable":1,"quickSearch":1,"filterable":1},
 //{"key":"csp_xpath_czspp","name":"厂长资源(XPF)️","type":3,"api":"csp_XPathMacFilter","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://gitea.com/zhanghong/TVBOXZY/raw/branch/main/XP/czspp.json"},
 //{"key":"csp_XBiubiu_厂长资源","name":"厂长资源(XB)","type":3,"api":"csp_XBiubiu","searchable":1,"quickSearch":1,"filterable":0,"ext":"https://gitea.com/zhanghong/TVBOXZY/raw/branch/main/XB/厂长资源.json"},
