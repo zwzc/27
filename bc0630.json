@@ -161,7 +161,8 @@
 "qiu.xixiqiu.com",
 "cdnjs.hnfenxun.com",
 "cms.qdwght.com"],
-"spider": "https://gitea.com/zzzz27/27/raw/branch/main/jar/0821.jar;md5;722596334701127b12e81196c9c4b35f",
+//"spider": "https://gitea.com/zzzz27/27/raw/branch/main/jar/0821.jar;md5;722596334701127b12e81196c9c4b35f",
+"spider": "https://gitea.com/zzzz27/27/raw/branch/main/jar/alist.jar",
 	"wallpaper": "http://www.kf666888.cn/api/tvbox/img"
 
 }
