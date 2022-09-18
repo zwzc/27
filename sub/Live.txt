@@ -475,18 +475,18 @@ NHK华语视界,https://nhkw-zh-hlscomp.akamaized.net/8thz5iufork8wjip/playlist.
 
 
 👍NewTv,#genre#
-NewTV超级电视剧,http://39.134.115.163:8080/PLTV/88888910/224/3221225625/index.m3u8
-NewTV超级体育,http://39.135.138.58:18890/PLTV/88888888/224/3221225622/index.m3u8
-NewTV超级综艺,http://39.135.138.58:18890/PLTV/88888888/224/3221225620/index.m3u8
-NewTV东北热剧,http://39.135.138.58:18890/PLTV/88888888/224/3221226202/index.m3u8
-NewTV东北热剧,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221226202/index.m3u8
-NewTV欢乐剧场,http://39.135.138.58:18890/PLTV/88888888/224/3221226210/index.m3u8
-NewTV欢乐剧场,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221226210/index.m3u8
-NewTV军旅剧场,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225669/index.m3u8
-NewTV军事评论,http://111.40.196.9/PLTV/88888888/224/3221225634/index.m3u8
-NewTV炫舞未来,http://39.135.138.58:18890/PLTV/88888888/224/3221225707/index.m3u8
-NewTV炫舞未来,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225707/index.m3u8
-NewTV怡伴健康,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225666/index.m3u8
+newtv超级电视剧,http://39.134.115.163:8080/PLTV/88888910/224/3221225625/index.m3u8
+newtv超级体育,http://39.135.138.58:18890/PLTV/88888888/224/3221225622/index.m3u8
+newtv超级综艺,http://39.135.138.58:18890/PLTV/88888888/224/3221225620/index.m3u8
+newtv东北热剧,http://39.135.138.58:18890/PLTV/88888888/224/3221226202/index.m3u8
+newtv东北热剧,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221226202/index.m3u8
+newtv欢乐剧场,http://39.135.138.58:18890/PLTV/88888888/224/3221226210/index.m3u8
+newtv欢乐剧场,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221226210/index.m3u8
+newtv军旅剧场,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225669/index.m3u8
+newtv军事评论,http://111.40.196.9/PLTV/88888888/224/3221225634/index.m3u8
+newtv炫舞未来,http://39.135.138.58:18890/PLTV/88888888/224/3221225707/index.m3u8
+newtv炫舞未来,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225707/index.m3u8
+newtv怡伴健康,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225666/index.m3u8
 newtv超级综艺,http://39.135.138.59:18890/PLTV/88888910/224/3221225620/index.m3u8
 newtv超级体育,http://39.135.138.59:18890/PLTV/88888910/224/3221225622/index.m3u8
 newtv超级电影,http://39.135.138.59:18890/PLTV/88888910/224/3221225623/index.m3u8
