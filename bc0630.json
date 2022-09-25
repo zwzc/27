@@ -25,7 +25,7 @@
 //{"key": "Nfyun","name":"🚀Nf云","type": 3,"api": "csp_Nfyun","searchable": 1,"quickSearch": 1,"filterable": 1,"ext":""},
 //{"key":"Smdyy","name": "🐎神马影院","type": 3,"api": "csp_Smdyy","searchable": 1,"quickSearch": 1,"filterable": 1}, 
 //{"key":"csp_Wmkk","name":"💯完美看看","api":"csp_Wmkk","type":3,"searchable": 1,"quickSearch": 1,"filterable": 1},
-//{"key":"csp_Zxzj","name":"🏠在线之家","type":3,"api":"csp_Zxzj","searchable":1,"quickSearch":1,"filterable":1},
+{"key":"csp_Zxzj","name":"🏠在线之家","type":3,"api":"csp_Zxzj","searchable":1,"quickSearch":1,"filterable":1},
 //{"key":"mjxq_spider","name":"🌏美剧星球","type":3,"api":"csp_Mjxq","searchable":1,"quickSearch":1,"filterable":1}, 
 //{"key":"csp_appys_美剧虫","name":"🐞美剧虫(V1)","type":3,"api":"csp_XPathMacFilter","searchable":1,"quickSearch":1,"filterable":0,"ext":"https://gitea.com/Yoursmile/TVBox/raw/branch/main/sub/mjc.json"},
 {"key":"csp_Auete" ,"name":"🐼Auete","type": 3,"api":"csp_Auete","searchable":1,"quickSearch":1,"filterable":1},
@@ -36,8 +36,8 @@
 //{"key": "bdys","name": "🔍哔嘀(磁力测试)","type": 3,"api": "csp_XPbd","searchable": 1,"quickSearch": 1,"filterable": 1,"ext": "https://gitea.com/Yoursmile/TVBox/raw/branch/main/sub/Bdys.json"},
 //{"key": "csp_xpath_qiumi","name": "⚽球赛直播(XP)","type": 3,"api": "csp_XPathFilter","searchable": 1,"quickSearch": 1,"filterable": 1,"ext": "https://cdn.staticaly.com/gh/tvba/x/main/516-qiumi.js"},
 //{"key":"csp_xpath_88kanqiu","name":"🏀JRKAN直播","type":3,"api":"csp_XPath","searchable":1,"quickSearch":1,"filterable":0,"ext":"https://gitea.com/Yoursmile/TVBox/raw/branch/main/sub/88kanqiu.json"},
-//{"key":"csp_Nbys","name":"👑泥巴(墙外)","type":3,"api":"csp_Nbys","searchable":1,"quickSearch":1,"filterable":1},
-//{"key":"If101","name":"💿If101(墙外)","type":3,"api":"csp_If101","searchable":1,"quickSearch":1,"filterable":1},
+{"key":"csp_Nbys","name":"👑泥巴(墙外)","type":3,"api":"csp_Nbys","searchable":1,"quickSearch":1,"filterable":1},
+{"key":"If101","name":"💿If101(墙外)","type":3,"api":"csp_If101","searchable":1,"quickSearch":1,"filterable":1},
 //{"key": "csp_BBB","name":"🅱️哔哩哔哩","type": 3,"api": "csp_BBB","searchable": 1,"quickSearch": 0,"filterable": 1,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/sub/Bili2.json"},
 //{"key": "csp_Blixs","name":"🈴相声小品","type": 3,"api": "csp_Blixs","searchable": 1,"quickSearch": 0,"filterable": 1},
 //{"key": "csp_Bliyc","name":"🈴演唱会","type": 3,"api": "csp_Bliyc","searchable": 1,"quickSearch": 0,"filterable": 1,"ext":"https://gitea.com/Yoursmile/TVBox/raw/branch/main/sub/Bliyc.json"},
@@ -49,6 +49,7 @@
 {"key": "Gitcafe","name":"📜小纸条","type": 3,"api": "csp_Gitcafe","searchable": 1,"quickSearch": 1,"filterable": 1,"ext": "https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt"},
 {"key":"FindZY","name":"🦊找资源","type":3,"api":"csp_Zhaozy","searchable":1,"quickSearch":1,"filterable":1,"ext": "https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt"},
 {"key":"csp_Yiso","name":"🆎易搜","type":3,"api":"csp_Yiso","searchable":1,"quickSearch":1,"filterable":0,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt"},
+{"key": "Upyunso","name": "🌤UP云搜","type": 3,"api": "csp_Upyunso","searchable": 1,"quickSearch": 1,"filterable": 0,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt"},
 {"key":"push_agent","name":"推送","type":3,"api":"csp_PushAgent","searchable":0,"quickSearch":0,"filterable":0,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt"}],
 "lives":[{"group":"redirect","channels":[{"name":"redirect","urls":["proxy://do=live&type=txt&ext=aHR0cHM6Ly9jb2RlYmVyZy5vcmcvenp6ejI3LzI3L3Jhdy9icmFuY2gvbWFpbi9zdWIvTGl2ZS50eHQ="]}]}],
 "flags":[""],
@@ -180,7 +181,8 @@
 "cms.qdwght.com"],
 //"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/0821.jar;md5;722596334701127b12e81196c9c4b35f",
 //"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/alist.jar;md5;285D80F6E19E2613EA305083F84BD95A",
-"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/0922XBPQ.jar;md5;5C4EE4E2BE5B1F799FE8D2AC79BE8EAA",
+//"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/0922XBPQ.jar;md5;5C4EE4E2BE5B1F799FE8D2AC79BE8EAA",
+"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/0922.jar;md5;58A7100E7AB9904BF81BDA27B0911F84",
 	"wallpaper": "http://www.kf666888.cn/api/tvbox/img"
 
 }
