@@ -43,6 +43,8 @@
 //{"key": "csp_Bliyc","name":"🈴演唱会","type": 3,"api": "csp_Bliyc","searchable": 1,"quickSearch": 0,"filterable": 1,"ext":"https://gitea.com/Yoursmile/TVBox/raw/branch/main/sub/Bliyc.json"},
 //{"key": "csp_Blidw" ,"name":"🈴动物世界","type": 3,"api": "csp_Blidw","searchable": 1,"quickSearch": 0,"filterable": 1},
 //{"key": "csp_Blixq","name":"🈴戏曲","type": 3,"api": "csp_Blixq","searchable": 1,"quickSearch": 1,"filterable": 1},
+{"key":"csp_XBPQ极品影视","name":"极品影视〔XBPQ〕","type":3,"api":"csp_xBPQ","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/XBPQ/极品影视.json"},
+{"key":"csp_XBPQ黑洞影视","name":"黑洞影视〔XBPQ〕","type":3,"api":"csp_xBPQ","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/XBPQ/黑洞影视.json"},
 {"key":"AliPS","name":"😻盘搜","type":3,"api":"csp_AliPS","searchable":1,"quickSearch":1,"filterable":1,"ext": "https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt"},
 {"key": "Gitcafe","name":"📜小纸条","type": 3,"api": "csp_Gitcafe","searchable": 1,"quickSearch": 1,"filterable": 1,"ext": "https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt"},
 {"key":"FindZY","name":"🦊找资源","type":3,"api":"csp_Zhaozy","searchable":1,"quickSearch":1,"filterable":1,"ext": "https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt"},
@@ -177,7 +179,8 @@
 "cdnjs.hnfenxun.com",
 "cms.qdwght.com"],
 //"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/0821.jar;md5;722596334701127b12e81196c9c4b35f",
-"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/alist.jar;md5;285D80F6E19E2613EA305083F84BD95A",
+//"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/alist.jar;md5;285D80F6E19E2613EA305083F84BD95A",
+"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/0922XBPQ.jar;md5;5C4EE4E2BE5B1F799FE8D2AC79BE8EAA",
 	"wallpaper": "http://www.kf666888.cn/api/tvbox/img"
 
 }
