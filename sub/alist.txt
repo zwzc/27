@@ -9,5 +9,5 @@
     "晴园的宝藏库": "https://alist.52qy.repl.co",
     "一只鱼": "https://alist.youte.ml",
   "DISK":"http://124.222.140.243:8080/",
-  "菊花盘": "https://pan.142856.xyz",
+  "菊花盘": "https://pan.142856.xyz"
   }
