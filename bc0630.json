@@ -43,8 +43,137 @@
 //{"key": "csp_Bliyc","name":"🈴演唱会","type": 3,"api": "csp_Bliyc","searchable": 1,"quickSearch": 0,"filterable": 1,"ext":"https://gitea.com/Yoursmile/TVBox/raw/branch/main/sub/Bliyc.json"},
 //{"key": "csp_Blidw" ,"name":"🈴动物世界","type": 3,"api": "csp_Blidw","searchable": 1,"quickSearch": 0,"filterable": 1},
 //{"key": "csp_Blixq","name":"🈴戏曲","type": 3,"api": "csp_Blixq","searchable": 1,"quickSearch": 1,"filterable": 1},
-{"key":"csp_XBPQ极品影视","name":"极品影视〔XBPQ〕","type":3,"api":"csp_xBPQ","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/XBPQ/极品影视.json"},
-{"key":"csp_XBPQ黑洞影视","name":"黑洞影视〔XBPQ〕","type":3,"api":"csp_xBPQ","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/XBPQ/黑洞影视.json"},
+{
+            "key": "csp_xBPQ_在线",
+            "name": "️在线之家(XBPQ)",
+            "type": 3,
+            "api": "csp_xBPQ",
+            "searchable": 1,
+            "quickSearch": 0,
+            "filterable": 0,
+            "ext": "https://codeberg.org/zzzz27/27/raw/branch/main/XBPQ/zxzj2.json"
+        },
+        {
+            "key": "csp_xBPQ_buka",
+            "name": "️不卡影院(XBPQ)",
+            "type": 3,
+            "api": "csp_xBPQ",
+            "searchable": 1,
+            "quickSearch": 0,
+            "filterable": 0,
+            "ext": "https://codeberg.org/zzzz27/27/raw/branch/main/XBPQ/buka.json"
+        },
+        {
+            "key": "csp_xBPQ_极品",
+            "name": "极品影视(XBPQ)",
+            "type": 3,
+            "api": "csp_xBPQ",
+            "searchable": 1,
+            "quickSearch": 0,
+            "filterable": 0,
+            "ext": "https://codeberg.org/zzzz27/27/raw/branch/main/XBPQ/jpys.json"
+        },
+        {
+            "key": "csp_xBPQ_cs",
+            "name": "️FreeOK(XBPQ)",
+            "type": 3,
+            "api": "csp_xBPQ",
+            "searchable": 1,
+            "quickSearch": 0,
+            "filterable": 0,
+            "ext": "https://codeberg.org/zzzz27/27/raw/branch/main/XBPQ/freeok.json"
+        },
+        {
+            "key": "csp_xBPQ_um",
+            "name": "UM影院(XBPQ)",
+            "type": 3,
+            "api": "csp_xBPQ",
+            "searchable": 1,
+            "quickSearch": 0,
+            "filterable": 0,
+            "ext": "https://codeberg.org/zzzz27/27/raw/branch/main/XBPQ/umkan.json"
+        },
+        {
+            "key": "csp_xBPQ_爱酷",
+            "name": "爱酷影视(XBPQ)",
+            "type": 3,
+            "api": "csp_xBPQ",
+            "searchable": 1,
+            "quickSearch": 0,
+            "filterable": 0,
+            "ext": "https://codeberg.org/zzzz27/27/raw/branch/main/XBPQ/aiku.json"
+        },
+        {
+            "key": "csp_xBPQ_番茄",
+            "name": "番茄影视(XBPQ)",
+            "type": 3,
+            "api": "csp_xBPQ",
+            "searchable": 1,
+            "quickSearch": 0,
+            "filterable": 0,
+            "ext": "https://codeberg.org/zzzz27/27/raw/branch/main/XBPQ/fanqie.json"
+        },
+        {
+            "key": "csp_xBPQ_瓜皮TV",
+            "name": "瓜皮影视(XBPQ)",
+            "type": 3,
+            "api": "csp_xBPQ",
+            "searchable": 1,
+            "quickSearch": 0,
+            "filterable": 0,
+            "ext": "https://codeberg.org/zzzz27/27/raw/branch/main/XBPQ/guapi.json"
+        },
+        {
+            "key": "csp_xBPQ_蓝光",
+            "name": "蓝光影院(XBPQ)",
+            "type": 3,
+            "api": "csp_xBPQ",
+            "searchable": 1,
+            "quickSearch": 0,
+            "filterable": 0,
+            "ext": "https://codeberg.org/zzzz27/27/raw/branch/main/XBPQ/lgyy.json"
+        },
+        {
+            "key": "csp_xBPQ_酷客",
+            "name": "酷客影院(XBPQ)",
+            "type": 3,
+            "api": "csp_xBPQ",
+            "searchable": 1,
+            "quickSearch": 0,
+            "filterable": 0,
+            "ext": "https://codeberg.org/zzzz27/27/raw/branch/main/XBPQ/kuke.json"
+        },
+        {
+            "key": "csp_XYQBiu_lingyun",
+            "name": "凌云影视(XYQ)",
+            "type": 3,
+            "api": "csp_XYQBiu",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 0,
+            "ext": "https://codeberg.org/zzzz27/27/raw/branch/main/XBPQ/lingyun.json"
+        },
+        {
+            "key": "csp_XYQBiu_wanneng",
+            "name": "万能影视(XYQ)",
+            "type": 3,
+            "api": "csp_XYQBiu",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 0,
+            "ext": "https://codeberg.org/zzzz27/27/raw/branch/main/XBPQ/wanneng.json"
+        },
+        {
+            "key": "csp_XYQBiu_大米星球",
+            "name": "大米星球(XYQ)",
+            "type": 3,
+            "api": "csp_XYQBiu",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "ext": "https://codeberg.org/zzzz27/27/raw/branch/main/XBPQ/dmxq2.json"
+        },
+
 {"key":"AliPS","name":"😻盘搜","type":3,"api":"csp_AliPS","searchable":1,"quickSearch":1,"filterable":1,"ext": "https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt"},
 {"key": "Gitcafe","name":"📜小纸条","type": 3,"api": "csp_Gitcafe","searchable": 1,"quickSearch": 1,"filterable": 1,"ext": "https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt"},
 {"key":"FindZY","name":"🦊找资源","type":3,"api":"csp_Zhaozy","searchable":1,"quickSearch":1,"filterable":1,"ext": "https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt"},
