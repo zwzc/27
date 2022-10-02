@@ -1,5 +1,6 @@
 {
 "sites":[
+"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/JAR/0928.jar;md5;ff0ea5727d7f5bafb443a2f87ebf7724",
 {"key":"csp_CZSPP" ,"name":"🏭厂长资源","type":3,"api":"csp_Czsapp","searchable":1,"quickSearch":1,"filterable":0},
 //{"key":"555电影","name":"555电影(XB)","type":3,"api":"csp_XBiubiu","searchable":1,"quickSearch":1,"filterable":0,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/sub/555.json"},
 {"key":"csp_77","name":"👒酷云七七","type":3,"api":"csp_Kunyu77","searchable":1,"quickSearch":1,"filterable":1"},
@@ -200,7 +201,6 @@
 "cms.qdwght.com"],
 //"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/0821.jar;md5;722596334701127b12e81196c9c4b35f",
 //"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/alist.jar;md5;285D80F6E19E2613EA305083F84BD95A",
-"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/JAR/0928.jar;md5;ff0ea5727d7f5bafb443a2f87ebf7724",
 //"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/0922.jar;md5;63F37C0DC42FA60DCC675927B0A9072A",
 	"wallpaper": "http://www.kf666888.cn/api/tvbox/img"
 
