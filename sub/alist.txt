@@ -1,4 +1,5 @@
 {
+  "小雅的盘": "http://43.139.29.179:5245",
   "轻弹浅唱": "https://g.xiang.lol",
   "米奇妙妙屋": "https://anime.mqmmw.ga",
   "小兵组网盘影视":"https://6vv.app",
