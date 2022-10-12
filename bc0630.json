@@ -1,7 +1,7 @@
 {
 //"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/1007.jar;md5;094819D89A706F5C755DA15A9FBF1883",
 //"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/1001.jar;md5;c474a7a9d106ef348f4ebdc7705c6d38",
-"spider": "http://神器每日推送.tk/vod",
+"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/1012.jar;md5;4557D6E0774DA16484B31C2AD0A98C4B",
 "rules": [
   {"host":"*", "rule":["douyinvod.com", "/video/tos/cn/"]},
   {"host":"*", "rule":["default.365yg.com", "/video/tos/cn/"]},
