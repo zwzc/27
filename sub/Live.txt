@@ -161,7 +161,7 @@ CCTV卫生健康,http://111.32.169.223/bkhlsliveali-cdn.ysp.cctv.cn/1/2012513503
 安徽卫视,http://111.32.169.223/bkhlsliveali-cdn.ysp.cctv.cn/1/2000298003.m3u8
 河北卫视,http://111.32.169.223/bkhlsliveali-cdn.ysp.cctv.cn/1/2000293403.m3u8
 山东卫视,http://111.32.169.223/bkhlsliveali-cdn.ysp.cctv.cn/1/2000294803.m3u8
-翡翠台1080P    http://113.64.147.40:808/hls/67/index.m3u8
+
 
 🍊｜联通,#genre#
 CCTV1,rtsp://221.203.83.34:554/PLTV/88888888/224/0/3221226118/iptv65795.smil
@@ -624,6 +624,7 @@ CETV-1,http://111.59.63.32:9901/tsfile/live/1024_1.m3u8
 冬奥纪实,http://39.134.115.163:8080/PLTV/88888910/224/3221225676/index.m3u8
 
 🇨🇳｜香港,#genre#
+翡翠台1080P,http://113.64.147.40:808/hls/67/index.m3u8
 凤凰中文,http://playtv-live.ifeng.com/live/06OLEGEGM4G_tv1.m3u8
 凤凰中文,http://playtv-live.ifeng.com:80/live/06OLEGEGM4G.m3u8
 凤凰中文,http://playtv-live.ifeng.com/live/06OLEGEGM4G.m3u8
