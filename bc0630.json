@@ -1,6 +1,6 @@
 {
 //"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/1007.jar;md5;094819D89A706F5C755DA15A9FBF1883",
-"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/1017.jar;md5;48e86472b7d14ab64aeaf34b653cf893",
+"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/1018.jar;md5;709d58df2f7c58d439e74212a11be7fa",
 //"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/1012.jar;md5;4557D6E0774DA16484B31C2AD0A98C4B",
 "rules": [
   {"host":"*", "rule":["douyinvod.com", "/video/tos/cn/"]},
