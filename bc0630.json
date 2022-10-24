@@ -1,6 +1,6 @@
 {
 //"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/1007.jar;md5;094819D89A706F5C755DA15A9FBF1883",
-"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/1018.jar;md5;709d58df2f7c58d439e74212a11be7fa",
+"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/1024.jar;md5;48c4cbca73b33274fea2d156603a6b0b",
 //"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/1012.jar;md5;4557D6E0774DA16484B31C2AD0A98C4B",
 "rules": [
   {"host":"*", "rule":["douyinvod.com", "/video/tos/cn/"]},
@@ -88,12 +88,12 @@
 //{"key":"csp_XBPQ_嗷呜视频","name":"嗷呜视频(XBPQ)","type":3,"api":"csp_xBPQ","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/XBPQ/嗷呜视频.json"},
 //{"key":"csp_XBPQ_热播酷","name":"热播酷(XBPQ)","type":3,"api":"csp_xBPQ","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/XBPQ/热播酷.json"},
 
-{"key":"AliPS","name":"😻盘搜","type":3,"api":"csp_AliPS","searchable":1,"quickSearch":1,"filterable":1,"ext": "https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt","jar":"https://gitea.com/Tangsan99999/NoWar/raw/branch/main/custom_spider.txt"},
-{"key": "Gitcafe","name":"📜小纸条","type": 3,"api": "csp_Gitcafe","searchable": 1,"quickSearch": 1,"filterable": 1,"ext": "https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt","jar":"https://gitea.com/Tangsan99999/NoWar/raw/branch/main/custom_spider.txt"},
-{"key":"FindZY","name":"🦊找资源","type":3,"api":"csp_Zhaozy","searchable":1,"quickSearch":1,"filterable":1,"ext": "https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt","jar":"https://gitea.com/Tangsan99999/NoWar/raw/branch/main/custom_spider.txt"},
+{"key": "Gitcafe","name":"📜小纸条","type": 3,"api": "csp_Gitcafe","searchable": 1,"quickSearch": 1,"filterable": 1,"ext": "https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt"},
+{"key":"AliPS","name":"😻盘搜","type":3,"api":"csp_AliPS","searchable":1,"quickSearch":1,"filterable":1,"ext": "https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt"},
+{"key":"FindZY","name":"🦊找资源","type":3,"api":"csp_Zhaozy","searchable":1,"quickSearch":1,"filterable":1,"ext": "https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt"},
 {"key":"csp_Yiso","name":"🆎易搜","type":3,"api":"csp_Yiso","searchable":1,"quickSearch":1,"filterable":0,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt"},
-{"key": "Upyunso","name": "🌤UP云搜","type": 3,"api": "csp_Upyunso","searchable": 1,"quickSearch": 1,"filterable": 0,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt","jar":"https://gitea.com/Tangsan99999/NoWar/raw/branch/main/custom_spider.txt"},
-{"key":"push_agent","name":"推送","type":3,"api":"csp_PushAgent","searchable":0,"quickSearch":0,"filterable":0,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt","jar":"https://gitea.com/Tangsan99999/NoWar/raw/branch/main/custom_spider.txt"}],
+{"key": "Upyunso","name": "🌤UP云搜","type": 3,"api": "csp_Upyunso","searchable": 1,"quickSearch": 1,"filterable": 0,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt"},
+{"key":"push_agent","name":"推送","type":3,"api":"csp_PushAgent","searchable":0,"quickSearch":0,"filterable":0,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/sub/1.txt"}],
 "lives":[{"group":"redirect","channels":[{"name":"redirect","urls":["proxy://do=live&type=txt&ext=aHR0cHM6Ly9jb2RlYmVyZy5vcmcvenp6ejI3LzI3L3Jhdy9icmFuY2gvbWFpbi9zdWIvTGl2ZS50eHQ="]}]}],
 "flags":[""],
 "parses":[
