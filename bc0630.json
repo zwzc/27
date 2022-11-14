@@ -1,5 +1,5 @@
 {
-"spider": "./jar/1113.jar;md5;89c9eaec380dc16ec274b772346270ba",
+"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/1113.jar;md5;89c9eaec380dc16ec274b772346270ba",
 
 "sites":[
 {"key":"douban","name":"🅱豆瓣荐片【导航默认为豆瓣，可以点击[主页]选择不同的源作为主页】","type":4,"api": "http://top.fuqizhishi.com/vod","searchable": 0,"quickSearch": 0,"filterable": 0},
