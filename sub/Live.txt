@@ -349,7 +349,7 @@ CCTV-13,http://39.134.115.163:8080/PLTV/88888910/224/3221225638/index.m3u8
 江西卫视,http://39.135.138.59:18890/TVOD/88888910/224/3221225705/index.m3u8
 江西卫视,http://182.151.211.171:808/hls/60/index.m3u8
 江西卫视,http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225746/index.m3u8
-江西卫视,http://39.134.115.163:8080/PLTV/88888910/224/3221225705/index.m3u8?icpid=88888888&from=30&hms_devid=1452
+江西卫视,http://39.134.115.163:8080/PLTV/88888910/224/3221225705/index.m3u8
 江西卫视,http://39.135.138.60:18890/PLTV/88888910/224/3221225705/index.m3u8
 江西卫视,http://39.134.116.30:8080/PLTV/88888910/224/3221225705/index.m3u8
 湖北卫视,http://39.135.138.60:18890/PLTV/88888910/224/3221225740/index.m3u8
@@ -361,7 +361,7 @@ CCTV-13,http://39.134.115.163:8080/PLTV/88888910/224/3221225638/index.m3u8
 广东卫视,http://39.134.115.163:8080/PLTV/88888910/224/3221225742/index.m3u8
 广东卫视,http://39.134.115.163:8080/PLTV/88888910/224/3221225738/index.m3u8
 广东卫视,http://39.134.115.163:8080/PLTV/88888910/224/3221225697/index.m3u8
-东南卫视,http://39.134.115.163:8080/PLTV/88888910/224/3221225657/index.m3u8?icpid=88888888&from=30&hms_devid=1452
+东南卫视,http://39.134.115.163:8080/PLTV/88888910/224/3221225657/index.m3u8
 安徽卫视,http://39.135.138.59:18890/TVOD/88888910/224/3221225691/index.m3u8
 安徽卫视,http://39.135.138.59:18890/PLTV/88888910/224/3221225737/index.m3u8
 青海卫视,http://stream.qhbtv.com/qhws/sd/live.m3u8?_upt=1da074361609506578
@@ -464,8 +464,47 @@ SiTV乐游,http://dbiptv.sn.chinamobile.com/PLTV/88888888/224/3221226580/index.m
 天津卫视,http://dbiptv.sn.chinamobile.com/PLTV/88888888/224/3221226204/index.m3u8
 浙江卫视,http://dbiptv.sn.chinamobile.com/PLTV/88888888/224/3221226199/index.m3u8
 
-📽️｜咪咕,#genre#
-
+📽️｜百视TV,#genre#
+东方风云榜,http://mmitv.top/test/bestv.php?id=146
+高能脱口秀,http://mmitv.top/test/bestv.php?id=76
+漫游记,http://mmitv.top/test/bestv.php?id=218
+宅家瘦全身,http://mmitv.top/test/bestv.php?id=40
+奔跑吧兄弟,http://mmitv.top/test/bestv.php?id=201
+两个人的世界,http://mmitv.top/test/bestv.php?id=124
+我们的歌,http://mmitv.top/test/bestv.php?id=41
+爱乐之都,http://mmitv.top/test/bestv.php?id=250
+闪电咖啡馆,http://mmitv.top/test/bestv.php?id=247
+梦想改造家,http://mmitv.top/test/bestv.php?id=33
+家庭剧场,http://mmitv.top/test/bestv.php?id=249
+王牌对王牌,http://mmitv.top/test/bestv.php?id=193
+童年神剧,http://mmitv.top/test/bestv.php?id=186
+天籁之战,http://mmitv.top/test/bestv.php?id=156
+整容级妆教,http://mmitv.top/test/bestv.php?id=216
+粤语好声音,http://mmitv.top/test/bestv.php?id=229
+也平凡,http://mmitv.top/test/bestv.php?id=126
+最好的舞台,http://mmitv.top/test/bestv.php?id=128
+金曲青春,http://mmitv.top/test/bestv.php?id=96
+一路唱响,http://mmitv.top/test/bestv.php?id=192
+谜案大世界,http://mmitv.top/test/bestv.php?id=84
+完美的夏天,http://mmitv.top/test/bestv.php?id=59
+极限挑战,http://mmitv.top/test/bestv.php?id=27
+汤妈妈,http://mmitv.top/test/bestv.php?id=213
+完美的夏天2,http://mmitv.top/test/bestv.php?id=222
+美好生活家,http://mmitv.top/test/bestv.php?id=228
+人气美食,http://mmitv.top/test/bestv.php?id=144
+荒野求生,http://mmitv.top/test/bestv.php?id=226
+居家云打卡,http://mmitv.top/test/bestv.php?id=120
+海派滑稽戏,http://mmitv.top/test/bestv.php?id=38
+带娃小妙招,http://mmitv.top/test/bestv.php?id=52
+红色经典电影,http://mmitv.top/test/bestv.php?id=246
+东方卫视,http://mmitv.top/test/bestv.php?id=22
+新闻综合,http://mmitv.top/test/bestv.php?id=20
+外语频道,http://mmitv.top/test/bestv.php?id=17
+都市频道,http://mmitv.top/test/bestv.php?id=18
+哈哈炫动,http://mmitv.top/test/bestv.php?id=19
+纪实人文,http://mmitv.top/test/bestv.php?id=28
+第一财经,http://mmitv.top/test/bestv.php?id=21
+东方财经,http://mmitv.top/test/bestv.php?id=26
 
 
 👍NewTv,#genre#
