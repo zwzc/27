@@ -1,3 +1,69 @@
+#🎞️｜湖北移动,#genre#
+CCTV1FHD,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN111128BESTVSMGSMG5/index.m3u8?AuthInfo=FSaMuhvQ796XQ1Ucg1vHnL9bPeXXinvsdLHlh4BnRwC1E7d1zpCmGI96gGrrcE944wF%2ButJuJ3A%2F3zBrw93lSw%3D%3D
+CCTV1高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN111128BESTVSMGSMG9/index.m3u8?AuthInfo=mDDPLCm9ve1tjgr7VWI8yftKA%2BKiCMgejX5ecF1ngX0I7p1hdmQM%2FjNoXKk6DQyEV9Kz2DVBSRtEP9FIiGuloA%3D%3D
+CCTV10高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1355BESTVSMGSMG9/index.m3u8?AuthInfo=QMDGEPbWPP3D1jIiDYe%2FVkkhz616luOo%2FzyehH%2FflXrLPPRzE0cB1FINUucn8Nrq8ne0%2FyJt3TAVwgU87qo5ug%3D%3D
+CCTV14高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1359BESTVSMGSMG9/index.m3u8?AuthInfo=QMDGEPbWPP3D1jIiDYe%2FVj2DdrqHBCeMW1YMkiDOS7rsF1TtiZdFWS3V6eWwZ5um8s51rgcvMjjXcEsHufCh8Q%3D%3D
+江苏卫视FHD,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN111129BESTVSMGSMG5/index.m3u8?AuthInfo=mDDPLCm9ve1tjgr7VWI8yWeDbMdd53vv5iotunaFGSP4Zl8XGHC3mSqxP5pOrqjsPYcCMdY6apf3WQNDqp23Qg%3D%3D
+浙江卫视FHD,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN111130BESTVSMGSMG5/index.m3u8?AuthInfo=mDDPLCm9ve1tjgr7VWI8yeVLuQg9scexdRyCos93y33wWGuueQ1B0BHt5m7AfF5ee7CsuBCbqOqHGv8cTXYJ8Q%3D%3D
+广东卫视FHD,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN181359BESTVSMGSMG5/index.m3u8?AuthInfo=U%2BNV0Lm18yS6FwH2m7wonnmOOOvITAXuwKd3NhQk0btULACcsRdrTgzNTcRL9DL0dprI69yrqzKMySz4o0FM8w%3D%3D
+深圳卫视FHD,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN181362BESTVSMGSMG5/index.m3u8?AuthInfo=U%2BNV0Lm18yS6FwH2m7wonqfqMQ5LrhC%2FgggPeMWvm9UqPw1lHTQSrTKBglotnmLLk2BIcoyoG8sPy8Skz5GfAg%3D%3D
+东方卫视FHD,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN111131BESTVSMGSMG5/index.m3u8?AuthInfo=mDDPLCm9ve1tjgr7VWI8ybq6W5CffrlxOUVBC9eOmeAJr8c%2FCq3spgG3IMcEXgW9bvSdl%2FFHudtNiPPdzQvpKw%3D%3D
+四川卫视FHD,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN3840706BESTVSMGSMG9/index.m3u8?&AuthInfo=iKAcXCX%2F8sSJnr5njfYL%2Bb%2BLLe3iX6MD%2FSG8Auk%2FYIrBUytcDOb9RAYt8ZWjjY0W6uPIF94XCzPjJb9f5ln6UQ%3D%3D
+重庆卫视FHD,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN3840707BESTVSMGSMG9/index.m3u8?AuthInfo=iKAcXCX%2F8sSJnr5njfYL%2BdXIdZVqSukrLUJ09jibSohWS%2FVJLIqdlH6CyEH%2FrddieFwSp6TVYC0lzRfi7OHiGA%3D%3D
+河北卫视FHD,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN100000002BESTVSMGSMG9/index.m3u8?AuthInfo=GUH1Yl6ooVRBygc7Ms6rMCQahAl%2B%2BGbDXhH2Efo%2B1ci6YAe31L1P8HsLkjpt89GmXmV5j%2BQVdK1%2Bmwdr%2BlsoIQ%3D%3D
+海南卫视FHD,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN4252684BESTVSMGSMG9/index.m3u8?AuthInfo=HvxAnviJgPXDnk9P57ymiiNpKdStxkgGqmCfuX92Fi0rQaCP1314AHpDz9MSmoCwMmjjUtTf2hmBa2lM2VGKNA%3D%3D
+贵州卫视FHD,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN4252663BESTVSMGSMG9/index.m3u8?AuthInfo=HvxAnviJgPXDnk9P57ymipwrKylweon0UUP7l8%2Ft60bzXPxslYs8q1sd2Vjyy0qkPM1AiRtWIl9fFGxElNWd0Q%3D%3D
+纪实人文FHD,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1134129BESTVSMGSMG9/index.m3u8?AuthInfo=FSaMuhvQ796XQ1Ucg1vHnGiOKrR%2BBUPBMLMFIBDGE%2BpWmATDQyIxdaVHkf5tN%2FcQJnG%2F2g4HkHLIjL3R9Mt3pw%3D%3D
+上海新闻综合高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1312BESTVSMGSMG9/index.m3u8?AuthInfo=Stevp%2BWRKxtuMo8naIuwjKjhXSjQi%2BeaQRf9Ziq7KgRxPDH63cId6gXyoJkX5oXhqiHPA8BBLiWRr0QWb9LVbA%3D%3D
+生活时尚高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1313BESTVSMGSMG9/index.m3u8?AuthInfo=Stevp%2BWRKxtuMo8naIuwjBljm6hNH1mEvyR9J%2FH0YZHeDZ%2Fg5pf91l2%2FQSJZPe6vRmhokFgx10CpNOx%2FQtYSBw%3D%3D
+第一财经高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1314BESTVSMGSMG9/index.m3u8?AuthInfo=Stevp%2BWRKxtuMo8naIuwjI9NVIjBLmqU0HRssVBtByz0TJiFt6IqCBywgEFMyoS7%2BaXtSGYH1ipJfllOdvLcUQ%3D%3D
+纪实人文高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1317BESTVSMGSMG9/index.m3u8?AuthInfo=Stevp%2BWRKxtuMo8naIuwjLLfOhGCQw2iEUASEpKEoesxPHDF4gn9OjQgw9GUgU28KWReVzGY3DsYym57lJeqpA%3D%3D
+上海都市高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1318BESTVSMGSMG9/index.m3u8?AuthInfo=Stevp%2BWRKxtuMo8naIuwjKOQsN8ofCczbUX1AjxZYMpKdI1PJQPlp0I5RTtUrbQtTuwS%2FH1VLbdWY%2FeIxpxvfA%3D%3D
+上海ICS高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1321BESTVSMGSMG9/index.m3u8?AuthInfo=Stevp%2BWRKxtuMo8naIuwjMgipZ5P2FQL%2BUOjs62ks4Wz%2BD1tfGNvjXogG%2F5BxJTkEkN8QzkBtGW%2FFWBkZGvGbw%3D%3D
+哈哈炫动高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1324BESTVSMGSMG9/index.m3u8?AuthInfo=Stevp%2BWRKxtuMo8naIuwjOdZAl1bagdPHp35FnyUQGoW7Fflp52o%2FqRz3tjKQMzvZdAmioxX%2F01vVciUadguVw%3D%3D
+全纪实高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1368437BESTVSMGSMG9/index.m3u8?AuthInfo=DhrvbvJP5a8%2FvhFSkh8m61H1hr3ejIDlly2%2BZzIM7fMpceFU6vzoQ9cOR2wPQiLjLACDRryeEF3Ogp2x%2FV2Vzg%3D%3D
+东方卫视高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN111131BESTVSMGSMG9/index.m3u8?AuthInfo=ytfyU483%2FNR3YqtCtxoFds%2BsAhUE%2FelyP7X26V329fCKmPT91E7EeZ37J5Kk%2BsYgJx%2FLNHClGjTthlg4zvrIiQ%3D%3D
+北京卫视高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN181361BESTVSMGSMG9/index.m3u8?AuthInfo=Tsdbt%2BmOLxsUcNqe9tivizEER1EenVBvUmBwvbpq7huIsbwZS4h6AuewNzbPKpOERbKuaERLJKLBmMXCeTupcw%3D%3D
+江苏卫视高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN111129BESTVSMGSMG9/index.m3u8?AuthInfo=ytfyU483%2FNR3YqtCtxoFdgDJt1KRhSodFFGQhJuUTjs7WguU%2F7nQhXwUblj0ssvK8If2%2BP4qaa9bD0qo%2BhrxLg%3D%3D
+浙江卫视高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN111130BESTVSMGSMG9/index.m3u8?AuthInfo=ytfyU483%2FNR3YqtCtxoFduP7uuqF%2Fpl3bEYI8ZpfZav50uGhlQGEJ7tkxFjTvrWAZj82cvVLPkdFAB5YORZ6cw%3D%3D
+安徽卫视高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1329BESTVSMGSMG9/index.m3u8?AuthInfo=Stevp%2BWRKxtuMo8naIuwjOLsYhToyuqmRXHf2pKs3MHSgcB26cCjCn%2BFltCfU0hS0CsmPgf9bQGuWRaxJlvVRQ%3D%3D
+山东卫视高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1330BESTVSMGSMG9/index.m3u8?AuthInfo=Stevp%2BWRKxtuMo8naIuwjEBuTNz1biPnRzBwxJgj5Chfi1id%2BBqELXcvL0978NLvAKa1ySSj0V1EZUA77rddQg%3D%3D
+广东卫视高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN181359BESTVSMGSMG9/index.m3u8?AuthInfo=Tsdbt%2BmOLxsUcNqe9tivi5gD3j6EYKJWNc%2BNM2fDYFoIxGDTcsRrOhQ88IxZCt%2BOh2S%2FNaL5aS%2BpM6vGe%2BrXUQ%3D%3D
+东南卫视高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1338BESTVSMGSMG9/index.m3u8?AuthInfo=Stevp%2BWRKxtuMo8naIuwjDBc9i8F5lhxA3ERBT3LzYJe%2FMkzdQRzFC%2Fpw3DCV4ryaIVBFC2LkCROxu7aWrZfZg%3D%3D
+天津卫视高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1339BESTVSMGSMG9/index.m3u8?AuthInfo=Stevp%2BWRKxtuMo8naIuwjNgkvexr2TSbHFwa0d%2FfRjw4HcW0ek8iD3bD5yxxHrcQDyhDp2dD0ozohGUugHwcVA%3D%3D
+江西卫视高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1340BESTVSMGSMG9/index.m3u8?AuthInfo=Stevp%2BWRKxtuMo8naIuwjFczpbKoufNQjKOemesXwlMaBCvTG%2Fk5VJBntLlnLuakeRKTVF3rOmmJzHoNavgUTw%3D%3D
+湖北卫视高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1341BESTVSMGSMG9/index.m3u8?AuthInfo=QMDGEPbWPP3D1jIiDYe%2FVu%2Fary%2Facghe53J3bz6u6kYqrCEUp3hszGFSeaMAQMkxhWKSrzsXr5as1v3LGq1T3g%3D%3D
+黑龙江卫视高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1343BESTVSMGSMG9/index.m3u8?AuthInfo=QMDGEPbWPP3D1jIiDYe%2FVi2u3pMf9t5k5Kt6xTH3eIzu%2BkvoamR9uB8as%2Bg%2Bj6EQqO2s5GxK%2F4U5XkXhbg%2BEpw%3D%3D
+都市剧场高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1366BESTVSMGSMG9/index.m3u8?AuthInfo=QMDGEPbWPP3D1jIiDYe%2FVqybeuVP3EngUFs00fCTtCH%2FS3JMdvs41Pe3tp5l1HQ02LqwXOxDVGemtB6b1bDThA%3D%3D
+动漫秀场高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1370BESTVSMGSMG9/index.m3u8?AuthInfo=QMDGEPbWPP3D1jIiDYe%2FVmGbYapNgDNvppPThoN2m1LyGdni2gDt6W%2FHOpV4zswlCcXLqTrDM2DVSdC8GWv%2B1Q%3D%3D
+欢笑剧场高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1376BESTVSMGSMG9/index.m3u8?AuthInfo=QMDGEPbWPP3D1jIiDYe%2FVmMQHKDF8CoCSHJflTLDm%2FP6cTRp6ZNtDHta8uDCCB%2B74JRekUDk06cmE%2FpjsAo3Ww%3D%3D
+游戏风云高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1377BESTVSMGSMG9/index.m3u8?AuthInfo=QMDGEPbWPP3D1jIiDYe%2FVsblDmAq%2BSokZLxxz3SVHxoZE%2FU%2FB3gW2XXbc3OHnUkmyvveWti95oQw1ezRgmLa8w%3D%3D
+极速汽车高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN1378BESTVSMGSMG9/index.m3u8?AuthInfo=QMDGEPbWPP3D1jIiDYe%2FVrwh9RqWGz5hI5yBT8NNfCDVHwgOiYPx7TncTz8hYgiHBmB%2BAdAWzYV5wnfwL9vOiQ%3D%3D
+金鹰卡通,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN79467BESTVSMGSMG9/index.m3u8?AuthInfo=7lAOfreToIabkYEBYF1%2BWBMhbQfS1g4SNkrWZsFiwYK%2BN%2BSlQF0IXhgRSovoUdbwGqek883Tt2kcgtbuqm%2FnRg%3D%3D
+深圳卫视高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN181362BESTVSMGSMG9/index.m3u8?AuthInfo=LeeLm7fxHHFwZahyMzl5onWBScqa18LCAItfUsgUdynbnzbiHSgwiKnJmZvSmODG2vBNT97JzFsc1b4uzw5f0Q%3D%3D
+CETV1高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN79470BESTVSMGSMG9/index.m3u8?AuthInfo=7lAOfreToIabkYEBYF1%2BWJ2vel9P0kqYLl99lKkrKPm6Zba48qNnN4Y%2FQ6jCxNRlNCcmziUaJMSzfGjOTW5q1Q%3D%3D
+黑龙江卫视FHD,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN181356BESTVSMGSMG9/index.m3u8?AuthInfo=LeeLm7fxHHFwZahyMzl5ojEDG8rcHpz4DAmd9ekljyRB5LlvaG5APyXqgJeXjA%2Fc00g56JfRjY%2FV5IGOKhKKHw%3D%3D
+湖南卫视高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN181358BESTVSMGSMG9/index.m3u8?AuthInfo=LeeLm7fxHHFwZahyMzl5ogiSnfzPlncDU3c0s0oCKsWsEZySe%2Bkut33UVqIiB65CfM7MDQ1hYUcQovfIFJ9Z6Q%3D%3D
+北京卫视FHD,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN181361BESTVSMGSMG5/index.m3u8?AuthInfo=LeeLm7fxHHFwZahyMzl5otJK9bYjTXZsTLx0tSuvY3WCj03QlV%2FAtzyufky7114St8oiO1nHMzlE0RDVyspZ9Q%3D%3D
+辽宁卫视高清,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN2686BESTVSMGSMG9/index.m3u8?AuthInfo=QXibE97%2F5hABxgcLr4Ki48%2Bi%2B0hq3jWJZbX125%2BxQtYmBi5fz4nbGnIoUFnguYIUdez5Gq1TyWyA8ymv4eR%2F1Q%3D%3D
+咪咕视频1,http://ztecdn.hb.chinamobile.com:6060/170000001115/3000000010000012558/index.m3u8?AuthInfo=NKgUR80RRh3q93Bzw4C8PQcjxOSABEi9KXtm0QKJeYo6nU0F%2FAD9lOBt3MVBfPp0lNDocZQsTh6fsRa27MxMig%3D%3D
+咪咕视频2,http://ztecdn.hb.chinamobile.com:6060/170000001115/3000000001000008379/index.m3u8?AuthInfo=zqN%2BBiQFRckfOFxGgjBtcVHLng%2F3yBd8ljb0ZHAB%2FuPRjn5qXuWMlTh2M8PLeibjMiOwKCyVeAU7Y10FygTihw%3D%3D
+咪咕视频3,http://ztecdn.hb.chinamobile.com:6060/170000001115/3000000001000008001/index.m3u8?AuthInfo=zqN%2BBiQFRckfOFxGgjBtcQuVmjU7FWo3cBjs0xT4qMwfTA6FBNi7P0MRIUdnM2eRDS6%2BPz2QLPm6LMbbYwSIfg%3D%3D
+咪咕视频4,http://ztecdn.hb.chinamobile.com:6060/170000001115/3000000001000031494/index.m3u8?AuthInfo=zqN%2BBiQFRckfOFxGgjBtcTHFKARlssAt5SuAMTsGl0NAX5Hro059lFQ31Z5NG674jGg25t6J4p1oKHcq1biRbw%3D%3D
+咪咕视频5,http://ztecdn.hb.chinamobile.com:6060/170000001115/3000000001000008176/index.m3u8?AuthInfo=zqN%2BBiQFRckfOFxGgjBtcYKppS80mb1Sw26vspPwwuFmK1wa604c5kgpWSR95mXzM4N3%2BFhfYTr21k3jLgYnCg%3D%3D
+咪咕视频6,http://ztecdn.hb.chinamobile.com:6060/170000001115/3000000001000007218/index.m3u8?AuthInfo=zqN%2BBiQFRckfOFxGgjBtceboCQ7uN1SDH28aby%2BrNKj9cRX2u%2FhWZBEHPWGwgTmpjNijaWmOh4vTyNYe1pzBwg%3D%3D
+咪咕视频7,http://ztecdn.hb.chinamobile.com:6060/170000001115/3000000010000027691/index.m3u8?AuthInfo=NKgUR80RRh3q93Bzw4C8PWvC5ten362JtthRn1zm9m79xhwzEUYpe1JZfYQhWG4AGzdF7MpqNSPIBW7nKcd0EQ%3D%3D
+咪咕视频8,http://ztecdn.hb.chinamobile.com:6060/170000001115/3000000010000015560/index.m3u8?AuthInfo=NKgUR80RRh3q93Bzw4C8PWWeNROzxOTCsl6WSmHB3ysDDtwvhWZPT0rGCg9aIjwbsHrBMZxKeup1kKM3Y6QH7Q%3D%3D
+咪咕视频9,http://ztecdn.hb.chinamobile.com:6060/170000001115/3000000010000002809/index.m3u8?AuthInfo=NKgUR80RRh3q93Bzw4C8PaSHO%2B875%2B%2BzaPRp1ofewF6R0afMHbb9PC1590Lx1fV5LgCudgoW7h43MCS4IS%2BesQ%3D%3D
+咪咕视频10,http://ztecdn.hb.chinamobile.com:6060/170000001115/3000000010000000097/index.m3u8?AuthInfo=NKgUR80RRh3q93Bzw4C8PYOjU84rF2VJtVIKyjifNxRnBNfxaKE9oePvL9wHvpjA8asyVcLIe9dbLrWnM4x4xQ%3D%3D
+咪咕视频11,http://ztecdn.hb.chinamobile.com:6060/170000001115/3000000010000006077/index.m3u8?AuthInfo=NKgUR80RRh3q93Bzw4C8PaoALAIscBTrSkyAOlLEWCMXgysVtdJWjZGYdqEj9sZi0yui%2F9G16RQRX7q%2BxtvZdA%3D%3D
+咪咕视频12,http://ztecdn.hb.chinamobile.com:6060/170000001115/3000000010000012558/index.m3u8?AuthInfo=NKgUR80RRh3q93Bzw4C8Pc4Ni9ncoeN%2BX0G5rWWofWqhh7I3vQKcynp2OhAwUPcYo%2F4u8hmfuLvfKG7bH0mU9A%3D%3D
+咪咕视频13,http://ztecdn.hb.chinamobile.com:6060/170000001115/3000000010000023434/index.m3u8?AuthInfo=NKgUR80RRh3q93Bzw4C8PdFcBW8qnb%2FoyXaIX0A1stWyglcl3Vs2GA7%2Bwovp6s6VbB0FuLb6vqnUBopgTYAq5w%3D%3D
+咪咕视频14,http://ztecdn.hb.chinamobile.com:6060/170000001115/3000000010000003915/index.m3u8?AuthInfo=NKgUR80RRh3q93Bzw4C8PWRa5u01oOrcAETr1K%2BGumxIRF3jVt0VXOXYqreGB7nNFGAWh6hVH4v1MbEQmw5%2FzA%3D%3D
+咪咕视频15,http://ztecdn.hb.chinamobile.com:6060/170000001115/3000000010000004193/index.m3u8?AuthInfo=NKgUR80RRh3q93Bzw4C8PTk5QqvDjHUp8%2BzHV%2FqdmUsHltYRypYCZcfmhs6Fd5HcDXZry8DyLsfRhUv5NFv0Tw%3D%3D
+咪咕视频16,http://ztecdn.hb.chinamobile.com:6060/170000001115/3000000010000021904/index.m3u8?AuthInfo=NKgUR80RRh3q93Bzw4C8PQjpAHIROseoBpvZruA1ShElqy3RxP%2Fp2Gr%2F6SjX%2BxphVH3JSz0qpCJG18G7EBVqYw%3D%3D
+咪咕视频17,http://ztecdn.hb.chinamobile.com:6060/170000001115/3000000010000011297/index.m3u8?AuthInfo=NKgUR80RRh3q93Bzw4C8PRagfHADIItelwb5%2BSuY9SA9Lkq2fO2G3tB1HqDqbXdt3i9%2FrinuZnitUoyOQJw5oQ%3D%3D
+百事通直播室,http://ztecdn.hb.chinamobile.com:6060/170000001115/UmaiCHAN123226BESTVSMGSMG9/index.m3u8?AuthInfo=kXVqgwiFNDsA8L8UADdm1mLDUmUjOPWL0uahZXFVgdifdpaoV%2FF54dOYVDPefu2%2BMu8XcCEPJrWNlflC3BtU%2BQ%3D%3D
 
 🐅｜湖北联通,#genre#
 CCTV1,rtsp://122.191.50.135/PLTV/88888888/224/3221225513/10000100000000060000000000007639_0.smil?accounttype=1&accountinfo=Qp4+3gWj3vfSxaztdu7DgVME/G7aGqZkns7xKsEGVeHCFKSBU4DSDfn8Jf9sNExAlrFOodCf6JzVWcXOmXflaSQKyDMZ1bTMsdoG3z2DeR6Jo72WBhV7ipL6GfcjigeyOTeiw17EJfGUTTDcAUXw1v1Hj8ACjfImqC3FxWFCcGI=,,END
@@ -361,7 +427,7 @@ CNC英文台,http://39.135.138.59:18890/PLTV/88888910/224/3221225693/index.m3u8
 
 
 
-#🎞️｜SiTV,#genre#
+
 
 
 
