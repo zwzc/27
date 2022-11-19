@@ -5,5 +5,5 @@
 "好汉吧": "https://8023.haohanba.cn",
 "米奇妙妙屋": "https://anime.mqmmw.ga",
 "小光组": "https://6vv.app",
-"SB盘": "http://sbpan.tk",
+"SB盘": "http://sbpan.tk"
 }
