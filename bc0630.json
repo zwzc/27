@@ -3,7 +3,8 @@
 "spider": "https://xn--sss604efuw.ga/x/jar/xo.jar",
 
 "sites":[
-{"key":"douban","name":"🅱豆瓣荐片【导航默认为豆瓣，可以点击[主页]选择不同的源作为主页】","type":3,"api": "http://xn--m7r412advb92j21st65a.tk/dr/影魔.js","searchable": 0,"quickSearch": 0,"filterable": 0,"ext":"http://xn--m7r412advb92j21st65a.tk/dr/js/豆瓣.js"},
+//{"key":"douban","name":"🅱豆瓣荐片【导航默认为豆瓣，可以点击[主页]选择不同的源作为主页】","type":3,"api": "http://xn--m7r412advb92j21st65a.tk/dr/影魔.js","searchable": 0,"quickSearch": 0,"filterable": 0,"ext":"http://xn--m7r412advb92j21st65a.tk/dr/js/豆瓣.js"},
+{"key":"t4豆瓣","name":"🅱豆瓣荐片【导航默认为豆瓣，可以点击[主页]选择不同的源作为主页】","type":4,"api":"http://t4.ganggang.live:3812/vod","searchable": 0,"quickSearch": 0,"filterable": 0},
 {"key":"js豆瓣","name":"🅱豆瓣荐片【备用路线】","type":3,"api":"http://xn--m7r412advb92j21st65a.tk/dr/影魔.js","searchable": 0,"quickSearch": 0,"filterable": 0,"ext":"http://xn--m7r412advb92j21st65a.tk/dr/js/豆瓣.js"},
 {"key": "csp_Bili","name":"🅱️哔哩哔哩","type": 3,"api": "csp_Bili","searchable": 0,"quickSearch": 0,"filterable": 1,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/sub/Bili2.json"},
 {"key":"csp_Alist","name":"🧾Alist","type":3,"api":"csp_Alist","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/sub/alist.txt"},
