@@ -1,6 +1,6 @@
 {
-//"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/1113.jar;md5;e32038569f2e456f90e4371472a5bd5a",
-"spider": "http://不是.饭太硬.ga/xo.jar",
+"spider": "https://codeberg.org/zzzz27/27/raw/branch/main/jar/1204.jar;md5;edaac605b8f6c297b19d34464721f869",
+//"spider": "http://不是.饭太硬.ga/xo.jar",
 
 "sites":[
 {"key":"douban","name":"🅱豆瓣荐片【导航默认为豆瓣，可以点击[主页]选择不同的源作为主页】","type":3,"api": "http://xn--m7r412advb92j21st65a.tk/dr/影魔.js","searchable": 0,"quickSearch": 0,"filterable": 0,"ext":"http://xn--m7r412advb92j21st65a.tk/dr/js/豆瓣.js"},
