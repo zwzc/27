@@ -1,7 +1,7 @@
 // 几个接口 http://饭太硬.ga
 
 {
-"spider":"https://files.zohopublic.com.cn/public/workdrive-public/download/6lbj29dceb2d277c14c78ac461d4da2f30e35;md5;efb89c6b91da5145212e01b630627d0b",
+"spider":"https://codeberg.org/zzzz27/27/raw/branch/main/jar/1212.jar;md5;efb89c6b91da5145212e01b630627d0b",
 "wallpaper":"http://饭太硬.ga/深色壁纸/api.php",
 "lives": [{"group": "redirect","channels": [{"name": "live","urls": ["proxy://do=live&type=txt&ext=aHR0cHM6Ly94bi0tbTdyNDEyYWR2YjkyajIxc3Q2NWEudGsvbGl2ZS50eHQ="]}]}],
 
