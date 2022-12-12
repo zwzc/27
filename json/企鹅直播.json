@@ -1,37 +1,72 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>Äú·ÃÎÊµÄÒ³Ãæ¿ÉÄÜÒÑ¾­¸üÃû»òÇ¨ÒÆ</TITLE>
-<META http-equiv=Content-Type content="text/html; charset=gb2312">
-<META http-equiv=refresh content="10;URL = http://·¹Ì«Ó².ga">
-<STYLE type=text/css>BODY {
-	BACKGROUND: #fff; MARGIN: 80px auto; FONT: 14px/150% Verdana, Georgia, Sans-Serif; COLOR: #000; TEXT-ALIGN: center
-}
-A:link {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:visited {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:hover {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:active {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-H1 {
-	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 14px; BACKGROUND: #eee; PADDING-BOTTOM: 4px; MARGIN: 0px; PADDING-TOP: 4px; BORDER-BOTTOM: #84b0c7 1px solid
-}
-DIV {
-	BORDER-RIGHT: #84b0c7 1px solid; BORDER-TOP: #84b0c7 1px solid; BACKGROUND: #e5eef5; MARGIN: 0px auto; BORDER-LEFT: #84b0c7 1px solid; WIDTH: 500px; BORDER-BOTTOM: #84b0c7 1px solid
-}
-P {
-	PADDING-RIGHT: 15px; PADDING-LEFT: 15px; PADDING-BOTTOM: 15px; MARGIN: 0px; PADDING-TOP: 15px
-}
-</STYLE>
+{
+    "author": "ç‡æ€§è€Œæ´»",
+    "ua":"Mozilla/5.0 (Linux; Android 8.1.0; OPPO R11t Build/OPM1.171019.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.89 Mobile Safari/537.36 T7/11.19 SP-engine/2.15.0 baiduboxapp/11.19.5.10 (Baidu; P1 8.1.0)",
+//125.88.199.34 m.live.qq.com
 
-<META content="MSHTML 6.00.2900.2523" name=GENERATOR></HEAD>
-<BODY>
-<DIV>
-<H1>ÌáÊ¾£ºÄú·ÃÎÊµÄÒ³ÃæÒÑ¾­¸üÃû»òÇ¨ÒÆ :)</H1>
-<P>ÇëµÇÂ½<A href="http://·¹Ì«Ó².ga">Ê×Ò³</A>ÖØĞÂËÑË÷ÄãĞèÒªµÄ×ÊÔ´£¬10Ãëºó×Ô¶¯·µ»Ø  ·¹Ì«Ó².ga  Ê×Ò³</P>
-<P><A href="http://·¹Ì«Ó².ga"><FONT 
-color=blue>http://·¹Ì«Ó².ga</FONT></A></P></DIV></BODY></HTML>
+    //"dcVipFlag": "true",
+    //"dcPlayUrl": "true",
+    "homeUrl": "https://m.live.qq.com/directory/game/Basketball",
+    "cateManual": {
+        "ç¯®çƒ": "directory/game/Basketball",
+        "è¶³çƒ":"directory/game/Football",
+        "æå‡»":"directory/game/Fight",
+        "ç½‘çƒæ’çƒ":"directory/game/Tennis",
+        "è‹±æ–‡åŸå£°":"directory/game/English",
+        "å°çƒ":"directory/game/Billiards",
+        "æ£’çƒ/æ©„æ¦„çƒ/å†°çƒ":"directory/game/MLB",
+        "NBA":"directory/game/NBA",
+        "CBA":"directory/game/CBA",
+        "é¢œå€¼":"directory/game/YZ",
+        "æ£‹ç‰Œ/æ¸¸æˆ":"directory/game/Game"
+   
+    },
+    "homeVodNode": "//a[contains(@href,'/10')]","homeVodName": "/div/following-sibling::p[1]/text()","homeVodId": "/@href","homeVodIdR": "/(\\S+)","homeVodImg": "//div[contains(@style,'http')]/@style","homeVodImgR": "(http.*?jpg)","homeVodMark": "",
+    
+      "cateUrl": "https://m.live.qq.com/{cateId}",
+  
+  "cateVodNode": "//a[contains(@href,'/10')]",
+  
+  "cateVodName": "/div/following-sibling::p[1]/text()",
+  
+  "cateVodId": "/@href",
+  
+  "cateVodIdR": "/(\\S+)",
+  
+  "cateVodImg": "//div[contains(@style,'http')]/@style",
+  
+  "cateVodImgR": "(http.*?jpg)",
+  
+  "cateVodMark": "",
+    
+
+    //
+    "dtUrl": "https://m.live.qq.com/{vid}",
+    "dtNode": "//body",
+    "dtName": "//p[contains(@class,'p-title')]/text()",
+    "dtNameR": "(â€œ.*?â€)",
+    "dtImg": "//div[contains(@class,'share-bar')]/@data-pic",
+    "dtImgR": "",
+    "dtCate": "",
+    "dtCateR": "",
+    "dtYear": "",
+    "dtYearR": "",
+    "dtArea": "",
+    "dtAreaR": "",
+    "dtDirector": "",
+    "dtDirectorR": "",
+    "dtActor": "",
+    "dtActorR": "",
+    "dtDesc": "",
+    "dtDescR": "",
+    "dtFromNode": "//p[contains(@class,'p-title')]",
+    "dtFromName": "/text()",
+    "dtFromNameR": "(\\ä¼é¹…ä½“è‚²)",
+    "dtUrlNode": "//div[contains(@class,'wenzi')]",
+    "dtUrlSubNode": "/a",
+    "dtUrlId": "/text()",
+    "dtUrlIdR": "m.live.qq.com/(\\S+)",
+    "dtUrlName": "/text()",
+    "dtUrlNameR": "(\\d+)",
+    "playUrl": "https://m.live.qq.com/{playUrl}",
+    "playUa":"{\"User-Agent\":\"okhttp/3.12.11\"}"
+}
