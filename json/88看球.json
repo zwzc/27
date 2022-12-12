@@ -1,37 +1,48 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>Äú·ÃÎÊµÄÒ³Ãæ¿ÉÄÜÒÑ¾­¸üÃû»òÇ¨ÒÆ</TITLE>
-<META http-equiv=Content-Type content="text/html; charset=gb2312">
-<META http-equiv=refresh content="10;URL = http://·¹Ì«Ó².ga">
-<STYLE type=text/css>BODY {
-	BACKGROUND: #fff; MARGIN: 80px auto; FONT: 14px/150% Verdana, Georgia, Sans-Serif; COLOR: #000; TEXT-ALIGN: center
+{
+    "author":"88çœ‹çƒ",
+	"ua": "",
+    "homeUrl": "http://www.88kanqiu.cc/",
+    "cateManual": {"NBA":"1","CBA":"2","ä¸–ç•Œæ¯":"3","è‹±è¶…":"8","è¥¿ç”²":"9","æ„ç”²":"10","å¾·ç”²":"14","æ³•ç”²":"15","æ¬§å† ":"12","æ¬§è”":"13","æ¬§å›½è”":"16","è¶³æ€»æ¯":"27","å›½ç‹æ¯":"33","ä¸­è¶…":"7","äºšå† ":"11","ç»¼åˆ":"23","ç½‘çƒ":"29","æ–¯è¯ºå…‹":"30"},
+	"homeVodNode": "//div[@class='row d-none d-lg-flex justify-content-between align-items-center vertical-center']",
+	"homeVodName": "concat(/div[@class='col-md-4 text-right']/span/text(),'vs',/div[@class='col-md-4 text-left']/span/text())",
+	"homeVodId": "/div[contains(@class,'pay-btn')]/a/@href",
+	"homeVodIdR": "/live/(\\d+)/play",
+	"homeVodImg": "/div[4]/img/@src",
+	"homeVodImgR": "\\S+(http\\S+)",
+	"homeVodMark": "concat(/div[contains(@class,'category-game-time')]/text(),'---',/div[contains(@class,'pay-btn')]/a/text())",
+	"cateUrl": "http://www.88kanqiu.cc/match/{cateId}/live",
+	"cateVodNode": "//div[@class='row d-none d-lg-flex justify-content-between align-items-center vertical-center']",
+	"cateVodName": "concat(/div[@class='col-md-4 text-right']/span/text(),'vs',/div[@class='col-md-4 text-left']/span/text())",
+	"cateVodId": "/div[contains(@class,'pay-btn')]/a/@href",
+	"cateVodIdR": "/live/(\\d+)/play",
+	"cateVodImg": "/div[4]/img/@src",
+	"cateVodImgR": "\\S+(http\\S+)",
+	"cateVodMark": "concat(/div[contains(@class,'category-game-time')]/text(),'---',/div[contains(@class,'pay-btn')]/a/text())",
+	"dtUrl": "http://www.88kanqiu.cc/live/{vid}/play",
+	"dtNode": "//body",
+	"dtName": "//div[contains(@class,'game-time')]/text()[2]",
+	"dtNameR": "",
+	"dtImg": "//div[contains(@class,'team-name text-center')][1]/img/@src",
+	"dtImgR": "\\S+(http\\S+)",
+    "dtCate": "//div[contains(@class,'game-time')]/text()[2]",
+    "dtActor":"concat(//div[@class='col-md-3 team-name text-center'][1]/span/text(),'-',//div[@class='col-md-3 team-name text-center'][2]/span/text())",
+    "dtArea": "",
+	"dtFromNode": "//li[contains(@class,'nav-active')]/a",
+    "dtFromName": "/text()",
+    "dtFromNameR": "",
+	"dtUrlNode": "//div[contains(@class,'game-videos-btn-container')]/div[1]",
+	"dtUrlSubNode": "/div/a",
+	"dtUrlId": "/@href",
+	"dtUrlIdR": "",
+	"dtUrlName": "/text()",
+	"dtUrlNameR": "",
+	"playUrl":"http://www.88kanqiu.cc{playUrl}",
+    "playUa": "",
+	"searchUrl": "",
+	"scVodNode": "",
+	"scVodName": "",
+	"scVodId": "",
+	"scVodIdR": "",
+	"scVodImg": "",
+	"scVodMark": ""
 }
-A:link {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:visited {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:hover {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:active {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-H1 {
-	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 14px; BACKGROUND: #eee; PADDING-BOTTOM: 4px; MARGIN: 0px; PADDING-TOP: 4px; BORDER-BOTTOM: #84b0c7 1px solid
-}
-DIV {
-	BORDER-RIGHT: #84b0c7 1px solid; BORDER-TOP: #84b0c7 1px solid; BACKGROUND: #e5eef5; MARGIN: 0px auto; BORDER-LEFT: #84b0c7 1px solid; WIDTH: 500px; BORDER-BOTTOM: #84b0c7 1px solid
-}
-P {
-	PADDING-RIGHT: 15px; PADDING-LEFT: 15px; PADDING-BOTTOM: 15px; MARGIN: 0px; PADDING-TOP: 15px
-}
-</STYLE>
-
-<META content="MSHTML 6.00.2900.2523" name=GENERATOR></HEAD>
-<BODY>
-<DIV>
-<H1>ÌáÊ¾£ºÄú·ÃÎÊµÄÒ³ÃæÒÑ¾­¸üÃû»òÇ¨ÒÆ :)</H1>
-<P>ÇëµÇÂ½<A href="http://·¹Ì«Ó².ga">Ê×Ò³</A>ÖØĞÂËÑË÷ÄãĞèÒªµÄ×ÊÔ´£¬10Ãëºó×Ô¶¯·µ»Ø  ·¹Ì«Ó².ga  Ê×Ò³</P>
-<P><A href="http://·¹Ì«Ó².ga"><FONT 
-color=blue>http://·¹Ì«Ó².ga</FONT></A></P></DIV></BODY></HTML>
