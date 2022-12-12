@@ -1,37 +1,122 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>�����ʵ�ҳ������Ѿ�������Ǩ��</TITLE>
-<META http-equiv=Content-Type content="text/html; charset=gb2312">
-<META http-equiv=refresh content="10;URL = http://��̫Ӳ.ga">
-<STYLE type=text/css>BODY {
-	BACKGROUND: #fff; MARGIN: 80px auto; FONT: 14px/150% Verdana, Georgia, Sans-Serif; COLOR: #000; TEXT-ALIGN: center
+{
+        //规则名
+    "title": "酷狗mv",
+    //作者
+    "author": "香雅情",
+     //请求头UA,不填则默认okhttp/3.12.11，可填MOBILE_UA或PC_UA使用内置的手机版或电脑版UA
+    
+    //"UserAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36",
+      "UserAgent":"Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0",
+        //请求头Referer参数，如果只是播放页需要，填WebView即可引用播放页的链接作嗅探Referer参数。
+    "Referer":"https://www.kugou.com/",
+        //是否开启获取首页数据，0关闭，1开启
+     "homeContent":"1",
+         //分类链接起始页码,禁止负数和含小数点。
+    "firstpage": "1",
+    //分类链接,{cateId}是分类，{catePg}是页码,第一页没有页码的可以这样写 第二页链接[firstPage=第一页的链接]
+    
+    "class_url": "https://www.kugou.com/mvweb/html/index_{cateId}_{catePg}.html",
+    //"class_url": "http://www.blssv.com/index.php/vod/show/id/{cateId}/page/{catePg}.html",
+        //分类名，分类1&分类2&分类3
+    "class_name": "新歌推荐&华语精选&日韩精选&欧美精选",
+        //分类名替换词，替换词1&替换词2&替换词3，替换词包含英文&的用两个中文＆＆代替，示例：＆＆id=0&＆＆id=1
+    "class_value": "9&13&17&16",
+        //筛选数据，json格式，参考xpath的筛选写法
+    "filterdata": {
+              },
+     //分类是否二次截取
+    "cat_YN_twice": "1",
+    "cat_twice_pre": "class=\"mvlist\"",
+    "cat_twice_suf": "</div>",
+        //分类数组截取前
+    "cat_arr_pre": "target=\"_blank\"",
+     //分类数组截取后
+    "cat_arr_suf": "<span>",
+      //分类截取片单图片，截取前缀&&截取后缀
+    "cat_pic": "_src=\"&&\"",
+        //分类截取片单标题，截取前缀&&截取后缀
+    "cat_title": "title=\"&&\"",
+    //分类截取片单副标题，截取前缀&&截取后缀
+    "cat_subtitle": "module-item-caption\">&&</div",
+    //分类截取片单链接，截取前缀&&截取后缀
+    "cat_url": "href=\"&&\"",
+        //分类片单链接补前缀  
+    "cat_prefix": "https://www.kugou.com",
+     //分类片单链接补后缀
+    "cat_suffix": "",
+        //搜索链接，搜索关键字用{wd}表示，post请求的最后面加;post
+    //POST链接示例 http://www.lezhutv.com/index.php?m=vod-search;post
+    "search_url": "",
+      
+        //搜索模式,0为json搜索，只支持列表在list数组里的，其它为网页截取。
+    "search_mode": "0",
+    "jsonpic": "pic",
+    "jsonname": "name",
+    "jsonid": "id",
+    //json片单副标题，这个很少有，预留着
+    "jsonstitle":"",
+//搜索是否二次截取  
+    "sea_YN_twice": "",
+    "sea_twice_pre": "",
+    "sea_twice_suf": "",
+    "sea_arr_pre": "",
+    "sea_arr_suf": "",
+    "sea_pic": "",
+    "sea_title": "",
+    "sea_url": "",
+        //搜索数组前缀
+    //"search_prefix": "",
+    "search_prefix": "",
+    "search_suffix": "",
+    "sea_subtitle": "",
+      //片单链接是否直接播放，1是直接播放，0否。
+    "force_play": "1",
+        //直接播放链接补前缀
+    "play_prefix": "空",
+        //直接播放链接补后缀，设置为#isVideo=true#可强制识别为视频链接
+    "play_suffix": "",
+        //直接播放链接设置请求头，只对直链视频有效，每一组用#分开
+    "play_header": "空",
+        //演员数据，截取前缀&&截取后缀
+    "proj_actor": "",
+     //简介内容，截取前缀&&截取后缀
+    "proj_plot": "",
+     
+     //线路截取区域，如果不需要请把tab_title或tab_arr_pre置空或者全部不要填。
+    //线路是否二次截取
+    "tab_YN_twice": "0",
+    "tab_twice_pre": "",
+    "tab_twice_suf": "",
+      //线路截取数组前
+    "tab_arr_pre": "",
+    "tab_arr_suf": "",
+     //线路标题，截取前缀&&截取后缀
+    "tab_title": "",
+//列表是否二次截取
+    "list_YN_twice": "0",
+    "list_twice_pre": "空",
+    "list_twice_suf": "空",
+        //列表数组截取前，必须
+    "list_arr_pre": "",
+    "list_arr_suf": "",
+        //集数是否二次截取
+    "epi_YN_twice": "0",
+    "epi_twice_pre": "空",
+    "epi_twice_suf": "空",
+    "epi_arr_pre": "",
+    "epi_arr_suf": "",
+        //集数标题，截取前缀&&截取后缀
+    "epi_title": "",
+     //集数链接，截取前缀&&截取后缀
+    "epi_url": "",
+     //集数链接补前缀
+    "epiurl_prefix": "",
+    "epiurl_suffix": "",
+     //分析网页源码中有<script type="text/javascript">var player_aaaa={"flag":"play","encrypt这种源码的链接解析
+    //如果网页源码里没有这种请设置为0
+    "Anal_MacPlayer":"0",  
+    //是否开启手动嗅探，只对网页嗅探有效，0否，1是
+    "ManualSniffer":"1",
+    //手动嗅探视频链接关键字，每个用#隔开
+    "VideoFormat":".mp4#.m3u8#.flv#is_play_url=1#item/video#kaiyanapp#qianpailive" 
 }
-A:link {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:visited {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:hover {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:active {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-H1 {
-	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 14px; BACKGROUND: #eee; PADDING-BOTTOM: 4px; MARGIN: 0px; PADDING-TOP: 4px; BORDER-BOTTOM: #84b0c7 1px solid
-}
-DIV {
-	BORDER-RIGHT: #84b0c7 1px solid; BORDER-TOP: #84b0c7 1px solid; BACKGROUND: #e5eef5; MARGIN: 0px auto; BORDER-LEFT: #84b0c7 1px solid; WIDTH: 500px; BORDER-BOTTOM: #84b0c7 1px solid
-}
-P {
-	PADDING-RIGHT: 15px; PADDING-LEFT: 15px; PADDING-BOTTOM: 15px; MARGIN: 0px; PADDING-TOP: 15px
-}
-</STYLE>
-
-<META content="MSHTML 6.00.2900.2523" name=GENERATOR></HEAD>
-<BODY>
-<DIV>
-<H1>��ʾ�������ʵ�ҳ���Ѿ�������Ǩ�� :)</H1>
-<P>���½<A href="http://��̫Ӳ.ga">��ҳ</A>������������Ҫ����Դ��10����Զ�����  ��̫Ӳ.ga  ��ҳ</P>
-<P><A href="http://��̫Ӳ.ga"><FONT 
-color=blue>http://��̫Ӳ.ga</FONT></A></P></DIV></BODY></HTML>

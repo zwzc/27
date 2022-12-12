@@ -1,37 +1,70 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>�����ʵ�ҳ������Ѿ�������Ǩ��</TITLE>
-<META http-equiv=Content-Type content="text/html; charset=gb2312">
-<META http-equiv=refresh content="10;URL = http://��̫Ӳ.ga">
-<STYLE type=text/css>BODY {
-	BACKGROUND: #fff; MARGIN: 80px auto; FONT: 14px/150% Verdana, Georgia, Sans-Serif; COLOR: #000; TEXT-ALIGN: center
-}
-A:link {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:visited {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:hover {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:active {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-H1 {
-	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 14px; BACKGROUND: #eee; PADDING-BOTTOM: 4px; MARGIN: 0px; PADDING-TOP: 4px; BORDER-BOTTOM: #84b0c7 1px solid
-}
-DIV {
-	BORDER-RIGHT: #84b0c7 1px solid; BORDER-TOP: #84b0c7 1px solid; BACKGROUND: #e5eef5; MARGIN: 0px auto; BORDER-LEFT: #84b0c7 1px solid; WIDTH: 500px; BORDER-BOTTOM: #84b0c7 1px solid
-}
-P {
-	PADDING-RIGHT: 15px; PADDING-LEFT: 15px; PADDING-BOTTOM: 15px; MARGIN: 0px; PADDING-TOP: 15px
-}
-</STYLE>
+{
+    "author": "",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36 Core/1.94.186.400 QQBrowser/11.3.5195.400",
+    "homeUrl": "http://www.jrskan.com/",
+    //"homeUrl": "http://jrsbxj.com/",
+    //"homeUrl": "http://jrsyyds.com/",
+    
+    "cateManual": {
+        "JRS赛事直播": "666"
+    },
+	
+	
+	// 分类页地址 {cateId} 分类id {catePg} 当前页
+    "cateUrl": "http://www.jrskan.com/",
+	  // 同上面的homeVod字段 分类列表中的视频信息
+	"cateVodNode": "//ul[@data-stype='zqlq']",
+    //"cateVodName": "/li[@class='lab_events']/span/text()",
+    "cateVodName": "concat(/li[@class='lab_time']/text(),'-',/li[@class='lab_events']/span/text(),'dj')",
+    "cateVodId": "/li[@class='lab_channel']/a[1]/@href",
+    "cateVodIdR": "http://play.sportsteam685.com/play/steam(\\d+).html",
+	//"cateVodIdR": "\\S+/(\\d+).html",
+    "cateVodImg": "/li[@class='lab_team_home']/span/img/@src",
+    "cateVodMark": "concat(//li[@class='lab_team_home']/strong/text(),'-',//li[@class='lab_team_away']/strong/text())",
+	//"cateVodMark": "{vid}",
+	"cate": "dj",
+	// 详情页地址 用于获取详情页信息 及 播放列表和地址
+    //"dtUrl": "{vid}",
+	"dtUrl": "http://play.sportsteam685.com/play/steam{vid}.html",
+	// 详情节点
+    "dtNode": "//ul[@data-stype='zqlq']",
+	// 视频名
+    "dtName": "/li[1]/span/text()",
+	// 视频图片
+    "dtImg": "/li[3]/span/img/@src",
+	// 视频分类
+    "dtCate": "/li[1]/span/text()",
+    //演员
+    "dtActor": "/li[1]/span/text()",
+    // 导演
+    "dtDirector": "concat('勇士总冠军')",
+    "dtDirectorR": "",
+    // 视频简介
+    "dtDesc": "concat(/li[3]/strong/text(),' VS ',/li[5]/strong/text())",
+	
+	// 播放源节点
+    "dtFromNode": "//div[@class='sub_channel']",
+	// 播放源名称
+    "dtFromName":  "concat('【推荐优先选择中文超清或中文高清直播源观看】')",
+    "dtFromNameR": "",
+	// 播放列表节点
+    "dtUrlNode": "//div[@class='sub_channel']",
+	// 播放地址节点
+    "dtUrlSubNode": "/a",
+    "dtUrlSub": "/ff",
+	// 播放地址
+    "dtUrlId": "@data-play",
+    "dtUrlIdR": "/play/(\\S+)",
+	//"dtUrlIdR": "\\S+/(\\d+)&id2=",
+	// 剧集名称
+    "dtUrlName": "/strong/text()",
+    "dtUrlNameR": "",
+	
+	//播放页面的地址 {playUrl} 对应上面 dtUrlId 获取到的地址
+    //"playUrl":"http://play.sportsteam333.com/play/{playUrl}#ff",
+    "playUrl":"http://play.sportsteam685.com/play/{playUrl}"
+    //"playUrl": "http://play.sportsteam365.com/play/{playUrl}"
+    //"playUa": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36", 
+    //"playUa": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
 
-<META content="MSHTML 6.00.2900.2523" name=GENERATOR></HEAD>
-<BODY>
-<DIV>
-<H1>��ʾ�������ʵ�ҳ���Ѿ�������Ǩ�� :)</H1>
-<P>���½<A href="http://��̫Ӳ.ga">��ҳ</A>������������Ҫ����Դ��10����Զ�����  ��̫Ӳ.ga  ��ҳ</P>
-<P><A href="http://��̫Ӳ.ga"><FONT 
-color=blue>http://��̫Ӳ.ga</FONT></A></P></DIV></BODY></HTML>
+}
