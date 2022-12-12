@@ -1,37 +1,74 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>Äú·ÃÎÊµÄÒ³Ãæ¿ÉÄÜÒÑ¾­¸üÃû»òÇ¨ÒÆ</TITLE>
-<META http-equiv=Content-Type content="text/html; charset=gb2312">
-<META http-equiv=refresh content="10;URL = http://·¹Ì«Ó².ga">
-<STYLE type=text/css>BODY {
-	BACKGROUND: #fff; MARGIN: 80px auto; FONT: 14px/150% Verdana, Georgia, Sans-Serif; COLOR: #000; TEXT-ALIGN: center
-}
-A:link {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:visited {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:hover {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:active {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-H1 {
-	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 14px; BACKGROUND: #eee; PADDING-BOTTOM: 4px; MARGIN: 0px; PADDING-TOP: 4px; BORDER-BOTTOM: #84b0c7 1px solid
-}
-DIV {
-	BORDER-RIGHT: #84b0c7 1px solid; BORDER-TOP: #84b0c7 1px solid; BACKGROUND: #e5eef5; MARGIN: 0px auto; BORDER-LEFT: #84b0c7 1px solid; WIDTH: 500px; BORDER-BOTTOM: #84b0c7 1px solid
-}
-P {
-	PADDING-RIGHT: 15px; PADDING-LEFT: 15px; PADDING-BOTTOM: 15px; MARGIN: 0px; PADDING-TOP: 15px
-}
-</STYLE>
-
-<META content="MSHTML 6.00.2900.2523" name=GENERATOR></HEAD>
-<BODY>
-<DIV>
-<H1>ÌáÊ¾£ºÄú·ÃÎÊµÄÒ³ÃæÒÑ¾­¸üÃû»òÇ¨ÒÆ :)</H1>
-<P>ÇëµÇÂ½<A href="http://·¹Ì«Ó².ga">Ê×Ò³</A>ÖØĞÂËÑË÷ÄãĞèÒªµÄ×ÊÔ´£¬10Ãëºó×Ô¶¯·µ»Ø  ·¹Ì«Ó².ga  Ê×Ò³</P>
-<P><A href="http://·¹Ì«Ó².ga"><FONT 
-color=blue>http://·¹Ì«Ó².ga</FONT></A></P></DIV></BODY></HTML>
+{
+            "name": "å­å­å½±è§†",
+            "url": "https://www.ziziys.com",
+            "User": "ç©º",
+            "shouye": "1",
+            "fenlei": "ç”µå½±$/list/1/page/#è¿ç»­å‰§$/list/13/page/#ç¾å‰§$/list/14/page/#åŠ¨æ¼«$/list/3/page/#æ—¥éŸ©å‰§$/list/15/page/#æ³°å‰§$/list/16/page/",
+            "houzhui": ".html",
+            "shifouercijiequ": "0",
+            "jiequqian": "ç©º",
+            "jiequhou": "ç©º",
+            "jiequshuzuqian": "<div class=\"module-item-te",
+            "jiequshuzuhou": "<div class=\"loading\"></div>",
+            "tupianqian": "data-src=\"",
+            "tupianhou": "\"",
+            "biaotiqian": "alt=\"",
+            "biaotihou": "\"",
+            "lianjieqian": "href=\"",
+            "lianjiehou": "\"",
+           "fubiaotiqian": "xt\">",
+           "fubiaotihou": "</div",
+            "sousuoqian": "/index.php/ajax/suggest?mid=1&wd=",
+            "sousuohou": "&limit=500",
+            "sousuohouzhui": "/video/",
+            "ssmoshi": "1",
+            "sousuoshifouercijiequ": "0",
+            "jspic": "ç©º",
+            "jsname": "ç©º",
+            "jsid": "ç©º",
+            "ssjiequqian": "ç©º",
+            "ssjiequhou": "ç©º",
+            "ssjiequshuzuqian": "class=\"thumb",
+            "ssjiequshuzuhou": "</li>",
+            "sstupianqian": "data-original=\"",
+            "sstupianhou": "\"",
+            "ssbiaotiqian": "title=\"",
+            "ssbiaotihou": "\"",
+            "sslianjieqian": "href=\"",
+            "sslianjiehou": "\"",
+            "bfshifouercijiequ": "0",
+            "bfjiequqian": "ç©º",
+            "bfjiequhou": "ç©º",
+            "bfjiequshuzuqian": "class=\"scroll-content",
+            "bfjiequshuzuhou": "</div>",
+            "zhuangtaiqian": "ä¸Šæ˜ ï¼š</span>",
+            "zhuangtaihou": "</div>",
+         "daoyanqian": "å¯¼æ¼”ï¼š</span>",
+         "daoyanhou": "</div>",
+        //    "zhuyanqian": "ä¸»æ¼”ï¼š</span>",
+       //     "zhuyanhou": "</div>",
+            "juqingqian": "å‰§æƒ…ï¼š</span>",
+            "juqinghou": "<a href",
+            "bfyshifouercijiequ": "0",
+            "bfyjiequqian": "ç©º",
+            "bfyjiequhou": "ç©º",
+            "bfyjiequshuzuqian": "<a",
+            "bfyjiequshuzuhou": "/a>",
+            "bfbiaotiqian": "æ’­æ”¾",
+            "bfbiaotihou": "\"",
+            "bflianjieqian": "href=\"",
+            "bflianjiehou": "\"",
+          //  "æ’­æ”¾é“¾æ¥å‰ç¼€": "https://www.ziziys.com",
+            
+         "çº¿è·¯äºŒæ¬¡æˆªå–": "",
+"çº¿è·¯æ•°ç»„": "data-dropdown-value&&</div>",
+"çº¿è·¯æ ‡é¢˜": "<span>&&</small>"
+          //  "æ˜¯å¦å¯ç”¨æ’­æ”¾çº¿è·¯å": "1",
+          ///  "çº¿è·¯åæ˜¯å¦äºŒæ¬¡æˆªå–": "0",
+          //  "çº¿è·¯åæˆªå–å‰": "<div class=\"module-tab-item",
+          //  "çº¿è·¯åæˆªå–å": "iv>",
+          //  "çº¿è·¯åæˆªå–æ•°ç»„å‰": "data-dropdown-value",
+          //  "çº¿è·¯åæˆªå–æ•°ç»„å": "</d",
+        //    "çº¿è·¯åæ ‡é¢˜å‰": "<span>",
+       //     "çº¿è·¯åæ ‡é¢˜å": "</small>"
+        }
