@@ -1,37 +1,57 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>Äú·ÃÎÊµÄÒ³Ãæ¿ÉÄÜÒÑ¾­¸üÃû»òÇ¨ÒÆ</TITLE>
-<META http-equiv=Content-Type content="text/html; charset=gb2312">
-<META http-equiv=refresh content="10;URL = http://·¹Ì«Ó².ga">
-<STYLE type=text/css>BODY {
-	BACKGROUND: #fff; MARGIN: 80px auto; FONT: 14px/150% Verdana, Georgia, Sans-Serif; COLOR: #000; TEXT-ALIGN: center
+{    "ua": "",
+    "homeUrl": "https://m.doujiaow1.com/",
+    "dcVipFlag": "true",
+    "dcPlayUrl": "true",
+    "cateManual": {"ç”µå½±": "1","è¿žç»­å‰§": "2","è§†é¢‘å¤§å…¨": "25","åŠ¨æ¼«": "4","ç»¼è‰º": "30"},
+    "homeVodNode": "//div[@class='con']/a",
+    "homeVodName": "/@title",
+    "homeVodId": "/@href",
+    "homeVodIdR": "/vodhtml/(\\w+)/",
+    "homeVodImg": "//@data-src",
+    "homeVodImgR": "",
+    "homeVodMark": "//em/text()",
+    "cateUrl": "https://m.doujiaow1.com/index.php?m=vod-list-id-{cateId}-pg-{catePg}-order--by-time-class--year--letter--area--lang-.html/page/.html",
+    "cateVodNode": "//div[@class='con']/a",
+    "cateVodName": "/@title",
+    "cateVodId": "/@href",
+    "cateVodIdR": "/vodhtml/(\\w+)/",
+    "cateVodImg": "//@data-src",
+    "cateVodImgR": "",
+    "cateVodMark": "//em/text()",
+    "dtUrl": "https://m.doujiaow1.com/vodhtml/{vid}/",
+    "dtNode": "//section[@class='main']",
+    "dtName": "//h1/text()",
+    "dtNameR": "",
+    "dtImg": "//div[@class='posterPic']/a//@src",
+    "dtImgR": "",
+    "dtCate": "//p[@class='pBottom']/span[4]/text()",
+    "dtCateR": "ç±»åž‹/è¯„åˆ†ï¼š(.*)/\\d.\\dåˆ†",
+    "dtYear": "//p[@class='pBottom']/span[3]/text()",
+    "dtYearR": "åœ°åŒº/å¹´ä»£ï¼š\\S+ / (\\S+)",
+    "dtArea": "//p[@class='pBottom']/span[3]/text()",
+    "dtAreaR": "åœ°åŒº/å¹´ä»£ï¼š(\\S+) / \\S+",
+    "dtDirector": "//p[@class='pBottom']/span[5]/text()",
+    "dtDirectorR": "å¯¼æ¼”ï¼š(\\S+)",
+    "dtActor": "//p[@class='pBottom']/span[6]/text()",
+    "dtActorR": "ä¸»æ¼”ï¼š(\\S+)",
+    "dtDesc": "//div[@class='tabCon']/p[2]/text()",
+    "dtDescR": "å‰§æƒ…:(.*)",
+    "dtFromNode": "//dt[@class='tabt3']/span[@id and and not(contains(text(),'è¿…é›·')) and not(contains(text(),'ç™¾åº¦'))]",
+    "dtFromName": "/text()",
+    "dtFromNameR": "",
+    "dtUrlNode": "//ul[contains(@class,'ulNumList')]",
+    "dtUrlSubNode": "/li/a",
+    "dtUrlId": "@href",
+    "dtUrlIdR": "/vodplayhtml/(\\S+)",
+    "dtUrlName": "/text()",
+    "dtUrlNameR": "",
+    "playUrl": "https://m.doujiaow1.com/vodplayhtml/{playUrl}.html",
+    "playUa": "",
+    "searchUrl": "https://m.doujiaow1.com/index.php?m=vod-search&wd={wd}",
+    "scVodNode": "//div[@class='pic']/a",
+    "scVodName": "/@title",
+    "scVodId": "/@href",
+    "scVodIdR": "/vodhtml/(\\w+)/",
+    "scVodImg": "//@data-src",
+    "scVodMark": "//text()"
 }
-A:link {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:visited {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:hover {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:active {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-H1 {
-	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 14px; BACKGROUND: #eee; PADDING-BOTTOM: 4px; MARGIN: 0px; PADDING-TOP: 4px; BORDER-BOTTOM: #84b0c7 1px solid
-}
-DIV {
-	BORDER-RIGHT: #84b0c7 1px solid; BORDER-TOP: #84b0c7 1px solid; BACKGROUND: #e5eef5; MARGIN: 0px auto; BORDER-LEFT: #84b0c7 1px solid; WIDTH: 500px; BORDER-BOTTOM: #84b0c7 1px solid
-}
-P {
-	PADDING-RIGHT: 15px; PADDING-LEFT: 15px; PADDING-BOTTOM: 15px; MARGIN: 0px; PADDING-TOP: 15px
-}
-</STYLE>
-
-<META content="MSHTML 6.00.2900.2523" name=GENERATOR></HEAD>
-<BODY>
-<DIV>
-<H1>ÌáÊ¾£ºÄú·ÃÎÊµÄÒ³ÃæÒÑ¾­¸üÃû»òÇ¨ÒÆ :)</H1>
-<P>ÇëµÇÂ½<A href="http://·¹Ì«Ó².ga">Ê×Ò³</A>ÖØÐÂËÑË÷ÄãÐèÒªµÄ×ÊÔ´£¬10Ãëºó×Ô¶¯·µ»Ø  ·¹Ì«Ó².ga  Ê×Ò³</P>
-<P><A href="http://·¹Ì«Ó².ga"><FONT 
-color=blue>http://·¹Ì«Ó².ga</FONT></A></P></DIV></BODY></HTML>

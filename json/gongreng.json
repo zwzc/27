@@ -1,37 +1,90 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>�����ʵ�ҳ������Ѿ�������Ǩ��</TITLE>
-<META http-equiv=Content-Type content="text/html; charset=gb2312">
-<META http-equiv=refresh content="10;URL = http://��̫Ӳ.ga">
-<STYLE type=text/css>BODY {
-	BACKGROUND: #fff; MARGIN: 80px auto; FONT: 14px/150% Verdana, Georgia, Sans-Serif; COLOR: #000; TEXT-ALIGN: center
-}
-A:link {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:visited {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:hover {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:active {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-H1 {
-	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 14px; BACKGROUND: #eee; PADDING-BOTTOM: 4px; MARGIN: 0px; PADDING-TOP: 4px; BORDER-BOTTOM: #84b0c7 1px solid
-}
-DIV {
-	BORDER-RIGHT: #84b0c7 1px solid; BORDER-TOP: #84b0c7 1px solid; BACKGROUND: #e5eef5; MARGIN: 0px auto; BORDER-LEFT: #84b0c7 1px solid; WIDTH: 500px; BORDER-BOTTOM: #84b0c7 1px solid
-}
-P {
-	PADDING-RIGHT: 15px; PADDING-LEFT: 15px; PADDING-BOTTOM: 15px; MARGIN: 0px; PADDING-TOP: 15px
-}
-</STYLE>
-
-<META content="MSHTML 6.00.2900.2523" name=GENERATOR></HEAD>
-<BODY>
-<DIV>
-<H1>��ʾ�������ʵ�ҳ���Ѿ�������Ǩ�� :)</H1>
-<P>���½<A href="http://��̫Ӳ.ga">��ҳ</A>������������Ҫ����Դ��10����Զ�����  ��̫Ӳ.ga  ��ҳ</P>
-<P><A href="http://��̫Ӳ.ga"><FONT 
-color=blue>http://��̫Ӳ.ga</FONT></A></P></DIV></BODY></HTML>
+{
+    "author": "春风",
+    "ua": "Mozilla/5.0 (Linux; Android 10; LYA-AL00; HMSCore 6.4.0.312; GMSCore 20.15.16) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 HuaweiBrowser/11.0.4.300 Mobile Safari/537.36",
+    "homeUrl": "https://v.xiangdao.me",
+    "dcVipFlag": "true",
+    "dcPlayUrl": "true",
+    "cateManual": {
+        "电影": "1",
+        "连续剧": "2",
+        "动漫": "4",
+        "综艺": "3"
+        
+    },
+    "homeVodNode": "//section/section[position()>2]//ul[@class='resize_list']/li/a",
+    "homeVodName": "/@title",
+    "homeVodId": "/@href",
+    "homeVodIdR": "/(\\S+).html",
+    "homeVodImg": "//@data-echo",
+    "homeVodImgR": "",
+    "homeVodMark": "/div/span[2]/span/text()",
+    "cateUrl": "https://v.xiangdao.me/index.php?m=vod-list-id-{cateId}-pg-{catePg}.html",
+    "cateVodNode": "//ul[@class='resize_list']/li/a",
+    "cateVodName": "/@title",
+    "cateVodId": "/@href",
+    "cateVodIdR": "/(\\S+).html",
+    "cateVodImg": "//@data-echo",
+    "cateVodImgR": "",
+    "cateVodMark": "/div/span[2]/span/em/text()",
+    "dtUrl": "https://v.xiangdao.me/{vid}.html",
+    "dtNode": "//body",
+    "dtName": "//section[@class='page-hd']/a/@title",
+    "dtNameR": "",
+    "dtImg": "//section[@class='page-hd']/a/img/@src",
+    "dtImgR": "",
+    "dtCate": "",
+    "dtCateR": "",
+    "dtYear": "//span[contains(text(), '年代')]/following-sibling::a/text()",
+    "dtYearR": "",
+    "dtArea": "",
+    "dtAreaR": "",
+    "dtDirector": "//span[contains(text(), '导演')]/following-sibling::a/text()",
+    "dtDirectorR": "",
+    "dtActor": "//span[contains(text(), '主演')]/following-sibling::a/text()",
+    "dtActorR": "",
+    "dtDesc": "//article[@class='detail-con']/p/text()",
+    "dtDescR": "",
+    "dtFromNode": "//div[@class='hd']/ul/li/a",
+    "dtFromName": "/text()",
+    "dtFromNameR": "",
+    "dtUrlNode": "//div[@class='numList']/ul",
+    "dtUrlSubNode": "/li/a",
+    "dtUrlId": "@href",
+    "dtUrlIdR": "/(\\S+).html",
+    "dtUrlName": "/text()",
+    "dtUrlNameR": "",
+    "playUrl": "https://v.xiangdao.me/{playUrl}.html",
+    "playUa": "",
+    "searchUrl": "https://v.xiangdao.me/index.php?m=vod-search&wd={wd}",
+    "scVodNode": "//ul[@class='ulPicTxt clearfix']/li",
+    "scVodName": "//span[@class='sTit']/text()",
+    "scVodId": "//span[@class='sBtn']/a/@href",
+    "scVodIdR": "/(\\S+).html",
+    "scVodImg": "//img/@data-src",
+    "scVodMark": "//span[@class='sDes'][2]/text()",
+   "filter":{
+"1": [
+{"name":"类型","key":"cateId","value":[{"n":"全部","v":"1"},{"n":"动作片","v":"5"},{"n":"喜剧片","v":"6"},{"n":"爱情片","v":"7"},{"n":"科幻片","v":"8"},{"n":"恐怖片","v":"9"},{"n":"剧情片","v":"10"},{"n":"战争片","v":"11"},{"n":"惊悚片","v":"16"},{"n":"奇幻片","v":"17"}]},
+{"name":"年份","key":"year","value":[{"n":"全部","v":""},{"n":"2022","v":"2022"},{"n":"2021","v":"2021"},{"n":"2020","v":"2020"},{"n":"2019","v":"2019"},{"n":"2018","v":"2018"},{"n":"2017","v":"2017"},{"n":"2016","v":"2016"},{"n":"2015","v":"2015"},{"n":"2014","v":"2014"},{"n":"2013","v":"2013"},{"n":"2012","v":"2012"},{"n":"2011","v":"2011"},{"n":"2010","v":"2010"}]},
+{"name":"地区","key":"area","value":[{"n":"全部","v":""},{"n":"大陆","v":"大陆"},{"n":"香港","v":"香港"},{"n":"台湾","v":"台湾"},{"n":"米国","v":"米国"},{"n":"韩国","v":"韩国"},{"n":"日本","v":"日本"},{"n":"泰国","v":"泰国"},{"n":"新加坡","v":"新加坡"},{"n":"马来西亚","v":"马来西亚"},{"n":"印度","v":"印度"},{"n":"英国","v":"英国"},{"n":"法国","v":"法国"},{"n":"加拿大","v":"加拿大"}]},
+{"name":"排序","key":"by","value":[{"n":"全部","v":""},{"n":"时间","v":"time"},{"n":"人气","v":"hits"},{"n":"评分","v":"score"}]}
+],
+"2": [
+{"name":"类型","key":"cateId","value":[{"n":"全部","v":"2"},{"n":"国产剧","v":"12"},{"n":"港台剧","v":"13"},{"n":"日韩剧","v":"14"},{"n":"欧美剧","v":"15"}]},
+{"name":"年份","key":"year","value":[{"n":"全部","v":""},{"n":"2022","v":"2022"},{"n":"2021","v":"2021"},{"n":"2020","v":"2020"},{"n":"2019","v":"2019"},{"n":"2018","v":"2018"},{"n":"2017","v":"2017"},{"n":"2016","v":"2016"},{"n":"2015","v":"2015"},{"n":"2014","v":"2014"},{"n":"2013","v":"2013"},{"n":"2012","v":"2012"},{"n":"2011","v":"2011"},{"n":"2010","v":"2010"}]},
+{"name":"地区","key":"area","value":[{"n":"全部","v":""},{"n":"大陆","v":"大陆"},{"n":"香港","v":"香港"},{"n":"台湾","v":"台湾"},{"n":"米国","v":"米国"},{"n":"韩国","v":"韩国"},{"n":"日本","v":"日本"},{"n":"泰国","v":"泰国"},{"n":"新加坡","v":"新加坡"},{"n":"马来西亚","v":"马来西亚"},{"n":"印度","v":"印度"},{"n":"英国","v":"英国"},{"n":"法国","v":"法国"},{"n":"加拿大","v":"加拿大"}]},
+{"name":"排序","key":"by","value":[{"n":"全部","v":""},{"n":"时间","v":"time"},{"n":"人气","v":"hits"},{"n":"评分","v":"score"}]}
+],
+"3": [
+{"name":"类型","key":"cateId","value":[{"n":"全部","v":"3"}]},
+{"name":"年份","key":"year","value":[{"n":"全部","v":""},{"n":"2022","v":"2022"},{"n":"2021","v":"2021"},{"n":"2020","v":"2020"},{"n":"2019","v":"2019"},{"n":"2018","v":"2018"},{"n":"2017","v":"2017"},{"n":"2016","v":"2016"},{"n":"2015","v":"2015"},{"n":"2014","v":"2014"},{"n":"2013","v":"2013"},{"n":"2012","v":"2012"},{"n":"2011","v":"2011"},{"n":"2010","v":"2010"}]},
+{"name":"地区","key":"area","value":[{"n":"全部","v":""},{"n":"大陆","v":"大陆"},{"n":"香港","v":"香港"},{"n":"台湾","v":"台湾"},{"n":"米国","v":"米国"},{"n":"韩国","v":"韩国"},{"n":"日本","v":"日本"},{"n":"泰国","v":"泰国"},{"n":"新加坡","v":"新加坡"},{"n":"马来西亚","v":"马来西亚"},{"n":"印度","v":"印度"},{"n":"英国","v":"英国"},{"n":"法国","v":"法国"},{"n":"加拿大","v":"加拿大"}]},
+{"name":"排序","key":"by","value":[{"n":"全部","v":""},{"n":"时间","v":"time"},{"n":"人气","v":"hits"},{"n":"评分","v":"score"}]}
+],
+"4": [
+{"name":"类型","key":"cateId","value":[{"n":"全部","v":"4"},{"n":"动漫剧","v":"18"},{"n":"动漫片","v":"19"}]},
+{"name":"年份","key":"year","value":[{"n":"全部","v":""},{"n":"2022","v":"2022"},{"n":"2021","v":"2021"},{"n":"2020","v":"2020"},{"n":"2019","v":"2019"},{"n":"2018","v":"2018"},{"n":"2017","v":"2017"},{"n":"2016","v":"2016"},{"n":"2015","v":"2015"},{"n":"2014","v":"2014"},{"n":"2013","v":"2013"},{"n":"2012","v":"2012"},{"n":"2011","v":"2011"},{"n":"2010","v":"2010"}]},
+{"name":"地区","key":"area","value":[{"n":"全部","v":""},{"n":"大陆","v":"大陆"},{"n":"香港","v":"香港"},{"n":"台湾","v":"台湾"},{"n":"米国","v":"米国"},{"n":"韩国","v":"韩国"},{"n":"日本","v":"日本"},{"n":"泰国","v":"泰国"},{"n":"新加坡","v":"新加坡"},{"n":"马来西亚","v":"马来西亚"},{"n":"印度","v":"印度"},{"n":"英国","v":"英国"},{"n":"法国","v":"法国"},{"n":"加拿大","v":"加拿大"}]},
+{"name":"排序","key":"by","value":[{"n":"全部","v":""},{"n":"时间","v":"time"},{"n":"人气","v":"hits"},{"n":"评分","v":"score"}]}
+]
+}}

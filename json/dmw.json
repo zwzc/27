@@ -1,37 +1,182 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>您访问的页面可能已经更名或迁移</TITLE>
-<META http-equiv=Content-Type content="text/html; charset=gb2312">
-<META http-equiv=refresh content="10;URL = http://饭太硬.ga">
-<STYLE type=text/css>BODY {
-	BACKGROUND: #fff; MARGIN: 80px auto; FONT: 14px/150% Verdana, Georgia, Sans-Serif; COLOR: #000; TEXT-ALIGN: center
-}
-A:link {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:visited {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:hover {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:active {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-H1 {
-	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 14px; BACKGROUND: #eee; PADDING-BOTTOM: 4px; MARGIN: 0px; PADDING-TOP: 4px; BORDER-BOTTOM: #84b0c7 1px solid
-}
-DIV {
-	BORDER-RIGHT: #84b0c7 1px solid; BORDER-TOP: #84b0c7 1px solid; BACKGROUND: #e5eef5; MARGIN: 0px auto; BORDER-LEFT: #84b0c7 1px solid; WIDTH: 500px; BORDER-BOTTOM: #84b0c7 1px solid
-}
-P {
-	PADDING-RIGHT: 15px; PADDING-LEFT: 15px; PADDING-BOTTOM: 15px; MARGIN: 0px; PADDING-TOP: 15px
-}
-</STYLE>
+//www.dm55.cc
+{
+  "author":"takagen99",
+  "ua": "",
+  "homeUrl": "http://www.88dmw.com",
+  "cateManual": {
+    "鏂扮暘杩炶浇": "1", 
+    "瀹岀粨鏃ユ极": "3",
+    "鐑棬鍥芥极": "4",
+    "鍓у満鍔ㄦ极": "16"
+  },
+  
+// Home Summary ================================================  
+  "homeVodNode": "//div[@class='cn2_l']/div[@class='c2_contact']/div[@class='c1_l_wap_contact']/ul/li",
+  "homeVodName": "/a/@title",
+  "homeVodId": "/a/@href",
+  "homeVodIdR": "/detail/(\\w+).html",
+  "homeVodImg": "/a/img/@src",
+  "homeVodMark": "/p[@class='time']/font/text()",
+  
+// Category Summary ================================================  
+  "cateUrl": "http://www.88dmw.com/vod-list-id-{cateId}-pg-{catePg}-order--by--class--year-{year}-letter--area--lang-.html",
+  "cateVodNode": "//div[@class='list3_cn_box']/div[@class='cn_box2']",
+  "cateVodName": "/div/div/a/@title",
+  "cateVodId": "/div/div/a/@href",
+  "cateVodIdR": "/detail/(\\w+).html",
+  "cateVodImg": "/div/div/a/img/@src",
+  "cateVodMark": "/ul[@class='list_20']/li[2]/span/font/text()",
 
-<META content="MSHTML 6.00.2900.2523" name=GENERATOR></HEAD>
-<BODY>
-<DIV>
-<H1>提示：您访问的页面已经更名或迁移 :)</H1>
-<P>请登陆<A href="http://饭太硬.ga">首页</A>重新搜索你需要的资源，10秒后自动返回  饭太硬.ga  首页</P>
-<P><A href="http://饭太硬.ga"><FONT 
-color=blue>http://饭太硬.ga</FONT></A></P></DIV></BODY></HTML>
+// Category Details ================================================    
+  "dtUrl": "http://www.88dmw.com/detail/{vid}.html",
+  "dtNode": "//div[(@class='warp')]",
+  "dtName": "//div[@class='info-title']/h1/text()",
+  "dtImg": "//div[@class='info-box']/div[@class='o_list']/div[@class='o_big_img_bg_b']/img/@src",
+  "dtCate": "//div[@class='o_r_contact']/ul/li[8]/label/font[1]/text()",
+  "dtYear": "//div[@class='o_r_contact']/ul/li[6]/text()",
+  "dtArea": "//div[@class='o_r_contact']/ul/li[4]/label/text()",
+  "dtActor": "//div[@class='o_r_contact']/ul/li[3]/span/text()",  
+  "dtMark": "//div[@class='o_r_contact']/ul/li[7]/label/font[1]/text()", 
+  "dtDirector": "//div[@class='o_r_contact']/ul/li[2]/span/text()",
+  "dtDesc": "",
+
+// Playlist =====================================================     
+//  "dtFromNode": "//div[contains(@class,'from-tabs')]/label[contains(text(),'绾胯矾') or contains(text(),'浜�')]",  
+  "dtFromNode": "//div[contains(@class,'from-tabs')]/label",
+  "dtFromName": "/text()",
+  "dtFromNameR": "",
+//  "dtUrlNode": "//div[contains(@class,'current-tab')]",
+  "dtUrlNode": "//div[contains(@class,'tabs-list')]",
+  "dtUrlSubNode": "/div/ul/li/a",
+  "dtUrlId": "@href",
+  "dtUrlIdR": "/play/(\\S+).html",
+  "dtUrlName": "/text()",
+  "playUrl": "http://www.88dmw.com/play/{playUrl}.html",
+  "playUa": "",
+  
+// Search Results ================================================     
+  "searchUrl": "http://www.88dmw.com/index.php?m=vod-search-wd-{wd}",
+  "scVodNode": "//div[@class='list3_cn_box']/div[@class='cn_box2']",
+  "scVodName": "/div/div/a/@title",
+  "scVodId": "/div/div/a/@href",
+  "scVodIdR": "/detail/(\\w+).html",
+  "scVodImg": "/div/div/a/img/@src",
+  "scVodMark": "/ul[@class='list_20']/li[2]/span/font/text()",
+  
+// Filters =======================================================
+    "filter": {
+      "1": [
+        {
+          "key": "year",
+          "name": "骞翠唤",
+          "value": [           
+            {"n": "鍏ㄩ儴","v": ""},
+            {"n": "2022","v": "2022"},
+            {"n": "2021","v": "2021"},
+            {"n": "2020","v": "2020"},
+            {"n": "2019","v": "2019"},
+            {"n": "2018","v": "2018"},
+            {"n": "2017","v": "2017"},
+            {"n": "2016","v": "2016"},
+            {"n": "2015","v": "2015"},
+            {"n": "2014","v": "2014"},
+            {"n": "2013","v": "2013"},
+            {"n": "2012","v": "2012"},
+            {"n": "2011","v": "2011"},
+            {"n": "2010","v": "2010"},
+            {"n": "2009","v": "2009"},
+            {"n": "2008","v": "2008"},
+            {"n": "2007","v": "2007"},
+            {"n": "2006","v": "2006"},
+            {"n": "2005","v": "2005"},            
+            {"n": "2004","v": "2004"}
+          ]
+        }
+      ],      
+      "3": [
+        {
+          "key": "year",
+          "name": "骞翠唤",
+          "value": [           
+            {"n": "鍏ㄩ儴","v": ""},
+            {"n": "2022","v": "2022"},              
+            {"n": "2021","v": "2021"},
+            {"n": "2020","v": "2020"},
+            {"n": "2019","v": "2019"},
+            {"n": "2018","v": "2018"},
+            {"n": "2017","v": "2017"},
+            {"n": "2016","v": "2016"},
+            {"n": "2015","v": "2015"},
+            {"n": "2014","v": "2014"},
+            {"n": "2013","v": "2013"},
+            {"n": "2012","v": "2012"},
+            {"n": "2011","v": "2011"},
+            {"n": "2010","v": "2010"},
+            {"n": "2009","v": "2009"},
+            {"n": "2008","v": "2008"},
+            {"n": "2007","v": "2007"},
+            {"n": "2006","v": "2006"},
+            {"n": "2005","v": "2005"},            
+            {"n": "2004","v": "2004"}
+          ]
+        }
+      ],
+      "4": [
+        {
+          "key": "year",
+          "name": "骞翠唤",
+          "value": [            
+            {"n": "鍏ㄩ儴","v": ""},
+            {"n": "2022","v": "2022"},              
+            {"n": "2021","v": "2021"},
+            {"n": "2020","v": "2020"},
+            {"n": "2019","v": "2019"},
+            {"n": "2018","v": "2018"},
+            {"n": "2017","v": "2017"},
+            {"n": "2016","v": "2016"},
+            {"n": "2015","v": "2015"},
+            {"n": "2014","v": "2014"},
+            {"n": "2013","v": "2013"},
+            {"n": "2012","v": "2012"},
+            {"n": "2011","v": "2011"},
+            {"n": "2010","v": "2010"},
+            {"n": "2009","v": "2009"},
+            {"n": "2008","v": "2008"},
+            {"n": "2007","v": "2007"},
+            {"n": "2006","v": "2006"},
+            {"n": "2005","v": "2005"},            
+            {"n": "2004","v": "2004"}
+          ]
+        }
+      ],
+      "16": [
+        {
+          "key": "year",
+          "name": "骞翠唤",
+          "value": [        
+            {"n": "鍏ㄩ儴","v": ""},
+            {"n": "2022","v": "2022"},              
+            {"n": "2021","v": "2021"},
+            {"n": "2020","v": "2020"},
+            {"n": "2019","v": "2019"},
+            {"n": "2018","v": "2018"},
+            {"n": "2017","v": "2017"},
+            {"n": "2016","v": "2016"},
+            {"n": "2015","v": "2015"},
+            {"n": "2014","v": "2014"},
+            {"n": "2013","v": "2013"},
+            {"n": "2012","v": "2012"},
+            {"n": "2011","v": "2011"},
+            {"n": "2010","v": "2010"},
+            {"n": "2009","v": "2009"},
+            {"n": "2008","v": "2008"},
+            {"n": "2007","v": "2007"},
+            {"n": "2006","v": "2006"},
+            {"n": "2005","v": "2005"},            
+            {"n": "2004","v": "2004"}
+          ]
+        }
+      ]
+    }
+  
+}

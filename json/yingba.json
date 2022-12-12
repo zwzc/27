@@ -1,37 +1,82 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>Äú·ÃÎÊµÄÒ³Ãæ¿ÉÄÜÒÑ¾­¸üÃû»òÇ¨ÒÆ</TITLE>
-<META http-equiv=Content-Type content="text/html; charset=gb2312">
-<META http-equiv=refresh content="10;URL = http://·¹Ì«Ó².ga">
-<STYLE type=text/css>BODY {
-	BACKGROUND: #fff; MARGIN: 80px auto; FONT: 14px/150% Verdana, Georgia, Sans-Serif; COLOR: #000; TEXT-ALIGN: center
+{
+    "author": "æ˜¥é£",
+    "ua": "",
+    "homeUrl": "https://www.zaixiandianying8.com",
+    "dcVipFlag": "true",
+    "pCfgJs": "https://www.zaixiandianying8.com/static/js/playerconfig.js",
+    "pCfgJsR": "MacPlayerConfig.player_list=([\\w\\W]*?),MacPlayerConfig.downer_list",
+    "dcShow2Vip": {},
+    "dcPlayUrl": "true",
+    "cateManual": {
+        "è“å…‰": "37",
+        "ç”µå½±": "1",
+        "è¿ç»­å‰§": "2",
+        "ç»¼è‰º": "3",
+        "åŠ¨æ¼«": "4",
+        "å›½äº§å‰§": "13",
+        "æ¬§ç¾å‰§": "16",
+        "æ¸¯å°å‰§": "14",
+        "æ—¥éŸ©å‰§": "15",
+        "åŠ¨ä½œç‰‡": "6",
+        "å–œå‰§ç‰‡": "7",
+        "çˆ±æƒ…ç‰‡": "8",
+        "ç§‘å¹»ç‰‡": "9",
+        "ææ€–ç‰‡": "10",
+        "ç¾éš¾ç‰‡": "21",
+        "æ‚¬ç–‘ç‰‡": "25",
+        "å‰§æƒ…ç‰‡": "11",
+        "æˆ˜äº‰ç‰‡": "12",
+        "çºªå½•ç‰‡": "20"
+    },
+    "homeVodNode": " //ul[@class='myui-vodlist clearfix']//div[@class='myui-vodlist__box']/a",
+    "homeVodName": "/@title",
+    "homeVodId": "/@href",
+    "homeVodIdR": "/\\w+/(\\w+)\\S*.html",
+    "homeVodImg": "/@data-original",
+    "homeVodImgR": "",
+    "homeVodMark": "/span[@class='pic-text text-right']/text()",
+    "cateUrl": "https://www.zaixiandianying8.com/vodshow/{cateId}--------{catePg}---.html",
+    "cateVodNode": "//ul[@class='myui-vodlist clearfix']//div[@class='myui-vodlist__box']/a",
+    "cateVodName": "/@title",
+    "cateVodId": "/@href",
+    "cateVodIdR": "/voddetail/(\\w+)\\S*.html",
+    "cateVodImg": "/@data-original",
+    "cateVodImgR": "",
+    "cateVodMark": "/span[@class='pic-text text-right']/text()",
+    "dtUrl": "https://www.zaixiandianying8.com/voddetail/{vid}.html",
+    "dtNode": "//body",
+    "dtName": "//div[@class='myui-content__thumb']/a/@title",
+    "dtNameR": "",
+    "dtImg": "//div[@class='myui-content__thumb']/a/img/@data-original",
+    "dtImgR": "",
+    "dtCate": "//span[contains(text(), 'åˆ†ç±»')]/following-sibling::a/text()",
+    "dtCateR": "",
+    "dtYear": "//span[contains(text(), 'å¹´ä»½')]/following-sibling::a/text()",
+    "dtYearR": "",
+    "dtArea": "//span[contains(text(), 'åœ°åŒº')]/following-sibling::a/text()",
+    "dtAreaR": "",
+    "dtDirector": "//span[contains(text(), 'å¯¼æ¼”')]/following-sibling::a/text()",
+    "dtDirectorR": "",
+    "dtActor": "//span[contains(text(), 'ä¸»æ¼”')]/following-sibling::a/text()",
+    "dtActorR": "",
+    "dtDesc": "//span[@class='sketch content']/text()",
+    "dtDescR": "",
+    "dtFromNode": "//ul[contains(@class,'nav-tabs')]/li/a",
+    "dtFromName": "/text()",
+    "dtFromNameR": "",
+    "dtUrlNode": "//ul[contains(@class,'myui-content__list')]",
+    "dtUrlSubNode": "/li/a",
+    "dtUrlId": "@href",
+    "dtUrlIdR": "/vodplay/(\\S+).html",
+    "dtUrlName": "/text()",
+    "dtUrlNameR": "",
+    "playUrl": "https://www.zaixiandianying8.com/vodplay/{playUrl}.html",
+    "playUa": "",
+    "searchUrl": "https://www.zaixiandianying8.com/vodsearch/-------------.html?wd={wd}&submit=",
+    "scVodNode": "//ul[@id='searchList']//div[@class='thumb']/a",
+    "scVodName": "/@title",
+    "scVodId": "/@href",
+    "scVodIdR": "/voddetail/(\\w+).html",
+    "scVodImg": "/@data-original",
+    "scVodMark": "/span[@class='pic-text text-right']/text()"
 }
-A:link {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:visited {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:hover {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-A:active {
-	COLOR: #2c4c78; TEXT-DECORATION: none
-}
-H1 {
-	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 14px; BACKGROUND: #eee; PADDING-BOTTOM: 4px; MARGIN: 0px; PADDING-TOP: 4px; BORDER-BOTTOM: #84b0c7 1px solid
-}
-DIV {
-	BORDER-RIGHT: #84b0c7 1px solid; BORDER-TOP: #84b0c7 1px solid; BACKGROUND: #e5eef5; MARGIN: 0px auto; BORDER-LEFT: #84b0c7 1px solid; WIDTH: 500px; BORDER-BOTTOM: #84b0c7 1px solid
-}
-P {
-	PADDING-RIGHT: 15px; PADDING-LEFT: 15px; PADDING-BOTTOM: 15px; MARGIN: 0px; PADDING-TOP: 15px
-}
-</STYLE>
-
-<META content="MSHTML 6.00.2900.2523" name=GENERATOR></HEAD>
-<BODY>
-<DIV>
-<H1>ÌáÊ¾£ºÄú·ÃÎÊµÄÒ³ÃæÒÑ¾­¸üÃû»òÇ¨ÒÆ :)</H1>
-<P>ÇëµÇÂ½<A href="http://·¹Ì«Ó².ga">Ê×Ò³</A>ÖØĞÂËÑË÷ÄãĞèÒªµÄ×ÊÔ´£¬10Ãëºó×Ô¶¯·µ»Ø  ·¹Ì«Ó².ga  Ê×Ò³</P>
-<P><A href="http://·¹Ì«Ó².ga"><FONT 
-color=blue>http://·¹Ì«Ó².ga</FONT></A></P></DIV></BODY></HTML>
