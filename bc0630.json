@@ -1,7 +1,7 @@
 // 几个接口 http://饭太硬.ga
 
 {
-"spider":"https://codeberg.org/zzzz27/27/raw/branch/main/jar/1218.jar;md5;c02b8653b8c3d270081b35fc48b5b5c6",
+"spider":"https://codeberg.org/zzzz27/27/raw/branch/main/jar/1231.jar;md5;0f907ac84d81b38e5c9d8479e279880d",
 "wallpaper":"http://饭太硬.ga/深色壁纸/api.php",
 "lives": [{"group": "redirect","channels": [{"name": "live","urls": ["proxy://do=live&type=txt&ext=aHR0cHM6Ly94bi0tbTdyNDEyYWR2YjkyajIxc3Q2NWEudGsvbGl2ZS50eHQ="]}]}],
 
@@ -27,7 +27,7 @@
 {"key":"csp_77","name":"👒七七┃SP","type":3,"api":"csp_Kunyu77","playerType":2,"searchable":1,"quickSearch":1,"filterable":1},
 {"key":"csp_Lib","name": "🎉Lib┃SP","type": 3,"api": "csp_Lib","playerType":2,"searchable": 1,"quickSearch": 1,"filterable": 1},
 {"key":"csp_zxzj","name":"📗在线┃SP","type":3,"api":"csp_Zxzj","playerType":2,"searchable":1,"quickSearch":1,"filterable":1},
-{"key":"csp_DiDuan" ,"name":"⏮️低端┃SP","type":3,"api":"csp_Ddrk","click": "ddys.tv;#vjsp > button","playerType":2,"searchable":1,"quickSearch":1,"filterable":0},
+{"key":"csp_DiDuan" ,"name":"⏮️低端┃SP","type":3,"api":"csp_Ddrk","click":"ddys.tv;.vjs-big-play-button","playerType":2,"searchable":1,"quickSearch":1,"filterable":0},
 {"key":"csp_Lgyy","name":"🌀蓝光┃SP","type":3,"api":"csp_Lgyy","playerType":2,"searchable":1,"quickSearch":1,"filterable":1},
 {"key":"csp_apple","name":"🍎苹果┃SP","type":3,"api":"csp_LiteApple","playerType":1,"searchable":1,"quickSearch":1,"filterable":1},
 
