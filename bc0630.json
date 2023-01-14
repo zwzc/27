@@ -101,7 +101,7 @@
 //{"key":"csp_xp_dmw","name":"💢动漫岛","type":3,"api":"csp_XPathMacFilter","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/json/dmw.json"},
 //{"key":"csp_xp_gongreng","name":"💢工人","type":3,"api":"csp_XPathMacFilter","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/json/gongreng.json"},
 //{"key":"csp_xp_doujiao","name":"💢豆角","type": 3,"api": "csp_XPath","searchable": 1,"quickSearch": 1,"filterable": 1,"ext": "https://codeberg.org/zzzz27/27/raw/branch/main/json/doujiao.json"},
-//{"key":"csp_xp_yingba","name":"💢电影吧","type":3,"api":"csp_XPath","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/json/yingba.json"}
+{"key":"csp_xp_yingba","name":"💢电影吧","type":3,"api":"csp_XPath","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/json/yingba.json"}
 
 ],
 "parses": [
