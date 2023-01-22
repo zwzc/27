@@ -1,7 +1,7 @@
 // 几个接口 http://饭太硬.ga
 
 {
-"spider":"https://codeberg.org/zzzz27/27/raw/branch/main/jar/0114.jar;md5;a4a90401116d9f1f6a3358c63167ff1f",
+"spider":"https://codeberg.org/zzzz27/27/raw/branch/main/jar/0122.jar;md5;dce4a45660b1e61b6f02113cbab13e16",
 "wallpaper":"http://饭太硬.ga/深色壁纸/api.php",
 "lives": [{"group": "redirect","channels": [{"name": "live","urls": ["proxy://do=live&type=txt&ext=aHR0cHM6Ly94bi0tbTdyNDEyYWR2YjkyajIxc3Q2NWEudGsvbGl2ZS50eHQ="]}]}],
 
@@ -14,8 +14,9 @@
 {"key":"csp_Alist1","name":"🅿Alist网盘","type":3,"api":"csp_AList","searchable":1,"quickSearch":1,"filterable":0,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/json/alist.json"},
 {"key": "csp_Alist2","name": "🅿️小丫搜索","type": 3,"api": "https://gitcode.net/qq_32394351/dr_py/-/raw/master/libs/alist.min.js","searchable": 1,"quickSearch": 1,"filterable": 0,"ext": "http://101.34.67.237/txt/json/alist.json"},	
 {"key":"csp_kuaikan","name":"👀快看┃SP","type":3,"api":"csp_Kuaikan","playerType":2,"searchable":1,"quickSearch":1,"filterable":1},
-{"key":"csp_AppTT","name":"🐰图图┃SP","type":3,"api":"csp_AppTT","playerType":2,"searchable":1,"quickSearch":1,"filterable":1,"ext":"http://124.248.66.107:9955"},
+{"key":"csp_AppTT","name":"🐰图图┃SP","type":3,"api":"csp_AppTT","playerType":2,"searchable":1,"quickSearch":1,"filterable":1,"ext":"110c922de7d69804467fb83d3bb664b5"},
 {"key": "BuLei","name": "💢不雷┃SP","type": 3,"api": "csp_BuLei","playerType":2,"searchable":1,"quickSearch":1,"filterable":1}, 
+{"key": "Tian","name": "🗽天天┃SP","type": "3","api": "csp_Dora","playerType": 2,"searchable": "1","quickSearch": "1","filterable": "1","ext": "bdc1c75081e5e477189a463baa47e392"},
 {"key":"csp_fant","name":"🍙饭团┃SP","type":3,"api":"csp_Fantuan","playerType":2,"filterable":1,"quickSearch":1,"searchable":1},
 {"key":"csp_panghu","name":"🐯胖虎┃SP","type":3,"api":"csp_Panghu","playerType":2,"searchable":1,"quickSearch":1,"filterable":1},
 {"key":"csp_Vofl","name":"🎈Voflix┃SP","type":3,"api":"csp_Voflix","playerType":2,"searchable":1,"quickSearch":1,"filterable":1},
