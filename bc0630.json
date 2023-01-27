@@ -3,7 +3,7 @@
 {
 "spider":"https://codeberg.org/zzzz27/27/raw/branch/main/jar/0122.jar;md5;dce4a45660b1e61b6f02113cbab13e16",
 "wallpaper":"http://饭太硬.ga/深色壁纸/api.php",
-"lives": [{"group": "redirect","channels": [{"name": "live","urls": ["proxy://do=live&type=txt&ext=aHR0cHM6Ly94bi0tbTdyNDEyYWR2YjkyajIxc3Q2NWEudGsvbGl2ZS50eHQ="]}]}],
+"lives": [{"group": "redirect","channels": [{"name": "live","urls": ["proxy://do=live&type=txt&ext=aHR0cDovL2Z0eXl5LnRrL2xpdmUudHh0"]}]}],
 
 "sites":[
 {"key":"js豆瓣","name":"🅱豆瓣┃D首页","type":3,"api":"https://gitcode.net/qq_32394351/dr_py/-/raw/master/libs/drpy2.min.js","ext":"https://gitcode.net/qq_32394351/dr_py/-/raw/master/js/drpy.js","searchable": 0,"quickSearch": 0,"filterable": 0},
