@@ -5,7 +5,7 @@
 "wallpaper":"http://饭太硬.ga/深色壁纸/api.php",
 //"lives": [{"group": "redirect","channels": [{"name": "live","urls": ["proxy://do=live&type=txt&ext=aHR0cDovL2Z0eXl5LnRrL2xpdmUudHh0"]}]}],
 
-"lives": [{"group": "redirect","channels": [{"name": "live","urls": ["proxy://do=live&type=txt&ext=aHR0cHM6Ly9jb2RlYmVyZy5vcmcvenp6ejI3LzI3L3Jhdy9icmFuY2gvbWFpbi9zdWIvTGl2ZS50eHQ="]}]}],
+//"lives": [{"group": "redirect","channels": [{"name": "live","urls": ["proxy://do=live&type=txt&ext=aHR0cHM6Ly9jb2RlYmVyZy5vcmcvenp6ejI3LzI3L3Jhdy9icmFuY2gvbWFpbi9zdWIvTGl2ZS50eHQ="]}]}],
 "lives": [
     {
       "name": "TXT",
