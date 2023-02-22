@@ -23,7 +23,7 @@
 {"key": "csp_Alist2","name": "🅿️小丫搜索","type": 3,"api": "https://gitcode.net/qq_32394351/dr_py/-/raw/master/libs/alist.min.js","searchable": 0,"quickSearch": 1,"filterable": 0,"ext": "http://101.34.67.237/txt/json/alist.json"},	
 {"key":"csp_Paper","name":"📜纸条┃4K","type":3,"api":"csp_Paper","searchable":1,"quickSearch":1,"filterable":1,"changeable":0,"ext":"http://ali.饭太硬.ml/token"},
 {"key":"YiSo","name":"😹易搜┃搜4K","type":3,"api":"csp_YiSo","searchable":1,"quickSearch":1,"filterable":0,"changeable":0,"ext":"http://ali.饭太硬.ml/token"},
-
+{"key":"Zhaozy","name":"🐺找资源┃搜4K","type":3,"api":"csp_Zhaozy","searchable":1,"quickSearch":0,"filterable":0,"changeable":0,"ext":"http://ali.饭太硬.ml/token$$$zzzz27$$$zzzzzz"},
 {"key":"csp_kuaikan","name":"👀快看┃SP","type":3,"api":"csp_Kuaikan","searchable":1,"quickSearch":1,"filterable":1},
 {"key":"csp_YQKAPP","name":"🎉一起看┃SP","type":3,"api":"csp_YQKAPP","playerType":2,"searchable":1,"quickSearch":1,"filterable":1,"ext":"https://api-tx.shumaxc.xyz"},
 {"key":"csp_AppTT","name":"🐰图图┃SP","type":3,"api":"csp_AppTT","searchable":1,"quickSearch":1,"filterable":1,"ext":"http://103.239.101.244:6677/$$$U1JLI2UlNFVZdFUjS2lFbyp2c1BxcHIwY0M0YnhBUVc=$$$bzZzWW1tKng1aG4jcmNDdA=="},
@@ -71,7 +71,6 @@
 {"key":"csp_XYQBiu_斗鱼","name":"🐟斗鱼直播","type":3,"api":"csp_XYQBiu","searchable":0,"quickSearch":0,"filterable":0,"ext":"http://cdn.饭太硬.ga/x/XYQ/斗鱼直播.json"},
 {"key":"csp_xBPQ_聚短视频","name":"📽️聚短视频","type":3,"api":"csp_xBPQ","searchable":0,"quickSearch":0,"filterable":0,"ext":"http://cdn.饭太硬.ga/x/xbpq/短视频.json"},
 
-{"key":"Zhaozy","name":"🐺找资源┃搜4K","type":3,"api":"csp_Zhaozy","searchable":1,"quickSearch":0,"filterable":0,"changeable":0,"ext":"http://ali.饭太硬.ml/token$$$自己去注册$$$qq112233"},
 {"key":"PanSou","name":"🦊盘搜┃搜4K","type":3,"api":"csp_PanSou","searchable":1,"quickSearch":1,"filterable":0,"changeable":0,"ext":"http://ali.饭太硬.ml/token"},
 {"key":"UpYun","name":"😻Up搜┃搜4K","type":3,"api":"csp_UpYun","searchable":1,"quickSearch":1,"filterable":0,"changeable":0,"ext":"http://ali.饭太硬.ml/token"},
 {"key":"push_agent","name":"🛴手机┃推送","type":3,"api":"csp_Push","searchable":0,"quickSearch":0,"filterable":0,"ext":"http://ali.饭太硬.ml/token"},
