@@ -13,7 +13,9 @@
     }
     ],
 "sites":[
-{"key":"js豆瓣","name":"🅱豆瓣┃D首页","type":3,"api":"https://codeberg.org/zzzz27/dr_py/raw/branch/master/libs/drpy2.min.js","ext":"https://codeberg.org/zzzz27/dr_py/raw/branch/master/js/drpy.js","searchable": 0,"quickSearch": 0,"filterable": 0},
+//{"key":"js豆瓣","name":"🅱豆瓣┃D首页","type":3,"api":"https://codeberg.org/zzzz27/dr_py/raw/branch/master/libs/drpy2.min.js","ext":"https://codeberg.org/zzzz27/dr_py/raw/branch/master/js/drpy.js","searchable": 0,"quickSearch": 0,"filterable": 0},
+{"key":"js豆瓣","name":"🅱豆瓣┃D首页","type":3,"api":"https://ftyyy.tk/JS/lib/drpy.min.js","ext":"http://ftyyy.tk/JS/js/drpy.js","searchable": 0,"quickSearch": 0,"filterable": 0},
+
 {"key":"t4豆瓣","name":"🅱豆瓣┃T首页","type":4,"api":"https://t4.饭太硬.ml/vod","searchable": 0,"quickSearch": 0,"filterable": 0},
 //{"key":"t4豆瓣","name":"🅱豆瓣┃T首页","type":4,"api":"https://codeberg.org/zzzz27/27/raw/branch/main/js/vod.json","searchable": 0,"quickSearch": 0,"filterable": 0},
 {"key":"csp_Bili","name":"🅱哔哩合集","type": 3,"api": "csp_Bili","searchable":0,"quickSearch": 0,"filterable": 0,"ext":"https://codeberg.org/zzzz27/27/raw/branch/main/json/bilibili.json"},
