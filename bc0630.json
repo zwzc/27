@@ -1,7 +1,6 @@
 
 {
-//"spider":"./jar/0222.jar;md5;519ec53b81c1ee070bf75ddb293ab900",
-"spider":"https://files.zohopublic.com.cn/public/workdrive-public/download/6lbj268a1eea22863420a86ab468eb9fbc4f5",
+"spider":"./jar/0222.jar;md5;eb433f3b00e991e6ba6509cffc99672c",
 "wallpaper":"http://饭太硬.ga/深色壁纸/api.php",
 "lives": [{"name": "TXT","type": 0,"url": "./sub/Live.txt","epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",}],
 "sites":[
