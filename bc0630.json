@@ -11,7 +11,7 @@
 {"key":"csp_Bili","name":"🅱哔哩合集","type": 3,"api": "csp_Bili","searchable":0,"quickSearch": 0,"filterable": 0,"ext":"./json/bilibili.json"},
 {"key":"csp_Biliych","name":"🅱看演唱会","type": 3,"api": "csp_Bili","searchable":0,"quickSearch": 0,"filterable": 1,"ext":"./json/biliych.json"},
 {"key":"csp_Alist1","name":"🅿Alist网盘","type":3,"api":"csp_AList","searchable":1,"quickSearch":1,"filterable":0,"ext":"./json/alist.json"},
-{"key": "csp_Alist2","name": "🅿️小丫搜索","type": 3,"api": "https://gitcode.net/qq_32394351/dr_py/-/raw/master/libs/alist.min.js","searchable": 0,"quickSearch": 1,"filterable": 0,"ext": "http://101.34.67.237/txt/json/alist.json"},	
+{"key": "csp_Alist2","name": "🅿️小丫搜索","type": 3,"api": "https://gitcode.net/qq_32394351/dr_py/-/raw/master/libs/alist.min.js","searchable": 1,"quickSearch": 1,"filterable": 0,"ext": "http://101.34.67.237/txt/json/alist.json"},	
 {"key":"csp_Paper","name":"📜纸条┃4K","type":3,"api":"csp_Paper","searchable":1,"quickSearch":1,"filterable":1,"changeable":0,"ext":"https://p.xn--sss604efuw.ml/CJK/token.txt"},
 {"key":"YiSo","name":"😹易搜┃搜4K","type":3,"api":"csp_YiSo","searchable":1,"quickSearch":1,"filterable":0,"changeable":0,"ext":"https://p.xn--sss604efuw.ml/CJK/token.txt"},
 {"key":"Zhaozy","name":"🐺找资源┃搜4K","type":3,"api":"csp_Zhaozy","searchable":1,"quickSearch":0,"filterable":0,"changeable":0,"ext":"https://p.xn--sss604efuw.ml/CJK/token.txt$$$zzzz27$$$zzzzzz"},
