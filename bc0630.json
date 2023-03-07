@@ -4,7 +4,8 @@
 "wallpaper":"http://饭太硬.ga/深色壁纸/api.php",
 "lives":[{"name":"live","type":0,"url":"./sub/Live.txt","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"}],
 "sites":[
-{"key":"js豆瓣","name":"🅱豆瓣┃D首页","type":3,"api":"https://ftyyy.tk/JS/lib/drpy.min.js","ext":"http://ftyyy.tk/JS/js/drpy.js","searchable": 0,"quickSearch": 0,"filterable": 0},
+//{"key":"js豆瓣","name":"🅱豆瓣┃D首页","type":3,"api":"https://ftyyy.tk/JS/lib/drpy.min.js","ext":"http://ftyyy.tk/JS/js/drpy.js","searchable": 0,"quickSearch": 0,"filterable": 0},
+{"key":"js豆瓣","name":"🅱豆瓣┃D首页","type":3,"api":"./js/lib/drpy.min.js","ext":"./js/js/drpy.js","searchable": 0,"quickSearch": 0,"filterable": 0},
 //{"key":"js豆瓣","name":"🅱豆瓣┃D首页","type":3,"api":"./js/drpy2.min.js","ext":"./js/豆瓣.js","searchable": 0,"quickSearch": 0,"filterable": 0},
 {"key":"t4豆瓣","name":"🅱豆瓣┃T首页","type":4,"api":"https://t4.饭太硬.ml/vod","searchable": 0,"quickSearch": 0,"filterable": 0},
 //{"key":"t4豆瓣","name":"🅱豆瓣┃T首页","type":4,"api":"./js/vod.json","searchable": 0,"quickSearch": 0,"filterable": 0},
