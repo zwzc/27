@@ -4,7 +4,7 @@
 "wallpaper":"http://饭太硬.ga/深色壁纸/api.php",
 "lives":[{"name":"live","type":0,"url":"./sub/Live.txt","playerType":1,"epg":"http://epg.112114.xyz/?ch={name}&date={date}","logo": "https://epg.112114.xyz/logo/{name}.png"],
 "sites":[
-{"key":"js豆瓣","name":"🅱豆瓣┃D首页","type":3,"api":"./js/lib/drpy.min.js","ext":"./js/js/drpy.js","searchable": 0,"quickSearch": 0,"filterable": 0},
+{"key":"js豆瓣","name":"🅱豆瓣┃饭推荐首页","type":3,"api":"https://agit.ai/fantaiying/fty/raw/branch/master/JS/lib/drpy.min.js","ext":"http://agit.ai/fantaiying/fty/raw/branch/master/JS/js/drpy.js","searchable": 0,"quickSearch": 0,"filterable": 1},
 //{"key":"js豆瓣","name":"🅱豆瓣┃D首页","type":3,"api":"./js/drpy2.min.js","ext":"./js/豆瓣.js","searchable": 0,"quickSearch": 0,"filterable": 0},
 {"key":"csp_Bili","name":"🅱哔哩┃合集","type": 3,"api": "csp_Bili","searchable":1,"quickSearch": 0,"filterable": 0,"ext":"http://饭太硬.ga/x/json/bilibili.json"},
 {"key":"csp_Biliych","name":"🅱哔哩┃演唱会","type": 3,"api": "csp_Bili","searchable":1,"quickSearch": 0,"filterable": 1,"ext":"http://饭太硬.ga/x/json/biliych.json"},
