@@ -1,6 +1,6 @@
 
 {
-"spider":"./jar/0222.jar;md5;e5d54e7f113a9eb29a7ff6bbebe7eca9",
+"spider":"img+./jar/fan.jpg;md5;039d8000fee8db914255316679fd99a8",
 "wallpaper":"http://饭太硬.ga/深色壁纸/api.php",
 "lives":[{"name":"live","type":0,"url":"./sub/Live.txt","playerType":1,"epg":"http://epg.112114.xyz/?ch={name}&date={date}","logo": "https://epg.112114.xyz/logo/{name}.png"}],
 "sites":[
