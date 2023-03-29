@@ -1,9 +1,21 @@
 {
-"小雅": "http://alist.xiaoya.pro",
-"晴园": "https://alist.52qy.repl.co",
-"触光": "https://pan.ichuguang.com",
-"好汉吧": "https://8023.haohanba.cn",
-"米奇妙妙屋": "https://anime.mqmmw.ga",
-"小光组": "https://6vv.app",
-"SB盘": "http://sbpan.tk"
+  "drives": [
+    {
+      "name": "小丫",
+      "server": "http://alist.xiaoya.pro/测试（不限速）/"
+    },
+    {
+      "name": "动漫盘",
+      "server": "http://pan.smjc.cc/自用Open/动画片/"
+    },
+    {
+      "name": "触光",
+      "server": "https://pan.ichuguang.com"
+    },
+    {
+      "name": "星梦",
+      "server": "https://pan.bashroot.top"
+    }
+    
+  ]
 }
