@@ -11,7 +11,7 @@
 {"key":"csp_Bili","name":"🅱哔哩┃合集","type": 3,"api": "csp_Bili","searchable":0,"quickSearch": 0,"filterable": 0,"ext":"http://饭太硬.ga/x/json/bilibili.json"},
 {"key":"csp_Biliych","name":"🅱哔哩┃演唱会","type": 3,"api": "csp_Bili","searchable":0,"quickSearch": 0,"filterable": 1,"ext":"http://饭太硬.ga/x/json/biliych.json"},
 {"key":"csp_Paper","name":"📜纸条┃4K","type":3,"api":"csp_Paper","searchable":1,"quickSearch":1,"filterable":1,"changeable":0,"ext":"http://ali.饭太硬.ml/alitoken"},
-{"key":"Zhaozy","name":"🐺找资源┃搜4K","type":3,"api":"csp_Zhaozy","searchable":1,"quickSearch":0,"filterable":0,"changeable":0,"ext":"http://ali.饭太硬.ml/alitoken$$$zzzz27$$$zzzzzz"},
+{"key":"Zhaozy","name":"🐺找资源┃搜4K","type":3,"api":"csp_Zhaozy","searchable":1,"quickSearch":0,"filterable":0,"changeable":0,"ext":"https://p.xn--sss604efuw.ml/CJK/token.txt$$$zzzz27$$$zzzzzz"},
 
 {"key":"csp_kuaikan","name":"👀快看┃App","type":3,"api":"csp_Kuaikan","m3u8ads": "hd.youyhn.com","searchable":1,"quickSearch":1,"filterable":1},
 //{"key":"csp_YQKAPP","name":"🎉一起看┃App","type":3,"api":"csp_YQKAPP","playerType":2,"m3u8ads": "hd.youyhn.com","searchable":1,"quickSearch":1,"filterable":1,"ext":"https://api-tx.11ty.top"},
