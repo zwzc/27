@@ -1,7 +1,7 @@
 {
 "spider":"./jar/fan.txt;md5;4e76031a18cb23b27867a2c0829492b7",
 "wallpaper":"http://饭太硬.ga/深色壁纸/api.php",
-"lives":[{"name":"live","type":0,"url":"./sub/Live.txt","playerType":1,"epg":"http://epg.112114.xyz/?ch={name}&date={date}","logo": "https://epg.112114.xyz/logo/{name}.png"}],
+"lives":[{"name":"live","type":0,"url":"./sub/Live.txt","playerType":1,"epg":"http://epg.112114.xyz/?ch={name}&date={date}"}],
 "sites":[
 {"key":"js豆瓣","name":"🅱御府小屯🐯🐯","type":3,"api":"http://v.tvfan.top:88/tvbox/js/drpy.min.js","ext":"http://v.tvfan.top:88/tvbox/js/drpy.js","searchable": 0,"quickSearch": 0,"filterable": 0},
 {"key":"js豆瓣","name":"🅱御府小屯🐯🐯","type":3,"api":"./js/lib/drpy.min.js","ext":"./js/js/drpy.js","searchable": 0,"quickSearch": 0,"filterable": 0},
