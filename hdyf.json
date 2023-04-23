@@ -1,5 +1,5 @@
 {
-"spider":"./jar/fan.txt;md5;613066b0150c902b3d51bde7a433be83",
+"spider":"./jar/fan.txt;md5;3fb7a166650cde24e9bf51bc5c76e73c",
 "wallpaper":"http://饭太硬.ga/深色壁纸/api.php",
 "lives":[{"name":"live","type":0,"url":"./sub/Live.txt","playerType":1,"epg":"http://epg.112114.xyz/?ch={name}&date={date}"}],
 "sites":[
