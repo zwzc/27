@@ -1,6 +1,6 @@
 {
 //"spider":"https://files.zohopublic.com.cn/public/workdrive-public/download/uyv0t678c488189af47bb91dc108484d17431",
-"spider":"./jar/fan.txt;md5;a5eaab0a824b174e0024d75e1d8731ff",
+"spider":"./jar/fan.txt;md5;53c068a1f4c2de11d1160e4dbd0ddb0a",
 "wallpaper":"http://饭太硬.top/深色壁纸/api.php",
 "lives":[{"name":"live","type":0,"url":"./sub/Live.txt","playerType":1,"epg":"http://epg.112114.xyz/?ch={name}&date={date}"}],
 "sites":[
