@@ -2,7 +2,8 @@
 //{"key":"csp_WoGG","name":"👽玩偶哥哥┃4K","type":3,"api":"csp_WoGG","searchable":1,"quickSearch":1,"changeable":0,"ext":"./sub/1.txt+4k|auto|fhd"},
 //"lives":[{"name":"live","type":0,"url":"./sub/Live.txt","playerType":1,"epg":"http://epg.112114.xyz/?ch={name}&date={date}"}],
 {
-"spider":"./jar/fan.txt;md5;aabde6a8ab69185b3de13788799f5f53",
+//"spider":"./jar/fan.txt;md5;aabde6a8ab69185b3de13788799f5f53",
+"spider":"https://files.zohopublic.com.cn/public/workdrive-public/download/uyv0t678c488189af47bb91dc108484d17431",
 "wallpaper":"http://饭太硬.top/深色壁纸/api.php",
 
 "sites":[
