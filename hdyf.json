@@ -98,7 +98,7 @@
 
 "lives":[{"name":"🌏Global直播源","type":0,"url":"https://fanmingming.com/txt?url=https://mirror.ghproxy.com/https://raw.githubusercontent.com/Ftindy/IPTV-URL/main/cqyx.m3u","playerType":1,"epg":"http://epg.112114.xyz/?ch={name}&date={date}"},
 {"name":"Yoursmile7","type":0,"url":"https://agit.ai/Yoursmile7/TVBox/raw/branch/master/live.txt","playerType":1,"ua": "okhttp/3.15","epg":"http://epg.112114.xyz/?ch={name}&date={date}"},
-{"name":"📺IPTV(IPV6专用)","type":0,"url":"https://fanmingming.com/txt?url=https://live.fanmingming.com/tv/m3u/ipv6.m3u","playerType":1,"ua": "okhttp/3.15","epg":"http://epg.112114.xyz/?ch={name}&date={date}"},
+{"name":"📺IPTV","type":0,"url":"https://fanmingming.com/txt?url=https://mirror.ghproxy.com/https://raw.githubusercontent.com/Ftindy/IPTV-URL/main/yqgd.m3u","playerType":1,"ua": "okhttp/3.15","epg":"http://epg.112114.xyz/?ch={name}&date={date}"},
 {"name":"Ray•综合","type":0,"url":"https://mirror.ghproxy.com/https://raw.githubusercontent.com/dxawi/0/main/tvlive.txt","playerType":1,"ua": "okhttp/3.15","epg":"http://epg.112114.xyz/?ch={name}&date={date}"},
 {"name":"小屯😾😾","type":0,"url":"./sub/Live.txt","playerType":1,"ua": "okhttp/3.15","epg":"http://epg.112114.xyz/?ch={name}&date={date}"}]
 
