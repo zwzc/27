@@ -34,14 +34,7 @@ CHC高清电影,http://[2409:8087:7000:20:1000::22]:6060/yinhe/2/ch0000009099000
 女性时尚,http://[2409:8087:7001:20:2::3]:80/dbiptv.sn.chinamobile.com/PLTV/88888893/224/3221226969/index.m3u8
 风云足球,http://[2409:8087:7001:20:2::3]:80/dbiptv.sn.chinamobile.com/PLTV/88888893/224/3221226984/index.m3u8
 电视指南,http://[2409:8087:7001:20:2::3]:80/dbiptv.sn.chinamobile.com/PLTV/88888893/224/3221226987/index.m3u8
-CGTN记录,https://livedoc.cgtn.com/500d/prog_index.m3u8
-CGTN俄语,https://liveru.cgtn.com/1000r/prog_index.m3u8
-CGTN法语,https://livefr.cgtn.com/1000f/prog_index.m3u8
-CGTN西语,https://livees.cgtn.com/1000e/prog_index.m3u8
-CGTN阿语,https://livear.cgtn.com/1000a/prog_index.m3u8
 
-国际频道,#genre#
-半岛英语,https://live-hls-web-aje.getaj.net/AJE/01.m3u8
 
 央视-4K,#genre#
 CCTV8K,http://[2409:8087:2001:20:2800:0:df6e:eb02]:80/wh7f454c46tw2749731958_105918260/ott.mobaibox.com/PLTV/3/224/3221228165/index.m3u8?icpid=3&RTS=1681529690&from=40&popid=40&hms_devid=2039&prioritypopid=40&vqe=3
@@ -209,17 +202,6 @@ NewTV系列,#genre#
 哈哈炫动,http://[2409:8087:1e03:21::2]:6060/cms001/ch00000090990000001232/index.m3u8
 游戏风云,http://[2409:8087:1e03:21::2]:6060/cms001/ch00000090990000001192/index.m3u8
 
-
-
-浙江频道,#genre#
-浙江公共新闻,http://hw-m-l.cztv.com/channels/lantian/channel007/1080p.m3u8
-浙江国际,http://hw-m-l.cztv.com/channels/lantian/channel010/1080p.m3u8
-浙江少儿,http://hw-m-l.cztv.com/channels/lantian/channel008/1080p.m3u8
-浙江教科影视,http://hw-m-l.cztv.com/channels/lantian/channel004/1080p.m3u8
-浙江数码时代,http://hw-m-l.cztv.com/channels/lantian/channel012/1080p.m3u8
-浙江民生休闲,http://hw-m-l.cztv.com/channels/lantian/channel006/1080p.m3u8
-浙江经济生活,http://hw-m-l.cztv.com/channels/lantian/channel003/1080p.m3u8
-浙江钱江频道,http://hw-m-l.cztv.com/channels/lantian/channel002/1080p.m3u8
 
 海南频道,#genre#
 海南少儿,http://[2409:8087:5e01:34::21]:6610/ZTE_CMS/08984400000000060000000000000323/index.m3u8?fmmv6
