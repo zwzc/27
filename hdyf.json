@@ -79,7 +79,7 @@
 ],
 "lives":[
 //{"name":"湖北","type":0,"url":"https://gyssi.link/iptv/chinaiptv/%E6%B9%96%E5%8C%97%E7%9C%81.m3u?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE2NTk4ODI1MTAsImlhdCI6MTcwNzM4OTY2OSwiZXhwIjoxNzA5OTgxNjY5fQ.KmG0Gz-jrtz8AAj167yULrpXdimAWo_YxubFUe4geh0","playerType":1,"ua": "okhttp/3.15","epg":"http://epg.112114.xyz/?ch={name}&date={date}"},
-{"name":"XIUTAN","ua":"Mozilla/5.0(WindowsNT10.0;Win64;x64)AppleWebKit/537.36(KHTML,likeGecko)Chrome/120.0.0.0Safari/537.36Edg/120.0.0.0","type":0,"url":"https://xhdwc.tk/xiutan.m3u"},
+{"name":"多线ITV","type":0,"url":"https://mirror.ghproxy.com/raw.githubusercontent.com/ssili126/tv/main/itvlist.m3u","playerType":1},
 {"name":"IPV6","type":0,"url":"./sub/ipv6.txt","playerType":1,"ua": "okhttp/3.15","epg":"http://epg.112114.xyz/?ch={name}&date={date}"},
 {"name":"小屯😾😾","type":0,"url":"./sub/Live.txt","playerType":1,"ua": "okhttp/3.15","epg":"http://epg.112114.xyz/?ch={name}&date={date}"}
 ]
