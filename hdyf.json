@@ -39,5 +39,5 @@
 ],
 "lives":[
 //{"name":"live","type":0,"url":"https://龙伊.top/直播","playerType":1},
-{"name":"IPV6","type":0,"url":"https://live.fanmingming.com/tv/m3u/ipv6.m3u","playerType":1,"ua": "okhttp/3.15","epg":"http://epg.112114.xyz/?ch={name}&date={date}"},
+//{"name":"IPV6","type":0,"url":"https://live.fanmingming.com/tv/m3u/ipv6.m3u","playerType":1,"ua": "okhttp/3.15","epg":"http://epg.112114.xyz/?ch={name}&date={date}"},
 {"name":"小屯😾😾","type":0,"url":"./sub/ipv6.txt","playerType":1,"ua": "okhttp/3.15","epg":"http://epg.112114.xyz/?ch={name}&date={date}"}]}
