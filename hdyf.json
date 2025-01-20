@@ -50,6 +50,7 @@
 {"key":"Biliych","name":"🅱哔哔演唱会┃弹幕","type":3,"api":"csp_Bili","style":{"type":"rect","ratio":1.597},"searchable":1,"quickSearch":0,"changeable":0,"ext":{"json":"https://ghgo.xyz/raw.githubusercontent.com/fantaiying7/EXT/refs/heads/main/biliych.json"}}
 ],
 "lives":[
-{"name":"live","type":0,"url":"https://cdn.jsdelivr.net/gh/Guovin/iptv-api@gd/output/result.txt","playerType":1},
+{"name":"live1","type":0,"url":"https://cdn.jsdelivr.net/gh/Guovin/iptv-api@gd/output/result.txt","playerType":1},
+{"name":"live2","type":0,"url":"https://live.iptv365.org/live.txt","playerType":1},  
 {"name":"ipv6","type":0,"url":"https://gh.tryxd.cn/raw.githubusercontent.com/suxuang/myIPTV/main/ipv6.m3u","playerType":1},
 {"name":"小屯😾😾","type":0,"url":"./sub/iptv6.m3u","playerType":1,"ua": "okhttp/3.15","epg":"http://epg.112114.xyz/?ch={name}&date={date}"}]}
