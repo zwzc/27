@@ -55,4 +55,4 @@
 {"name":"live3","type":0,"url":"https://ghfast.top/raw.githubusercontent.com/vbskycn/iptv/refs/heads/master/tv/iptv4.txt","playerType":1},  
 {"name":"ipv6-1","type":0,"url":"https://ghfast.top/raw.githubusercontent.com/vbskycn/iptv/refs/heads/master/tv/iptv6.txt","playerType":1},  
 {"name":"ipv6-2","type":0,"url":"https://gh.tryxd.cn/raw.githubusercontent.com/suxuang/myIPTV/main/ipv6.m3u","playerType":1},
-{"name":"小屯😾😾","type":0,"url":"./sub/iptv6.m3u","playerType":1,"ua": "okhttp/3.15","epg":"http://epg.112114.xyz/?ch={name}&date={date}"}]}
+{"name":"小屯😾😾","type":0,"url":"./sub/ipv6.txt","playerType":1,"ua": "okhttp/3.15","epg":"http://epg.112114.xyz/?ch={name}&date={date}"}]}
