@@ -58,4 +58,5 @@
 {"name":"IPV6-1【不能看点此切换】","type":0,"url":"https://ghfast.top/raw.githubusercontent.com/vbskycn/iptv/refs/heads/master/tv/iptv6.txt","playerType":1},  
 {"name":"IPV6-2【不能看点此切换】","type":0,"url":"https://gh.tryxd.cn/raw.githubusercontent.com/suxuang/myIPTV/main/ipv6.m3u","playerType":1},
 {"name":"肥羊【不能看点此切换】","type":0,"url":"http://192.168.10.2:35455/tv.m3u","playerType":2},
+{"name":"肥羊2【不能看点此切换】","type":0,"url":"http://[2408:824e:532b:b020:fe7c:2ff:feeb:8d2b]:35455/tv.m3u","playerType":2},
 {"name":"小屯😾😾【不能看点此切换】","type":0,"url":"./sub/ipv6.txt","playerType":1,"ua": "okhttp/3.15","epg":"http://epg.112114.xyz/?ch={name}&date={date}"}]}
