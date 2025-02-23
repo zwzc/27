@@ -53,6 +53,7 @@
 ],
 "lives":[
 {"name":"Live1【不能看点此切换】","type":0,"url":"https://live.iptv365.org/live.txt","playerType":1},  
+{"name":"ITV【不能看点此切换】","type":0,"url":"./sub/Live.txt","playerType":1},  
 {"name":"Live2【不能看点此切换】","type":0,"url":"https://ghfast.top/raw.githubusercontent.com/vbskycn/iptv/refs/heads/master/tv/iptv4.txt","playerType":1},  
 {"name":"Live3【不能看点此切换】","type":0,"url":"https://ghfast.top/raw.githubusercontent.com/fanmingming/live/refs/heads/main/tv/m3u/ipv6.m3u","playerType":1},
 {"name":"IPV6-1【不能看点此切换】","type":0,"url":"https://ghfast.top/raw.githubusercontent.com/vbskycn/iptv/refs/heads/master/tv/iptv6.txt","playerType":1},  
