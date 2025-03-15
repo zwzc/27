@@ -67,7 +67,7 @@
     ],
 "lives":[
     {
-            "name": "itv",
+            "name": "itv【不能看点此切换】",
             "type": 0,
             "url": "./sub/Live.txt",
             "ua": "okhttp/3.15",
@@ -78,12 +78,7 @@
                 "source": "?livemode=4&starttime=${(b)yyyyMMdd'T'HHmm}00.00Z&endtime=${(e)yyyyMMdd'T'HHmm}00.00Z"
             }
         },
-{"name":"牛播一","type":0,"url":"http://127.0.0.1:9978/proxy?do=饭太硬&type=liveList","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}","logo":"https://epg.v1.mk/logo/{name}.png"},
 {"name":"Live1【不能看点此切换】","type":0,"url":"https://live.iptv365.org/live.txt","playerType":1},  
-{"name":"ITV【不能看点此切换】","type":0,"url":"./sub/Live.txt","playerType":1},  
 {"name":"Live2【不能看点此切换】","type":0,"url":"https://ghfast.top/raw.githubusercontent.com/vbskycn/iptv/refs/heads/master/tv/iptv4.txt","playerType":1},  
-{"name":"Live3【不能看点此切换】","type":0,"url":"https://ghfast.top/raw.githubusercontent.com/fanmingming/live/refs/heads/main/tv/m3u/ipv6.m3u","playerType":1},
-{"name":"IPV6-1【不能看点此切换】","type":0,"url":"https://ghfast.top/raw.githubusercontent.com/vbskycn/iptv/refs/heads/master/tv/iptv6.txt","playerType":1},  
-{"name":"IPV6-2【不能看点此切换】","type":0,"url":"https://gh.tryxd.cn/raw.githubusercontent.com/suxuang/myIPTV/main/ipv6.m3u","playerType":1},
 {"name":"肥羊【不能看点此切换】","type":0,"url":"http://192.168.10.2:35455/tv.m3u","playerType":2},
 {"name":"小屯😾😾【不能看点此切换】","type":0,"url":"./sub/ipv6.txt","playerType":1,"ua": "okhttp/3.15","epg":"http://epg.112114.xyz/?ch={name}&date={date}"}]}
