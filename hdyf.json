@@ -57,5 +57,6 @@
 {"name":"湖北联通源【不能看点此切换】","type":0,"url":"./sub/alist.txt","playerType":1},
 {"name":"湖北移动源【不能看点此切换】","type":0,"url":"./sub/Live.txt","playerType":2},
 {"name":"V6范明明（需开启V6网络）","type":0,"url":"https://scrm-community.oss-cn-shenzhen.aliyuncs.com/miniso-vendor/20250425-868403-298462cec53c48439a5765ceaca3c67f.m3u","playerType":2},
+{"name":"Mursor【不能看点此切换】","type":0,"url":"https://sub.ottiptv.cc/iptv.m3u","ua": "okHttp/Mod-1.2.0","playerType":2},
 {"name":"肥羊【不能看点此切换】","type":0,"url":"http://192.168.10.2:35455/tv.m3u","playerType":2},
 {"name":"小屯😾😾【不能看点此切换】","type":0,"url":"./sub/ipv6.txt","playerType":1,"ua": "okhttp/3.15","epg":"http://epg.112114.xyz/?ch={name}&date={date}"}]}
