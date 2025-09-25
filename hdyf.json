@@ -1,7 +1,7 @@
 {
 //"spider":"https://ghfast.top/https://github.com/qist/tvbox/raw/refs/heads/master/jar/fan.txt;md5;0",
 //"spider":"https://fs-im-kefu.7moor-fs1.com/ly/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/2bdded774db1bfc1/f0821.jpg;md5;bcaa35ff60c87f537cf509da3c40411e",
-"spider":"https://coss.yupoo.com/upchat/2025-09-17/1758116715370.jpg;md5;98ca59a872d6d4d89c8c7e2aafb4dae1",
+"spider":"https://coss.yupoo.com/upchat/2025-09-25/1758799916045.jpg;md5;e0739e1404018d77ae4e039bf44094d7",
 "sites":[
 {"key":"豆","name":"豆瓣【御府家人10】","type": 3, "api": "csp_DouDouGuard","indexs":1,"searchable": 0,"quickSearch": 0,"changeable":0},
 {"key":"玩偶","name":"👽玩偶哥哥┃4K弹幕","type":3,"api":"csp_WoGGGuard","timeout":30,"searchable":1,"quickSearch":1,"changeable":0, "ext": {"Cloud-drive":"tvfan/Cloud-drive.txt","from":"4k|auto","siteUrl":"https://www.wogg.com/","danMu":"弹"}},
@@ -56,14 +56,14 @@
         "raw.githubusercontent.com"
     ],
 "lives":[
+{"name":"V4-develop202【不能看点此切换】","type":0,"url":"https://ghfast.top/https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt","playerType":2,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
 {"name":"湖北联通源【不能看点此切换】","type":0,"url":"./sub/alist.txt","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
 {"name":"湖北移动源【不能看点此切换】","type":0,"url":"./sub/Live.txt","playerType":2,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
-{"name":"V4-develop202","type":0,"url":"https://ghfast.top/https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt","playerType":2,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
-{"name":"V6-范明明（需开启V6网络）","type":0,"url":"https://nos.netease.com/ysf/3d75a78a0fc7ede372c03598d6d10367.m3u","playerType":2},
-{"name":"虎牙一起看","type":0,"url":"https://sub.ottiptv.cc/huyayqk.m3u","playerType":2,"timeout":10,"ua":"okHttp/Mod-1.4.0.0"},
-{"name":"斗鱼一起看","type":0,"url":"https://sub.ottiptv.cc/douyuyqk.m3u","playerType":2,"timeout":10,"ua":"okHttp/Mod-1.4.0.0"},
-{"name":"B站直播","type":0,"url":"https://sub.ottiptv.cc/bililive.m3u","playerType":2,"timeout":10,"ua":"okHttp/Mod-1.4.0.0"},
-{"name":"YY轮播","type":0,"url":"https://sub.ottiptv.cc/yylunbo.m3u","playerType":2,"timeout":10,"ua":"okHttp/Mod-1.4.0.0"},
-{"name":"Mursor【不能看点此切换】","type":0,"url":"https://sub.ottiptv.cc/iptv.m3u","ua":"okHttp/Mod-1.2.0","playerType":2},
+{"name":"V6-范明明（需开启V6网络）【不能看点此切换】","type":0,"url":"https://nos.netease.com/ysf/3d75a78a0fc7ede372c03598d6d10367.m3u","playerType":2},
+{"name":"虎牙一起看【不能看点此切换】","type":0,"url":"https://sub.ottiptv.cc/huyayqk.m3u","playerType":2,"timeout":10,"ua":"okHttp/Mod-1.4.0.0"},
+{"name":"斗鱼一起看【不能看点此切换】","type":0,"url":"https://sub.ottiptv.cc/douyuyqk.m3u","playerType":2,"timeout":10,"ua":"okHttp/Mod-1.4.0.0"},
+{"name":"B站直播【不能看点此切换】","type":0,"url":"https://sub.ottiptv.cc/bililive.m3u","playerType":2,"timeout":10,"ua":"okHttp/Mod-1.4.0.0"},
+{"name":"YY轮播【不能看点此切换】","type":0,"url":"https://sub.ottiptv.cc/yylunbo.m3u","playerType":2,"timeout":10,"ua":"okHttp/Mod-1.4.0.0"},
+{"name":"Mursor【不能看点此切换】","type":0,"url":"https://sub.ottiptv.cc/iptv.m3u","playerType":2,"timeout":10,"ua":"okHttp/Mod-1.4.0.0"},
 {"name":"肥羊【不能看点此切换】","type":0,"url":"http://192.168.10.2:35455/tv.m3u","playerType":2},
 {"name":"小屯😾😾【不能看点此切换】","type":0,"url":"./sub/ipv6.txt","playerType":1,"ua": "okhttp/3.15","epg":"http://epg.112114.xyz/?ch={name}&date={date}"}]}
