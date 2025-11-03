@@ -1,6 +1,6 @@
 {
 //"spider":"https://ghfast.top/https://github.com/qist/tvbox/raw/refs/heads/master/jar/fan.txt;md5;0",
-"spider":"https://oss4liview.moji.com/thd_file/2025/10/30/e9010dd3352828f799912154896b54db.jpg;md5;03d768a3fcf8c977d6ce5db0f6405661",
+"spider":"https://oss4liview.moji.com/thd_file/2025/11/03/cc12b64ece89f1d75d2f371039694aa0.jpg;md5;11b6dbd2b630fc9c95e36247917f55db",
 "sites":[
 {"key":"豆","name":"豆瓣【2025-11】","type": 3, "api": "csp_DouDouGuard","indexs":1,"searchable": 0,"quickSearch": 0,"changeable":0},
 {"key":"玩偶","name":"👽玩偶哥哥┃4K弹幕","type":3,"api":"csp_WoGGGuard","timeout":30,"searchable":1,"quickSearch":1,"changeable":0, "ext": {"Cloud-drive":"tvfan/Cloud-drive.txt","from":"4k|auto","siteUrl":"https://www.wogg.com/","danMu":"弹"}},
