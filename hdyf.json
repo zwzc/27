@@ -65,4 +65,4 @@
 {"name":"斗鱼一起看【不能看点此切换】","type":0,"url":"https://sub.ottiptv.cc/douyuyqk.m3u","playerType":2,"timeout":10,"ua":"okHttp/Mod-1.5.0.0"},
 {"name":"B站直播【不能看点此切换】","type":0,"url":"https://sub.ottiptv.cc/bililive.m3u","playerType":2,"timeout":10,"ua":"okHttp/Mod-1.5.0.0"},
 {"name":"YY轮播【不能看点此切换】","type":0,"url":"https://sub.ottiptv.cc/yylunbo.m3u","playerType":2,"timeout":10,"ua":"okHttp/Mod-1.5.0.0"},
-{"name":"小屯😾😾【不能看点此切换】","type":0,"url":"./sub/ipv6.txt","playerType":1,"ua": "okhttp/3.15","epg":"http://epg.112114.xyz/?ch={name}&date={date}"}]}
+{"name":"小屯😾😾【不能看点此切换】","type":0,"url":"./sub/hblt.m3u","playerType":1,"ua": "okhttp/3.15","epg":"http://epg.112114.xyz/?ch={name}&date={date}"}]}
