@@ -89,14 +89,17 @@
   "doh":[{"name":"Google","url":"https://dns.google/dns-query","ips":["8.8.4.4","8.8.8.8"]},{"name":"Cloudflare","url":"https://cloudflare-dns.com/dns-query","ips":["1.1.1.1","1.0.0.1","2606:4700:4700::1111","2606:4700:4700::1001"]},{"name":"AdGuard","url":"https://dns.adguard.com/dns-query","ips":["94.140.14.140","94.140.14.141"]},{"name":"DNSWatch","url":"https://resolver2.dns.watch/dns-query","ips":["84.200.69.80","84.200.70.40"]},{"name":"Quad9","url":"https://dns.quad9.net/dns-quer","ips":["9.9.9.9","149.112.112.112"]}],
   "ads":["mozai.4gtv.tv"],
   "lives":[
-    {"name":"MIGU（登录版）","type":0,"url":"http://127.0.0.1:9978/proxy?do=migu&type=m3u8","playerType":2,"timeout":10},
-    {"name":"MIGU（AI版本）","type":0,"url":"http://127.0.0.1:9978/proxy?do=live&url=https://ds65.tv1288.xyz","playerType":2,"timeout":10},
-    {"name":"江苏移动","type":0,"url":"http://127.0.0.1:9978/proxy?do=live&url=https://storage.7x24cc.com/storage-server/presigned/ss1/a6-online-fileupload/newMediaFile/529EAA1_773_jsyd_20251205182514164newMediaFile.bmp","playerType":2,"timeout":10},
-    {"name":"一起看","type":3,"api":"csp_AweSomeGuard","url":"yqk","playerType":2,"ext":{"sp": "Huya"},"timeout":10},
-    {"name":"肥羊虎牙一起看","type":0,"url":"http://127.0.0.1:9978/proxy?do=live&url=https://sub.ottiptv.cc/huyayqk.m3u","playerType":2,"timeout":10,"ua":"okHttp/Mod-1.5.0.0"},
-    {"name":"肥羊B站直播","type":0,"url":"http://127.0.0.1:9978/proxy?do=live&url=https://sub.ottiptv.cc/bililive.m3u","playerType":2,"timeout":10,"ua":"okHttp/Mod-1.5.0.0"},
-    {"name":"肥羊斗鱼一起看","type":0,"url":"http://127.0.0.1:9978/proxy?do=live&url=https://sub.ottiptv.cc/douyuyqk.m3u","playerType":2,"timeout":10,"ua":"okHttp/Mod-1.5.0.0"},
-    {"name":"肥羊YY轮播","type":0,"url":"http://127.0.0.1:9978/proxy?do=live&url=https://sub.ottiptv.cc/yylunbo.m3u","playerType":2,"timeout":10,"ua":"okHttp/Mod-1.5.0.0"}
+{"name":"Kimentanm【不能看点此切换】","type":0,"url":"https://gh.llkk.cc/https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u","playerType":2},
+{"name":"develop202【不能看点此切换】","type":0,"url":"https://gh.llkk.cc/https://raw.githubusercontent.com/develop202/migu_video/refs/heads/main/interface.txt","playerType":2,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
+{"name":"湖北联通源【不能看点此切换】","type":0,"url":"./sub/hblt.txt","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
+{"name":"湖北联通源2【不能看点此切换】","type":0,"url":"./sub/alist.txt","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
+{"name":"湖北移动源【不能看点此切换】","type":0,"url":"./sub/hbyd.m3u","playerType":2,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
+{"name":"湖北移动源2【不能看点此切换】","type":0,"url":"./sub/Live.txt","playerType":2,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
+{"name":"V6-范明明（需开启V6网络）【不能看点此切换】","type":0,"url":"https://nos.netease.com/ysf/3d75a78a0fc7ede372c03598d6d10367.m3u","playerType":2},
+{"name":"虎牙一起看【不能看点此切换】","type":0,"url":"https://sub.ottiptv.cc/huyayqk.m3u","playerType":2,"timeout":10,"ua":"okHttp/Mod-1.5.0.0"},
+{"name":"斗鱼一起看【不能看点此切换】","type":0,"url":"https://sub.ottiptv.cc/douyuyqk.m3u","playerType":2,"timeout":10,"ua":"okHttp/Mod-1.5.0.0"},
+{"name":"B站直播【不能看点此切换】","type":0,"url":"https://sub.ottiptv.cc/bililive.m3u","playerType":2,"timeout":10,"ua":"okHttp/Mod-1.5.0.0"},
+{"name":"YY轮播【不能看点此切换】","type":0,"url":"https://sub.ottiptv.cc/yylunbo.m3u","playerType":2,"timeout":10,"ua":"okHttp/Mod-1.5.0.0"}
   ],
   "ijk":[
     {"group":"软解码","options":[{"category":4,"name":"opensles","value":"0"},{"category":4,"name":"overlay-format","value":"842225234"},{"category":4,"name":"framedrop","value":"1"},{"category":4,"name":"soundtouch","value":"1"},{"category":4,"name":"start-on-prepared","value":"1"},{"category":1,"name":"http-detect-range-support","value":"0"},{"category":1,"name":"fflags","value":"fastseek"},{"category":2,"name":"skip_loop_filter","value":"48"},{"category":4,"name":"reconnect","value":"1"},{"category":4,"name":"enable-accurate-seek","value":"0"},{"category":4,"name":"mediacodec","value":"0"},{"category":4,"name":"mediacodec-auto-rotate","value":"0"},{"category":4,"name":"mediacodec-handle-resolution-change","value":"0"},{"category":4,"name":"mediacodec-hevc","value":"0"},{"category":1,"name":"dns_cache_timeout","value":"600000000"}]},
