@@ -74,6 +74,15 @@ CHC动作电影,rtsp://122.191.50.135/PLTV/88888888/224/3221226129/1000010000000
 CHC影迷电影,rtsp://122.191.50.135/PLTV/88888888/224/3221226179/10000100000000060000000013163114_0.smil?icpid=SSPID&accounttype=1&limitflux=-1&limitdur=-1&accountinfo=kvRdRtVqokVkeXk3U8psVAsuTY+OgflQt4BiPWWLXbQ0ybcLSP/natFUZeRalHAgMhvmI/+aUOyzA9F/Z2JAiMB2HEYus4VibWE88qwjH9Cf/PCITiD2Rew7Db5iXv2DU9+9VJf4AjT7oqYPBQavv4kFTbj4rCw14DRUTelHCiM,
 
 05体育赛事,#genre#
+CCTV5,https://php.jdshipin.com/TVOD/iptv.php?id=cctv5
+CCTV5+,https://php.jdshipin.com/TVOD/iptv.php?id=cctv5p
+CCTV16,https://php.jdshipin.com/TVOD/iptv.php?id=cctv16
+CCTV5,https://cdn16.163189.xyz/163189/cctv5-2
+CCTV5+,https://cdn16.163189.xyz/163189/cctv5p-2
+CCTV16,https://cdn16.163189.xyz/163189/cctv16-2
+广东体育,http://r.jdshipin.com/LiYdg
+澳门体育,http://cdn6.163189.xyz/163189/amty
+五星体育,https://cdn15.163189.xyz/163189/wxty
 CCTV16,rtsp://122.191.50.135/PLTV/88888888/224/3221226176/10000100000000060000000013492039_0.smil?icpid=SSPID&accounttype=1&limitflux=-1&limitdur=-1&accountinfo=kvRdRtVqokVkeXk3U8psVAsuTY+OgflQt4BiPWWLXbQ0ybcLSP/natFUZeRalHAgMhvmI/+aUOyzA9F/Z2JAiMB2HEYus4VibWE88qwjH9Cf/PCITiD2Rew7Db5iXv2D21+81XNt6WnEMww8dvWrpokFTbj4rCw14DRUTelHCiM,
 风云足球,rtsp://122.191.50.135/PLTV/88888888/224/3221226191/10000100000000060000000013244644_0.smil?icpid=SSPID&accounttype=1&limitflux=-1&limitdur=-1&accountinfo=kvRdRtVqokVkeXk3U8psVAsuTY+OgflQt4BiPWWLXbQ0ybcLSP/natFUZeRalHAgMhvmI/+aUOyzA9F/Z2JAiMB2HEYus4VibWE88qwjH9Cf/PCITiD2Rew7Db5iXv2DPTTMQT0QceRVa3meZ5j93YkFTbj4rCw14DRUTelHCiM,
 快乐垂钓,rtsp://122.191.50.135/PLTV/88888888/224/3221226128/10000100000000060000000012004722_0.smil?icpid=SSPID&accounttype=1&limitflux=-1&limitdur=-1&accountinfo=kvRdRtVqokVkeXk3U8psVAsuTY+OgflQt4BiPWWLXbQ0ybcLSP/natFUZeRalHAgMhvmI/+aUOyzA9F/Z2JAiMB2HEYus4VibWE88qwjH9Cf/PCITiD2Rew7Db5iXv2DNgHc2/H5AHTXAtKwsL9GW4kFTbj4rCw14DRUTelHCiM,
