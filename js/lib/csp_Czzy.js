@@ -165,15 +165,22 @@ async function search(wd, quick, pg) {
     try {
         pg = parseInt(pg, 10);
         pg = pg > 0 ? pg : 1;
+        // 站点搜索入口已改为 /nimasile?q=（旧 xsss1O1 / vodsearch 会 403）
+        let enc = encodeURIComponent(wd);
         let urls = [
-            `${HOST}/xsss1O1?q=${encodeURIComponent(wd)}`,
-            `${HOST}/?s=${encodeURIComponent(wd)}`,
-            `${HOST}/vodsearch/${encodeURIComponent(wd)}/page/${pg}`,
+            `${HOST}/nimasile?q=${enc}` + (pg > 1 ? `&paged=${pg}` : ''),
+            `${HOST}/xsss1O1?q=${enc}`,
+            `${HOST}/?s=${enc}`,
+            `${HOST}/vodsearch/${enc}/page/${pg}`,
         ];
         let VODS = [];
         for (let url of urls) {
             let resHtml = await request(url);
-            VODS = getVodList(resHtml).filter(it => it.vod_name.includes(wd));
+            VODS = getVodList(resHtml);
+            // 仅在非官方搜索页时做标题过滤，避免首页误匹配
+            if (/[?&]s=|vodsearch|xsss/i.test(url)) {
+                VODS = VODS.filter(it => it.vod_name && it.vod_name.includes(wd));
+            }
             if (VODS.length) break;
         }
         return JSON.stringify({
