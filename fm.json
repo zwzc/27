@@ -44,7 +44,7 @@
       "quickSearch": 1,
       "filterable": 1
     },
- {"key": "Didahd","name": "嘀嗒影视","type": 3,"api": "./py/Didahd.py","searchable": 1,"quickSearch": 1,"filterable": 0,"changeable": 1},
+{"key": "TVB云播","name": "TVB云播","type": 3,"api": "./py/TVB云播.py","searchable": 1,"quickSearch": 1,"filterable": 0,"changeable": 1},
     {
       "key": "csp_FeiMaoUC",
       "name": "⚡┃闪电┃优汐",
