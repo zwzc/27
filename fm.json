@@ -249,14 +249,7 @@
       "playerType": 2,
       "ext": "https://shdy5.us"
     },
-    {
-      "key": "csp_Gz360",
-      "name": "🍉┃瓜子┃影视",
-      "type": 3,
-      "api": "csp_Gz360",
-      "playerType": 2
-    },
-    {
+       {
       "key": "csp_LiteApple",
       "name": "🍎┃苹果┃影视",
       "type": 3,
@@ -296,13 +289,7 @@
       "quickSearch": 1,
       "filterable": 1
     },
-    {
-      "key": "csp_SP360",
-      "name": "📺┃360┃官源",
-      "type": 3,
-      "api": "csp_SP360"
-    },
-    {
+      {
       "key": "csp_Bili",
       "name": "🅱┃️哔哩┃合集",
       "type": 3,
@@ -400,21 +387,7 @@
       },
       "ext": "https://img2.gelonghui.com/library/d6014-7a5d5b19-3fe5-456a-8335-925bc845606fnull"
     },
-    {
-      "key": "米搜",
-      "name": "🌖┃米搜┃网盘",
-      "type": 3,
-      "api": "csp_MiSou",
-      "ext": "http://127.0.0.1:9978/file/fatcat/kk.txt"
-    },
-    {
-      "key": "csp_PanSearch",
-      "name": "🚃┃盘搜┃网盘",
-      "type": 3,
-      "api": "csp_PanSearch",
-      "ext": "http://127.0.0.1:9978/file/fatcat/token.txt"
-    },
-    {
+      {
       "key": "儿童",
       "name": "📚┃儿童┃启蒙",
       "type": 3,
