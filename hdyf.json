@@ -29,6 +29,17 @@
 {"key":"咕咕","name":"🦉咕咕┃动漫","type":3,"api":"csp_AppSxGuard","timeout":10,"searchable":1,"quickSearch":1,"changeable":1,"ext":"rfOX1voDIQhH8epBwpmIsuS/sSCZxc/l0mxkeoroQVYOelMAvX1kuYptSLB36YxEjVawS9p37Cgo"},
 {"key":"Dm84","name":"🚌巴士┃动漫","type":3,"api":"csp_Dm84Guard","timeout":10,"searchable":1,"quickSearch":1,"changeable":1},
 
+    {"key": "新闪雷","name": "新闪雷 • MP4","type": 3,"api": "./lib/drpy2.min.js","ext": "./js/新闪雷.js","header": {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0"}},
+    {"key": "闪雷","name": "闪雷 • MP4","type": 3,"api": "./lib/drpy2.min.js","ext": "./js/678.js","header": {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0"}},
+    {"key": "fyyy","name": "飞宇影院","type": 3,"api": "csp_XBPQ","searchable": 1,"quickSearch": 1,"filterable": 1,"changeable": 1,"ext": {"分类url": "http://ntfeiyu.com/nt/{cateId}/area/{area}/by/{by}/class/{class}/lang/{lang}/page/{catePg}/year/{year}.html","分类": "电影$1#电视剧$2#综艺$3#动漫$4"},"header": {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0"}},
+    {"key": "cupfox_in","name": "茶杯狐 • cupfox.in","type": 3,"api": "./lib/drpy2.min.js","ext": "./js/茶杯狐.js","searchable": 1,"quickSearch": 1,"filterable": 0,"changeable": 1,"header": {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0"}},
+    {"key": "italkbbtv","name": "ITalkBB • 外","type": 3,"api": "./py/ITalkBBTV.py","searchable": 1,"quickSearch": 1,"filterable": 0,"changeable": 1},
+    {"key": "OleLive","name": "欧乐影院 • 外","type": 3,"api": "./py/OleLive.py","searchable": 1,"quickSearch": 1,"filterable": 1,"changeable": 1},
+    {"key": "华数","name": "华数 • 影视","type": 3,"api": "./py/华数.py","searchable": 1,"quickSearch": 1,"filterable": 1,"changeable": 1},
+    {"key": "华谊影视","name": "华谊 • 影视","type": 3,"api": "./py/华谊影视.py","searchable": 1,"quickSearch": 1,"filterable": 1,"changeable": 1},
+    {"key": "Didahd","name": "嘀嗒影视","type": 3,"api": "./py/Didahd.py","searchable": 1,"quickSearch": 1,"filterable": 0,"changeable": 1},
+    {"key": "TVB云播","name": "TVB云播","type": 3,"api": "./py/TVB云播.py","searchable": 1,"quickSearch": 1,"filterable": 0,"changeable": 1},
+  
 {"key":"看球","name":"⚽八八┃看球","type":3,"api":"csp_KanqiuGuard","timeout":10,"searchable":0,"changeable":0,"style":{"type":"list"}},
 {"key":"多多","name":"🏀多多┃回放","type":3,"api":"csp_DoubaoGuard","searchable":0,"quickSearch":0,"changeable":0,"style":{"type":"list"}},
 {"key":"吃瓜","name":"🏐吃瓜┃看球","type":3,"api":"csp_LiveGzGuard","searchable":0,"quickSearch":0,"changeable":0,"style":{"type":"list"}},
