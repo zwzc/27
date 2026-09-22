@@ -382,7 +382,7 @@
     {"name": "Quad9","url": "https://dns.quad9.net/dns-query","ips": ["9.9.9.9","149.112.112.112"]}
   ],
   "rules": [
-    {
+   {
   "name": "通用广告过滤",
   "hosts": [".*"],
   "regex": [
@@ -390,9 +390,12 @@
     "#EXT-X-DISCONTINUITY\\r?\\n#EXT-X-KEY:METHOD=NONE\\r?\\n(?:#EXTINF:[\\d.]+,\\r?\\n[^#\\n]+\\.ts\\r?\\n)+#EXT-X-DISCONTINUITY",
     "#EXT-X-DISCONTINUITY\\r?\\n#EXT-X-KEY:METHOD=NONE\\r?\\n(?:#EXTINF:[\\d.]+,\\r?\\n[^#\\n]+\\.ts\\r?\\n)+#EXT-X-KEY:METHOD=AES-128",
     "#EXTINF:[0-9]+\\.[0-9]{4,},\\r?\\n[^#\\n]*[a-z0-9]{18,}\\.ts",
-    "#EXT-X-DISCONTINUITY\\r?\\n(?:#EXTINF:(?:5\\.48|5\\.32|3\\.36|0\\.56|8\\.16|10\\.33|12\\.33|15\\.16|16\\.05)[0-9]*,\\r?\\n[^#\\n]+\\.ts\\r?\\n)+#EXT-X-DISCONTINUITY"
+    "#EXT-X-DISCONTINUITY\\r?\\n(?:#EXTINF:(?:5\\.48|5\\.32|3\\.36|0\\.56|8\\.16|10\\.33|12\\.33|15\\.16|16\\.05)[0-9]*,\\r?\\n[^#\\n]+\\.ts\\r?\\n)+#EXT-X-DISCONTINUITY",
+    "澳门新葡京",
+    "澳門新葡京",
+    "新葡京"
   ]
-},
+}，
     {"name":"cdn.ryplay","hosts":["cdn.ryplay"],"regex":["5.480000","#EXT-X-DISCONTINUITY\\r*\\n*#EXTINF:5.480000,[\\s\\S]*?#EXT-X-DISCONTINUITY","#EXT-X-DISCONTINUITY\\s*\\r?\\n#EXTINF:5.320000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n(?:#EXTINF:[\\d.]+,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n)*?#EXTINF:3.360000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n#EXT-X-DISCONTINUITY","#EXT-X-DISCONTINUITY\\s*\\r?\\n#EXTINF:4.000000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n(?:#EXTINF:[\\d.]+,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n)*?#EXTINF:0.560000,\\s*\\r?\\n.+\\.ts\\s*\\r?\\n#EXT-X-DISCONTINUITY","#EXTINF.*?\\s+.*?1o.*?\\.ts\\s+"]},
     {"name": "proxy","hosts": ["mypikpak.com",".*workers.dev","www.cilixiong.com","*.t4tv.hz.cz","kuba222.com","mp4us.com","dydhhy.com","magicalsearch.top","api123.adys.app","raw.githubusercontent.com","googlevideo.com","cdn.v82u1l.com","cdn.iz8qkg.com","cdn.kin6c1.com","c.biggggg.com","c.olddddd.com","haiwaikan.com","www.histar.tv","youtube.com","uhibo.com",".*boku.*",".*nivod.*",".*ulivetv.*"]},
     {"name": "磁力廣告","hosts": ["magnet","ed2k","push"],"regex": ["澳门","新葡京","威尼斯人","银河","金沙","皇冠","赌场","博彩","六合彩","时时彩","彩票","美女荷官","裸聊","成人","AV在线","福利","哥哥快来","新片首发","UUE29","更多","社區","社区","最新","直播","更新","有趣","英皇体育","全中文AV在线","xuu"]},
