@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # by @Qist
 """
-TVB云播
+TVB云播 / HKTV影视
+方案A：文字广告过滤（条目名/线路名/标题/简介/搜索联想），不改播放链路，不卡顿。
 """
 import re
 import json
@@ -11,6 +12,13 @@ import random
 import requests
 from Crypto.Cipher import AES
 from base.spider import Spider  # 继承基础Spider类
+
+# 屏蔽 verify=False 的警告
+try:
+    import urllib3
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+except Exception:
+    pass
 
 
 # ------------------------------------------------------------------ #
@@ -48,12 +56,50 @@ _LINE_CN = {
     'lzm3u8': '量子 M3U8',
     'hkm3u8': '港剧 M3U8',
     '1080zyk': '1080 自愈库',
+    'tkm3u8': '天空 M3U8',
+    'wjm3u8': '无尽 M3U8',
+    'sdm3u8': '闪电 M3U8',
+    'ffm3u8': '非凡 M3U8',
+    'kuaikan': '快看 M3U8',
+    'ukm3u8': 'U酷 M3U8',
+    'ikm3u8': 'iKun M3U8',
+    'wlm3u8': '卧龙 M3U8',
 }
 
 
 def _line_cn(name):
     """线路名转中文显示；未知线路保留原名。"""
     return _LINE_CN.get(name, name)
+
+
+# ------------------------------------------------------------------ #
+# 文字广告过滤
+# ------------------------------------------------------------------ #
+_AD_PATTERN = re.compile(
+    r'澳门|澳門|新葡京|葡京|威尼斯人|银河|金沙|皇冠|赌场|賭場|博彩|六合彩'
+    r'|时时彩|彩票|棋牌|美女荷官|裸聊|成人|AV在线|福利'
+    r'|哥哥快来|新片首发|UUE29|约炮|上门|包养|外围|在线看片'
+    r'|免费观看|点击进入|加微信|加QQ|复制链接|下载APP',
+    re.I
+)
+
+
+def _is_ad(text):
+    """判断文本是否含广告关键词。"""
+    return bool(_AD_PATTERN.search(str(text or '')))
+
+
+def _clean_ad_text(text):
+    """清洗标题/简介里的广告词。"""
+    if not text:
+        return ''
+    s = str(text)
+    s = re.sub(r'澳门.{0,10}(赌场|博彩|皇冠|新葡京|葡京|威尼斯人|银河|金沙)', '', s, flags=re.I)
+    s = re.sub(r'(赌场|博彩|六合彩|时时彩|美女荷官|裸聊|成人|AV在线|约炮|外围|包养).{0,10}', '', s, flags=re.I)
+    s = re.sub(r'【[^】]*广告[^】]*】', '', s)
+    s = re.sub(r'\[[^\]]*广告[^\]]*\]', '', s)
+    s = re.sub(r'\s+', ' ', s).strip()
+    return s
 
 
 # 随机机型池：观看端一般是电视盒 / 手机，混合使用以模拟真实 UA。
@@ -150,13 +196,13 @@ class Spider(Spider):
         pic = v.get('vod_pic') or v.get('vod_pic_slide') or ''
         return {
             'vod_id': str(v.get('vod_id', '') or ''),
-            'vod_name': v.get('vod_name', '') or '',
+            'vod_name': _clean_ad_text(v.get('vod_name', '') or ''),
             'vod_pic': Spider._pic(pic),
-            'vod_remarks': v.get('vod_remarks', '') or '',
+            'vod_remarks': _clean_ad_text(v.get('vod_remarks', '') or ''),
         }
 
     # ------------------------------------------------------------------ #
-    # 框架接口（与 tvb.py 完全一致）
+    # 框架接口
     # ------------------------------------------------------------------ #
     def homeContent(self, filter):
         try:
@@ -293,14 +339,14 @@ class Spider(Spider):
 
             vod = {
                 'vod_id': str(v.get('vod_id', vid)),
-                'vod_name': v.get('vod_name', '') or '',
+                'vod_name': _clean_ad_text(v.get('vod_name', '') or ''),
                 'vod_pic': self._pic(v.get('vod_pic') or v.get('vod_pic_slide') or ''),
-                'vod_remarks': v.get('vod_remarks', '') or '',
+                'vod_remarks': _clean_ad_text(v.get('vod_remarks', '') or ''),
                 'vod_year': v.get('vod_year', '') or '',
                 'vod_area': v.get('vod_area', '') or '',
-                'vod_actor': v.get('vod_actor', '') or '',
-                'vod_director': v.get('vod_director', '') or '',
-                'vod_content': v.get('vod_content', '') or '',
+                'vod_actor': _clean_ad_text(v.get('vod_actor', '') or ''),
+                'vod_director': _clean_ad_text(v.get('vod_director', '') or ''),
+                'vod_content': _clean_ad_text(v.get('vod_content', '') or ''),
             }
 
             # 线路：from_list 名 + url_list 集（url 在 vodParse 中解密）
@@ -313,20 +359,27 @@ class Spider(Spider):
             play_from = []
             play_url = []
             for idx, src in enumerate(from_list):
+                line_name = _line_cn(src)
+                # 过滤广告线路名
+                if _is_ad(line_name) or _is_ad(src):
+                    continue
                 psid = code2id.get(src, '')
                 episodes = []
                 if idx < len(url_list):
                     for ep in url_list[idx].get('urls', []):
+                        ep_name = ep.get('name', '')
+                        # 过滤广告集数名
+                        if _is_ad(ep_name):
+                            continue
                         # 编码: 名称$player_source_id@episode_index@vod_id
-                        episodes.append(f"{ep.get('name','')}${psid}@{ep.get('episode_index','')}@{vid}")
-                play_from.append(_line_cn(src))
+                        episodes.append(f"{ep_name}${psid}@{ep.get('episode_index','')}@{vid}")
+                if not episodes:
+                    continue
+                play_from.append(line_name)
                 play_url.append('#'.join(episodes))
 
             vod['vod_play_from'] = '$$$'.join(play_from)
             vod['vod_play_url'] = '$$$'.join(play_url)
-            # 保存解析所需的 id 映射，供 playerContent 使用
-            vod['_player_source'] = {src: code2id.get(src) for src in play_from}
-            vod['_vod_id'] = vid
             return {'list': [vod]}
         except Exception as e:
             print(f"Error in detailContent: {e}")
@@ -366,8 +419,9 @@ class Spider(Spider):
                 return []
             out = []
             for it in data.get('list', []) or []:
-                if it.get('vod_name'):
-                    out.append(it['vod_name'])
+                name = it.get('vod_name')
+                if name and not _is_ad(name):
+                    out.append(name)
             return out
         except Exception as e:
             print(f"Error in searchSuggestions: {e}")
