@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 # by @Qist
 """
-TVB云播 / HKTV影视
-含广告过滤（线路名 / 集数名 / 标题 / m3u8 内插）
+TVB云播
 """
 import re
 import json
@@ -10,15 +9,8 @@ import base64
 import zlib
 import random
 import requests
-import urllib.parse
 from Crypto.Cipher import AES
 from base.spider import Spider  # 继承基础Spider类
-
-try:
-    import urllib3
-    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-except Exception:
-    pass
 
 
 # ------------------------------------------------------------------ #
@@ -56,99 +48,12 @@ _LINE_CN = {
     'lzm3u8': '量子 M3U8',
     'hkm3u8': '港剧 M3U8',
     '1080zyk': '1080 自愈库',
-    'tkm3u8': '天空 M3U8',
-    'wjm3u8': '无尽 M3U8',
-    'sdm3u8': '闪电 M3U8',
-    'ffm3u8': '非凡 M3U8',
-    'kuaikan': '快看 M3U8',
-    'ukm3u8': 'U酷 M3U8',
-    'ikm3u8': 'iKun M3U8',
-    'wlm3u8': '卧龙 M3U8',
 }
 
 
 def _line_cn(name):
     """线路名转中文显示；未知线路保留原名。"""
     return _LINE_CN.get(name, name)
-
-
-# ------------------------------------------------------------------ #
-# 广告过滤
-# ------------------------------------------------------------------ #
-# 广告关键词（赌场 + 色情 + 常见推广）
-_AD_PATTERN = re.compile(
-    r'澳门|澳門|新葡京|葡京|威尼斯人|银河|金沙|皇冠|赌场|賭場|博彩|六合彩'
-    r'|时时彩|时时彩|彩票|棋牌|美女荷官|裸聊|成人|AV在线|福利'
-    r'|哥哥快来|新片首发|UUE29|约炮|上门|包养|外围|在线看片'
-    r'|免费观看|点击进入|加微信|加QQ|复制链接|下载APP',
-    re.I
-)
-
-
-def _is_ad(text):
-    """判断文本是否含广告关键词。"""
-    return bool(_AD_PATTERN.search(str(text or '')))
-
-
-def _clean_ad_text(text):
-    """清洗标题/简介里的广告词。"""
-    if not text:
-        return ''
-    s = str(text)
-    s = re.sub(r'澳门.{0,10}(赌场|博彩|皇冠|新葡京|葡京|威尼斯人|银河|金沙)', '', s, flags=re.I)
-    s = re.sub(r'(赌场|博彩|六合彩|时时彩|美女荷官|裸聊|成人|AV在线|约炮|外围|包养).{0,10}', '', s, flags=re.I)
-    s = re.sub(r'【[^】]*广告[^】]*】', '', s)
-    s = re.sub(r'\[[^\]]*广告[^\]]*\]', '', s)
-    s = re.sub(r'\s+', ' ', s).strip()
-    return s
-
-
-def _strip_ad_blocks(m3u8_text):
-    """
-    去掉 m3u8 里被 #EXT-X-DISCONTINUITY 包裹的短广告段。
-    判定条件（满足任一即视为广告）：
-      1. 段内 ts 分片 <= 3
-      2. 段内有 METHOD=NONE 突变
-      3. 段内总时长 < 30 秒
-    """
-    if not m3u8_text or '#EXTM3U' not in m3u8_text:
-        return m3u8_text
-    lines = m3u8_text.split('\n')
-    out = []
-    i = 0
-    while i < len(lines):
-        line = lines[i]
-        if line.strip().startswith('#EXT-X-DISCONTINUITY'):
-            # 找到下一个 DISCONTINUITY 或结尾
-            j = i + 1
-            while j < len(lines) and not lines[j].strip().startswith('#EXT-X-DISCONTINUITY'):
-                j += 1
-            # 分析这段
-            seg_count = 0
-            total_dur = 0.0
-            has_none = False
-            for k in range(i + 1, j):
-                l = lines[k].strip()
-                if l.startswith('#EXT-X-KEY:METHOD=NONE'):
-                    has_none = True
-                m = re.match(r'^#EXTINF:([\d.]+)', l)
-                if m:
-                    try:
-                        total_dur += float(m.group(1))
-                    except Exception:
-                        pass
-                if l and not l.startswith('#') and '.ts' in l:
-                    seg_count += 1
-            # 判定为广告则跳过整段
-            if seg_count == 0:
-                i = j
-                continue
-            if seg_count <= 3 or has_none or total_dur < 30:
-                i = j
-                continue
-        out.append(line)
-        i += 1
-    return '\n'.join(out)
 
 
 # 随机机型池：观看端一般是电视盒 / 手机，混合使用以模拟真实 UA。
@@ -245,13 +150,13 @@ class Spider(Spider):
         pic = v.get('vod_pic') or v.get('vod_pic_slide') or ''
         return {
             'vod_id': str(v.get('vod_id', '') or ''),
-            'vod_name': _clean_ad_text(v.get('vod_name', '') or ''),
+            'vod_name': v.get('vod_name', '') or '',
             'vod_pic': Spider._pic(pic),
-            'vod_remarks': _clean_ad_text(v.get('vod_remarks', '') or ''),
+            'vod_remarks': v.get('vod_remarks', '') or '',
         }
 
     # ------------------------------------------------------------------ #
-    # 框架接口
+    # 框架接口（与 tvb.py 完全一致）
     # ------------------------------------------------------------------ #
     def homeContent(self, filter):
         try:
@@ -388,14 +293,14 @@ class Spider(Spider):
 
             vod = {
                 'vod_id': str(v.get('vod_id', vid)),
-                'vod_name': _clean_ad_text(v.get('vod_name', '') or ''),
+                'vod_name': v.get('vod_name', '') or '',
                 'vod_pic': self._pic(v.get('vod_pic') or v.get('vod_pic_slide') or ''),
-                'vod_remarks': _clean_ad_text(v.get('vod_remarks', '') or ''),
+                'vod_remarks': v.get('vod_remarks', '') or '',
                 'vod_year': v.get('vod_year', '') or '',
                 'vod_area': v.get('vod_area', '') or '',
-                'vod_actor': _clean_ad_text(v.get('vod_actor', '') or ''),
-                'vod_director': _clean_ad_text(v.get('vod_director', '') or ''),
-                'vod_content': _clean_ad_text(v.get('vod_content', '') or ''),
+                'vod_actor': v.get('vod_actor', '') or '',
+                'vod_director': v.get('vod_director', '') or '',
+                'vod_content': v.get('vod_content', '') or '',
             }
 
             # 线路：from_list 名 + url_list 集（url 在 vodParse 中解密）
@@ -408,27 +313,20 @@ class Spider(Spider):
             play_from = []
             play_url = []
             for idx, src in enumerate(from_list):
-                line_name = _line_cn(src)
-                # ===== 过滤广告线路名 =====
-                if _is_ad(line_name) or _is_ad(src):
-                    continue
                 psid = code2id.get(src, '')
                 episodes = []
                 if idx < len(url_list):
                     for ep in url_list[idx].get('urls', []):
-                        ep_name = ep.get('name', '')
-                        # ===== 过滤广告集数名 =====
-                        if _is_ad(ep_name):
-                            continue
                         # 编码: 名称$player_source_id@episode_index@vod_id
-                        episodes.append(f"{ep_name}${psid}@{ep.get('episode_index','')}@{vid}")
-                if not episodes:
-                    continue
-                play_from.append(line_name)
+                        episodes.append(f"{ep.get('name','')}${psid}@{ep.get('episode_index','')}@{vid}")
+                play_from.append(_line_cn(src))
                 play_url.append('#'.join(episodes))
 
             vod['vod_play_from'] = '$$$'.join(play_from)
             vod['vod_play_url'] = '$$$'.join(play_url)
+            # 保存解析所需的 id 映射，供 playerContent 使用
+            vod['_player_source'] = {src: code2id.get(src) for src in play_from}
+            vod['_vod_id'] = vid
             return {'list': [vod]}
         except Exception as e:
             print(f"Error in detailContent: {e}")
@@ -468,9 +366,8 @@ class Spider(Spider):
                 return []
             out = []
             for it in data.get('list', []) or []:
-                name = it.get('vod_name')
-                if name and not _is_ad(name):
-                    out.append(name)
+                if it.get('vod_name'):
+                    out.append(it['vod_name'])
             return out
         except Exception as e:
             print(f"Error in searchSuggestions: {e}")
@@ -481,7 +378,6 @@ class Spider(Spider):
         detailContent 中每集被编码为 "name$psid@epidx@vodid"，
         框架传入的 id 形态为 "psid@epidx@vodid"（不含名称）。
         经 vodParse 接口用 (vod_id, player_source_id, episode_index) 换取真实 play_url。
-        拿到 m3u8 后先做广告段过滤，再返回。
         """
         try:
             if not id or id.count('@') < 2:
@@ -492,38 +388,21 @@ class Spider(Spider):
                 'player_source_id': psid,
                 'episode_index': ep_idx,
             })
-            if not data or not data.get('play_url'):
-                return {'parse': 0, 'url': '', 'header': {}, 'playUrl': ''}
-
-            url = data['play_url']
-
-            # ===== m3u8 广告段过滤 =====
-            if url and '.m3u8' in url.lower():
-                try:
-                    raw = self.fetch(url)
-                    if raw and '#EXTM3U' in raw:
-                        fixed = _strip_ad_blocks(raw)
-                        if fixed and fixed != raw:
-                            # 用 data URI 返回过滤后的 m3u8，避免相对路径问题
-                            url = ('data:application/vnd.apple.mpegurl;charset=utf-8,'
-                                   + urllib.parse.quote(fixed, safe=''))
-                except Exception as ee:
-                    print(f"[hktv] m3u8 filter fail: {ee}")
-
-            return {
-                'parse': 1 if url.startswith('http') else 0,
-                'url': url,
-                'header': self.play_header,
-                'playUrl': '',
-            }
+            if data and data.get('play_url'):
+                return {
+                    'parse': 1 if data['play_url'].startswith('http') else 0,
+                    'url': data['play_url'],
+                    'header': self.play_header,
+                    'playUrl': '',
+                }
+            return {'parse': 0, 'url': '', 'header': {}, 'playUrl': ''}
         except Exception as e:
             print(f"Error in playerContent: {e}")
             return {'parse': 0, 'url': '', 'header': {}, 'playUrl': ''}
 
     def fetch(self, url):
         try:
-            response = requests.get(url, headers=self.play_header, timeout=self.timeout,
-                                    verify=False)
+            response = requests.get(url, headers=self.header, timeout=self.timeout)
             response.encoding = 'utf-8'
             return response.text if response.status_code == 200 else None
         except Exception as e:
