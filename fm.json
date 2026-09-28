@@ -3,7 +3,7 @@
   "wallpaper": "https://xn--z7x900a.cf/",
   "logo": "http://hello.xn--z7x900a.com/fm.gif",
   "sites": [
-    {"key":"drpy_js_豆瓣","name":"搜索 • 豆瓣","type":3,"api":"./js/drpy2.min.js","ext":"./js/drpy.js","searchable":1,"quickSearch":0,"changeable":0},
+    {"key":"drpy_js_豆瓣","name":"搜索 • 豆瓣","type":3,"api":"./lib/drpy2.min.js","ext":"./js/drpy.js","searchable":1,"quickSearch":0,"changeable":0},
     {"key":"豆瓣","name":"🐼┃肥猫宝贝┃","type":3,"api":"csp_Douban","searchable":0},
     {"key":"豆瓣预告","name":"🐼┃豆瓣┃预告","type":3,"api":"csp_YGP","playerType":2,"searchable":0},
     {"key":"config","name":"🐼┃配置┃中心","type":3,"api":"csp_Config","playerType":2},
