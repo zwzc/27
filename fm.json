@@ -8,7 +8,6 @@
     {"key":"ReBo","name":"热播","type":3,"api":"./js/csp_ReBo.js","ext":"http://v.rbotv.cn","playerType":2,"searchable":1,"quickSearch":1,"filterable":1},
     {"key":"csp_DuBoKu","name":"独播库","type":3,"api":"./js/csp_DuBoKu.js","searchable":1,"quickSearch":1,"filterable":1,"changeable":1,"ext":"https://api.dbokutv.com"},
     {"key":"csp_Gzys","name":"瓜子影视","type":3,"api":"./py/csp_Gzys.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1,"ext":{"host":"https://api.w32z7vtd.com","timeout":10000}},
-    {"key":"KanJu","name":"看剧","type":3,"api":"./py/KanJu.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":0},
     {"key":"MiDongMan","name":"米动漫","type":3,"api":"./py/MiDongMan.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":0},
     {"key":"ZhuiJuMao","name":"追剧猫","type":3,"api":"./py/ZhuiJuMao.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":0},
     {"key":"JRKAN","name":"JRKAN直播","type":3,"api":"./js/JRKAN.js","searchable":0,"quickSearch":0,"filterable":0,"changeable":0},
@@ -28,8 +27,9 @@
     {"key":"QianQian","name":"🅿️千千影视","type":3,"api":"./py/QianQian.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
     {"key":"JuOK","name":"JuOK","type":3,"api":"./py/JuOK.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
     {"key":"dyx","name":"电影侠","type":3,"api":"./py/dyx.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
+    {"key":"KanJu","name":"看剧","type":3,"api":"./py/KanJu.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
     {"key":"潮流","name":"🏜┃潮流┃APP","type":3,"api":"csp_AppRJ","ext":"http://v.rbotv.cn"}
-    ],
+  ],
   "lives": [
     {"name":"Kimentanm【不能看点此切换】","type":0,"url":"https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u","playerType":1},
     {"name":"湖北联通源【不能看点此切换】","type":0,"url":"./sub/hblt.txt","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
