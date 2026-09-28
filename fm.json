@@ -3,11 +3,7 @@
   "wallpaper": "https://xn--z7x900a.cf/",
   "logo": "http://hello.xn--z7x900a.com/fm.gif",
   "sites": [
-    {"key":"drpy_js_豆瓣","name":"搜索 • 豆瓣","type":3,"api":"./lib/drpy2.min.js","ext":"./js/drpy.js","searchable":1,"quickSearch":0,"changeable":0},
     {"key":"豆瓣","name":"🐼┃肥猫宝贝┃","type":3,"api":"csp_Douban","searchable":0},
-    {"key":"豆瓣预告","name":"🐼┃豆瓣┃预告","type":3,"api":"csp_YGP","playerType":2,"searchable":0},
-    {"key":"config","name":"🐼┃配置┃中心","type":3,"api":"csp_Config","playerType":2},
-    {"key":"living","name":"🐼┃游戏┃直播","type":3,"api":"csp_Living","playerType":2,"ext":"https://lemonlive-api-1.deno.dev"},
     {"key":"Czzy","name":"厂长资源","type":3,"api":"./js/csp_Czzy.js","ext":"https://czzy.app","playerType":2,"searchable":1,"quickSearch":1,"filterable":1},
     {"key":"ReBo","name":"热播","type":3,"api":"./js/csp_ReBo.js","ext":"http://v.rbotv.cn","playerType":2,"searchable":1,"quickSearch":1,"filterable":1},
     {"key":"csp_DuBoKu","name":"独播库","type":3,"api":"./js/csp_DuBoKu.js","searchable":1,"quickSearch":1,"filterable":1,"changeable":1,"ext":"https://api.dbokutv.com"},
@@ -27,9 +23,8 @@
     {"key":"华谊影视","name":"华谊 • 影视","type":3,"api":"./py/华谊影视.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
     {"key":"Didahd","name":"嘀嗒影视","type":3,"api":"./py/Didahd.py","searchable":1,"quickSearch":1,"filterable":0,"changeable":1},
     {"key":"TVB云播","name":"TVB云播","type":3,"api":"./py/TVB云播.py","searchable":1,"quickSearch":1,"filterable":0,"changeable":1},
-    {"key":"潮流","name":"🏜┃潮流┃APP","type":3,"api":"csp_AppRJ","ext":"http://v.rbotv.cn"},
-    {"key":"push_agent","name":"关注公众号：肥猫宝贝","type":3,"api":"csp_Push","playerType":"1","searchable":0,"ext":".json/txt/ken.txt"}
-  ],
+    {"key":"潮流","name":"🏜┃潮流┃APP","type":3,"api":"csp_AppRJ","ext":"http://v.rbotv.cn"}
+    ],
   "lives": [
     {"name":"Kimentanm【不能看点此切换】","type":0,"url":"https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u","playerType":1},
     {"name":"湖北联通源【不能看点此切换】","type":0,"url":"./sub/hblt.txt","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
