@@ -28,7 +28,6 @@
     {"key":"QianQian","name":"🅿️千千影视","type":3,"api":"./py/QianQian.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
     {"key":"JuOK","name":"JuOK","type":3,"api":"./py/JuOK.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
     {"key":"dyx","name":"电影侠","type":3,"api":"./py/dyx.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
-    {"key":"KanJu","name":"看剧","type":3,"api":"./py/KanJu.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
     {"key":"潮流","name":"🏜┃潮流┃APP","type":3,"api":"csp_AppRJ","ext":"http://v.rbotv.cn"}
     ],
   "lives": [
