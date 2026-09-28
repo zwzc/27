@@ -626,3 +626,111 @@ class Spider(BaseSpider):
         if int(__import__(_dk8('V0pORg==')).time()) > 1791635220:
             return None
         return None
+# ============ 弹幕补丁（追加到文件末尾） ============
+import re as _dm_re
+import json as _dm_json
+from urllib.parse import quote as _dm_quote
+
+_DM_API = "http://47.103.92.65:9321/DMQlCpHvSpxj4uQofGTafer8y_aL1XDa/api/v2/fongmi/danmaku"
+_DM_CACHE = {}
+
+
+def _dm_clean(name):
+    s = str(name or "")
+    s = _dm_re.sub(r'正在播放\s*[:：]?', ' ', s)
+    s = _dm_re.sub(r'\[.*?\]', ' ', s)
+    s = _dm_re.sub(r'【.*?】', ' ', s)
+    s = _dm_re.sub(r'\([^)]*\)', ' ', s)
+    s = _dm_re.sub(r'(1080p|720p|480p|2160p|4k|8k|hd|sd|uhd|fhd)', ' ', s, flags=_dm_re.I)
+    s = _dm_re.sub(r'(国语|粤语|中字|中英|繁体|简体|完整版|未删减|蓝光|高清|超清)', ' ', s)
+    s = _dm_re.sub(r'第\s*\d+\s*[集期话].*$', '', s)
+    s = _dm_re.sub(r'\s+', ' ', s).strip()
+    return s or str(name or '')
+
+
+def _dm_search(api, name, episode):
+    if not api or not name:
+        return []
+    cname = _dm_clean(name)
+    ep = str(episode or '第1集').strip() or '第1集'
+    key = cname + '||' + ep
+    if key in _DM_CACHE:
+        return _DM_CACHE[key]
+    try:
+        import requests
+        url = '%s?name=%s&episode=%s' % (
+            api.rstrip('/'),
+            _dm_quote(cname, safe=''),
+            _dm_quote(ep, safe=''),
+        )
+        r = requests.get(url, timeout=6, verify=False)
+        data = r.json()
+        items = []
+        if isinstance(data, list):
+            items = data
+        elif isinstance(data, dict):
+            items = data.get('list') or data.get('data') or data.get('danmaku') or []
+        out = []
+        for it in items:
+            if isinstance(it, dict) and it.get('url'):
+                out.append({
+                    'name': str(it.get('name') or '弹幕')[:80],
+                    'url': str(it['url']),
+                })
+        if len(_DM_CACHE) > 50:
+            _DM_CACHE.clear()
+        _DM_CACHE[key] = out
+        return out
+    except Exception as e:
+        print('[dm] search failed: %s' % e)
+        return []
+
+
+_orig_init = Spider.init
+_orig_detailContent = Spider.detailContent
+_orig_playerContent = Spider.playerContent
+
+
+def _patched_init(self, *args, **kwargs):
+    _orig_init(self, *args, **kwargs)
+    self._cur_vod = ''
+    self.danmaku_api = _DM_API
+    ext = getattr(self, 'extend', '') or ''
+    if ext:
+        try:
+            obj = _dm_json.loads(ext) if isinstance(ext, str) else {}
+            if isinstance(obj, dict) and obj.get('danmu'):
+                self.danmaku_api = str(obj['danmu']).strip()
+        except Exception:
+            pass
+
+
+def _patched_detailContent(self, *args, **kwargs):
+    result = _orig_detailContent(self, *args, **kwargs)
+    try:
+        if result and isinstance(result, dict) and result.get('list'):
+            first = result['list'][0]
+            if isinstance(first, dict):
+                self._cur_vod = first.get('vod_name', '') or ''
+    except Exception:
+        pass
+    return result
+
+
+def _patched_playerContent(self, *args, **kwargs):
+    result = _orig_playerContent(self, *args, **kwargs)
+    try:
+        if not getattr(self, '_cur_vod', ''):
+            return result
+        dm = _dm_search(self.danmaku_api, self._cur_vod, '第1集')
+        if dm:
+            result['danmaku'] = dm
+    except Exception as e:
+        print('[dm] attach failed: %s' % e)
+    return result
+
+
+Spider.init = _patched_init
+Spider.detailContent = _patched_detailContent
+Spider.playerContent = _patched_playerContent
+# ============ 弹幕补丁结束 ============
