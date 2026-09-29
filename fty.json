@@ -1,12 +1,156 @@
-{
-  "urls": [
-    {
-      "url": "http://饭太硬.top/tv",
-      "name": "高天流云"
-    },
-    {
-      "url": "https://ghproxy.com/raw.githubusercontent.com/gaotianliuyun/gao/master/0825.json",
-      "name": "饭太硬"
-    }
-  ]
-}
+# ============ 弹幕模块（追加到文件末尾） ============
+# 用法：
+#   1. 直接粘贴到任意 Python 源的末尾
+#   2. 播放时自动搜索弹幕并附加到 playerContent 返回值
+#   3. 可选：通过 ext 传 {"danmu":"http://你的弹幕API"} 覆盖默认地址
+# ====================================================
+import re as _dm_re
+import json as _dm_json
+from urllib.parse import quote as _dm_quote
+
+_DM_API = "http://47.103.92.65:9321/DMQlCpHvSpxj4uQofGTafer8y_aL1XDa/api/v2/fongmi/danmaku"
+_DM_CACHE = {}
+_DM_CACHE_MAX = 60
+
+
+def _dm_clean(name):
+    """清洗影片名，去掉集数、清晰度、语言等后缀，提高弹幕匹配率"""
+    s = str(name or "")
+    s = _dm_re.sub(r'正在播放\s*[:：]?', ' ', s)
+    s = _dm_re.sub(r'\[.*?\]', ' ', s)
+    s = _dm_re.sub(r'【.*?】', ' ', s)
+    s = _dm_re.sub(r'[\(（][^)）]*[\)）]', ' ', s)
+    s = _dm_re.sub(r'(1080p|720p|480p|2160p|4k|8k|hd|sd|uhd|fhd)', ' ', s, flags=_dm_re.I)
+    s = _dm_re.sub(r'\b(x264|x265|h\.?264|h\.?265|hevc|av1)\b', ' ', s, flags=_dm_re.I)
+    s = _dm_re.sub(r'\b(web-?dl|blu-?ray|bdrip|hdrip|hdtv|remux|webrip)\b', ' ', s, flags=_dm_re.I)
+    s = _dm_re.sub(r'(国语|粤语|中字|中英|繁体|简体|完整版|未删减|蓝光|高清|超清|双语)', ' ', s)
+    s = _dm_re.sub(r'第\s*\d+\s*[集期话].*$', '', s)
+    s = _dm_re.sub(r'\s+', ' ', s).strip()
+    return s or str(name or '')
+
+
+def _dm_norm_ep(ep):
+    """归一化集数名：'01' → '第1集'，'EP01' → '第1集'"""
+    s = str(ep or '').strip()
+    if not s:
+        return '第1集'
+    m = _dm_re.search(r'第\s*(\d+)\s*[集期话]', s)
+    if m:
+        return '第%s集' % m.group(1)
+    m = _dm_re.search(r'^0*(\d+)$', s)
+    if m:
+        return '第%s集' % m.group(1)
+    m = _dm_re.search(r'(?:ep|e)\s*0*(\d+)', s, _dm_re.I)
+    if m:
+        return '第%s集' % m.group(1)
+    return s
+
+
+def _dm_search(api, name, episode):
+    """搜索弹幕，返回 [{"name":..,"url":..}]；失败返回 []"""
+    if not api or not name:
+        return []
+    cname = _dm_clean(name)
+    ep = _dm_norm_ep(episode)
+    key = cname + '||' + ep
+    if key in _DM_CACHE:
+        return _DM_CACHE[key]
+    try:
+        import requests
+        url = '%s?name=%s&episode=%s' % (
+            api.rstrip('/'),
+            _dm_quote(cname, safe=''),
+            _dm_quote(ep, safe=''),
+        )
+        r = requests.get(url, timeout=6, verify=False)
+        data = r.json()
+        items = []
+        if isinstance(data, list):
+            items = data
+        elif isinstance(data, dict):
+            items = data.get('list') or data.get('data') or data.get('danmaku') or []
+        out = []
+        for it in items:
+            if isinstance(it, dict) and it.get('url'):
+                out.append({
+                    'name': str(it.get('name') or '弹幕')[:80],
+                    'url': str(it['url']),
+                })
+        if len(_DM_CACHE) > _DM_CACHE_MAX:
+            _DM_CACHE.clear()
+        _DM_CACHE[key] = out
+        return out
+    except Exception as e:
+        print('[dm] search fail: %s' % e)
+        return []
+
+
+# ---------- 猴子补丁：不改原文件，只包装三个方法 ----------
+_orig_init = Spider.init
+_orig_detail = Spider.detailContent
+_orig_player = Spider.playerContent
+
+
+def _dm_patch_init(self, *args, **kwargs):
+    try:
+        result = _orig_init(self, *args, **kwargs)
+    except Exception:
+        result = None
+    # 读取 ext 里的 danmu 配置
+    self.danmaku_api = _DM_API
+    self._cur_vod = ''
+    self._cur_ep = ''
+    ext = getattr(self, 'extend', '') or ''
+    if ext:
+        try:
+            obj = _dm_json.loads(ext) if isinstance(ext, str) else {}
+            if isinstance(obj, dict) and obj.get('danmu'):
+                self.danmaku_api = str(obj['danmu']).strip()
+        except Exception:
+            pass
+    return result
+
+
+def _dm_patch_detail(self, *args, **kwargs):
+    result = _orig_detail(self, *args, **kwargs)
+    try:
+        if isinstance(result, dict) and result.get('list'):
+            first = result['list'][0]
+            if isinstance(first, dict):
+                self._cur_vod = first.get('vod_name', '') or ''
+    except Exception:
+        pass
+    return result
+
+
+def _dm_patch_player(self, *args, **kwargs):
+    result = _orig_player(self, *args, **kwargs)
+    try:
+        # 已有弹幕就不重复加
+        if isinstance(result, dict) and result.get('danmaku'):
+            return result
+        vod = getattr(self, '_cur_vod', '') or ''
+        if not vod:
+            return result
+        # 从 id 里尝试解析集数名（拿不到就用"第1集"）
+        ep = getattr(self, '_cur_ep', '') or '第1集'
+        try:
+            vid = args[1] if len(args) > 1 else kwargs.get('id', '')
+            vid_s = str(vid or '')
+            m = _dm_re.search(r'(\d+)', vid_s)
+            if m and m.group(1):
+                ep = '第%s集' % int(m.group(1))
+        except Exception:
+            pass
+        dm = _dm_search(getattr(self, 'danmaku_api', _DM_API), vod, ep)
+        if dm:
+            result['danmaku'] = dm
+    except Exception as e:
+        print('[dm] attach fail: %s' % e)
+    return result
+
+
+Spider.init = _dm_patch_init
+Spider.detailContent = _dm_patch_detail
+Spider.playerContent = _dm_patch_player
+# ============ 弹幕模块结束 ============
