@@ -1,7 +1,7 @@
 {
   "spider": "https://img2.gelonghui.com/library/9c8e4-b797010b-366e-48f9-86b6-16be897c90c2.png;md5;9c8e45f60d3d413d8b140ec21811deb0",
   "wallpaper": "https://xn--z7x900a.cf/",
-  "danmaku": "http://47.103.92.65:9321/DMQlCpHvSpxj4uQofGTafer8y_aL1XDa/api/v2/fongmi/danmaku?name={name}&episode={episode}"
+  "danmaku": "http://47.103.92.65:9321/DMQlCpHvSpxj4uQofGTafer8y_aL1XDa/api/v2/fongmi/danmaku?name={name}&episode={episode}",
   "logo": "http://hello.xn--z7x900a.com/fm.gif",
   "sites": [
     {"key":"豆瓣","name":"🐼┃肥猫┃","type":3,"api":"csp_Douban","searchable":0},
