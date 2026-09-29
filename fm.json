@@ -4,9 +4,9 @@
   "danmaku": "http://47.103.92.65:9321/DMQlCpHvSpxj4uQofGTafer8y_aL1XDa/api/v2/fongmi/danmaku?name={name}&episode={episode}"
   "logo": "http://hello.xn--z7x900a.com/fm.gif",
   "sites": [
-    {"key":"豆瓣","name":"🐼┃肥猫宝贝┃","type":3,"api":"csp_Douban","searchable":0},
+    {"key":"豆瓣","name":"🐼┃肥猫┃","type":3,"api":"csp_Douban","searchable":0},
     {"key":"Czzy","name":"厂长资源","type":3,"api":"./js/csp_Czzy.js","ext":"https://czzy.app","playerType":2,"searchable":1,"quickSearch":1,"filterable":1},
-    {"key":"ReBo","name":"热播","type":3,"api":"./js/csp_ReBo.js","ext":"http://v.rbotv.cn","playerType":2,"searchable":1,"quickSearch":1,"filterable":1},
+    {"key":"ReBo","name":"热播资源","type":3,"api":"./js/csp_ReBo.js","ext":"http://v.rbotv.cn","playerType":2,"searchable":1,"quickSearch":1,"filterable":1},
     {"key":"csp_DuBoKu","name":"独播库","type":3,"api":"./js/csp_DuBoKu.js","searchable":1,"quickSearch":1,"filterable":1,"changeable":1,"ext":"https://api.dbokutv.com"},
     {"key":"csp_Gzys","name":"瓜子影视","type":3,"api":"./py/csp_Gzys.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1,"ext":{"host":"https://api.w32z7vtd.com","timeout":10000}},
     {"key":"KanJu","name":"看剧","type":3,"api":"./py/KanJu.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":0},
