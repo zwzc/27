@@ -1,28 +1,20 @@
 # -*- coding: utf-8 -*-
 """
-豆瓣 (Douban) Python Spider
-数据来源：豆瓣移动端 (m.douban.com)
-功能：首页推荐、分类浏览、搜索、详情展示（无播放源）
+豆瓣 (Douban) Python Spider —— 无第三方依赖版
+只用 requests，不依赖 bs4 / lxml。
+数据源：豆瓣 rexxar JSON API（优先）+ HTML 正则（回退）
 """
-
 import re
 import json
 import requests
-from urllib.parse import quote, urljoin
+from urllib.parse import quote
 from base.spider import Spider as BaseSpider
-
-try:
-    from bs4 import BeautifulSoup
-except ImportError:
-    BeautifulSoup = None
 
 
 class Spider(BaseSpider):
     HOST = "https://m.douban.com"
     UA = ("Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 "
           "(KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36")
-
-    # 图片代理（绕过豆瓣防盗链）
     IMG_PROXY = "https://images.weserv.nl/?url="
 
     def getName(self):
@@ -31,21 +23,39 @@ class Spider(BaseSpider):
     def init(self, extend=""):
         self.timeout = 15
         self.sess = requests.Session()
+        self.sess.trust_env = False
+        self.sess.verify = False
         self.sess.headers.update({
             "User-Agent": self.UA,
             "Referer": self.HOST + "/",
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept": "application/json, text/plain, */*",
+            "Accept-Language": "zh-CN,zh;q=0.9",
         })
+        print("[douban] init done")
         return {"status": 0}
 
     # ---------- 工具 ----------
-    def _get(self, url):
+    def _get_text(self, url, headers=None):
         try:
-            r = self.sess.get(url, timeout=self.timeout, allow_redirects=True)
+            h = dict(self.sess.headers)
+            if headers:
+                h.update(headers)
+            r = self.sess.get(url, headers=h, timeout=self.timeout)
             r.encoding = "utf-8"
             return r.text if r.status_code == 200 else ""
-        except Exception:
+        except Exception as e:
+            print("[douban] GET fail %s : %s" % (url[:60], e))
             return ""
+
+    def _get_json(self, url, headers=None):
+        t = self._get_text(url, headers)
+        if not t:
+            return None
+        try:
+            return json.loads(t)
+        except Exception as e:
+            print("[douban] JSON fail %s : %s" % (url[:60], e))
+            return None
 
     def _pic(self, url):
         if not url:
@@ -55,90 +65,142 @@ class Spider(BaseSpider):
             url = "https:" + url
         return self.IMG_PROXY + quote(url, safe="")
 
-    def _clean(self, text):
+    @staticmethod
+    def _clean(text):
         return re.sub(r"\s+", " ", str(text or "")).strip()
 
-    # ---------- 列表解析 ----------
-    def _parse_list(self, html):
-        """解析豆瓣移动端列表页，返回视频卡片列表"""
-        if not html or not BeautifulSoup:
-            return []
-        soup = BeautifulSoup(html, "html.parser")
-        items = []
+    # ---------- 解析列表（JSON 优先） ----------
+    def _parse_items(self, data):
+        """从 rexxar JSON 里提取影片列表"""
+        out = []
         seen = set()
-        for a in soup.select("a[href*='/movie/subject/']"):
-            href = a.get("href", "")
-            m = re.search(r"/movie/subject/(\d+)", href)
-            if not m:
+        if not data:
+            return out
+        # 不同接口的字段名可能不同
+        items = (data.get("items") or data.get("subjects")
+                 or data.get("list") or [])
+        for it in items:
+            if not isinstance(it, dict):
                 continue
-            vid = m.group(1)
-            if vid in seen:
+            # 有些接口包了一层 target
+            target = it.get("target") if isinstance(it.get("target"), dict) else it
+            vid = str(target.get("id") or target.get("subject_id") or "").strip()
+            title = str(target.get("title") or target.get("name") or "").strip()
+            if not vid or not title or vid in seen:
                 continue
             seen.add(vid)
-
-            # 标题
-            title_el = a.select_one(".subject-title") or a.select_one("h3") or a
-            title = self._clean(title_el.get_text()) if title_el else ""
-            if not title:
-                continue
-
             # 图片
-            img = a.select_one("img")
-            pic = img.get("src") or img.get("data-src") or "" if img else ""
-
-            # 评分 / 备注
-            remark = ""
-            rate_el = a.select_one(".rating") or a.select_one(".subject-rate")
-            if rate_el:
-                remark = self._clean(rate_el.get_text())
-
-            items.append({
+            pic = ""
+            pic_obj = target.get("pic") or target.get("cover") or {}
+            if isinstance(pic_obj, dict):
+                pic = (pic_obj.get("large") or pic_obj.get("normal")
+                       or pic_obj.get("small") or "")
+            elif isinstance(pic_obj, str):
+                pic = pic_obj
+            # 评分
+            rating = ""
+            rt = target.get("rating")
+            if isinstance(rt, dict):
+                rating = str(rt.get("value") or rt.get("average") or "")
+            elif rt:
+                rating = str(rt)
+            out.append({
                 "vod_id": vid,
                 "vod_name": title,
                 "vod_pic": self._pic(pic),
-                "vod_remarks": remark,
+                "vod_remarks": rating,
             })
-        return items
+        return out
+
+    # ---------- 解析列表（HTML 正则回退） ----------
+    def _parse_html_items(self, html):
+        out = []
+        seen = set()
+        if not html:
+            return out
+        # 匹配 <a href="/movie/subject/123/"> ... </a>
+        pattern = re.compile(
+            r'<a[^>]+href="[^"]*?/subject/(\d+)/?[^"]*"[^>]*>(.*?)</a>',
+            re.S)
+        for m in pattern.finditer(html):
+            vid = m.group(1)
+            if vid in seen:
+                continue
+            body = m.group(2)
+            # 标题：优先 class=subject-title，其次 <h3>，其次 img alt
+            t = re.search(r'class="[^"]*subject-title[^"]*"[^>]*>([^<]+)<', body)
+            if not t:
+                t = re.search(r'<h3[^>]*>([^<]+)</h3>', body)
+            if not t:
+                t = re.search(r'alt="([^"]+)"', body)
+            if not t:
+                continue
+            title = self._clean(t.group(1))
+            if not title:
+                continue
+            # 图片
+            p = re.search(r'data-src="([^"]+)"', body) or re.search(r'src="([^"]+)"', body)
+            pic = p.group(1) if p else ""
+            seen.add(vid)
+            out.append({
+                "vod_id": vid,
+                "vod_name": title,
+                "vod_pic": self._pic(pic),
+                "vod_remarks": "",
+            })
+        return out
 
     # ---------- 首页 ----------
     def homeContent(self, filter):
         classes = [
             {"type_id": "playing", "type_name": "正在上映"},
-            {"type_id": "upcoming", "type_name": "即将上映"},
+            {"type_id": "coming", "type_name": "即将上映"},
             {"type_id": "top250", "type_name": "Top 250"},
             {"type_id": "tv", "type_name": "热门剧集"},
         ]
         return {"class": classes, "filters": {}}
 
     def homeVideoContent(self):
-        html = self._get(self.HOST + "/movie/nowplaying")
-        return {"list": self._parse_list(html)[:30]}
+        # 优先 JSON API
+        data = self._get_json(self.HOST + "/rexxar/api/v2/movie/nowplaying?count=20")
+        lst = self._parse_items(data)
+        if not lst:
+            # 回退 HTML
+            html = self._get_text(self.HOST + "/movie/nowplaying")
+            lst = self._parse_html_items(html)
+        print("[douban] homeVideoContent: %d" % len(lst))
+        return {"list": lst[:30]}
 
     # ---------- 分类 ----------
     def categoryContent(self, tid, pg, filter, extend):
         page = max(1, int(pg or 1))
         tid = str(tid or "playing")
         start = (page - 1) * 20
+        lst = []
 
         if tid == "playing":
-            url = self.HOST + "/movie/nowplaying"
-        elif tid == "upcoming":
-            url = self.HOST + "/movie/coming"
+            data = self._get_json(
+                self.HOST + "/rexxar/api/v2/movie/nowplaying?count=20")
+            lst = self._parse_items(data)
+        elif tid == "coming":
+            data = self._get_json(
+                self.HOST + "/rexxar/api/v2/movie/coming_soon?count=20")
+            lst = self._parse_items(data)
         elif tid == "top250":
             url = "https://movie.douban.com/top250?start=%d" % start
+            html = self._get_text(url)
+            lst = self._parse_html_items(html)
         elif tid == "tv":
-            url = self.HOST + "/tv/hot"
-        else:
-            url = self.HOST + "/movie/nowplaying"
+            data = self._get_json(
+                self.HOST + "/rexxar/api/v2/tv/recommend?count=20")
+            lst = self._parse_items(data)
+            if not lst:
+                html = self._get_text(self.HOST + "/tv/hot")
+                lst = self._parse_html_items(html)
 
-        html = self._get(url)
-        lst = self._parse_list(html)
-
-        # Top250 分页
         pagecount = page + 1 if len(lst) >= 20 else page
         if tid == "top250":
-            pagecount = 13  # Top250 共 13 页
-
+            pagecount = 13
         return {
             "list": lst,
             "page": page,
@@ -152,77 +214,96 @@ class Spider(BaseSpider):
         page = max(1, int(pg or 1))
         if not key:
             return {"list": []}
-        url = ("https://m.douban.com/rexxar/api/v2/search?"
-               "q=%s&type=movie&start=%d&count=20" % (quote(key), (page - 1) * 20))
-        try:
-            r = self.sess.get(url, timeout=self.timeout,
-                              headers={"Referer": self.HOST + "/"})
-            data = r.json()
-            items = []
-            for it in (data.get("items") or []):
-                target = it.get("target") or {}
-                vid = str(target.get("id") or "")
-                if not vid:
-                    continue
-                items.append({
-                    "vod_id": vid,
-                    "vod_name": target.get("title") or "",
-                    "vod_pic": self._pic(target.get("cover_url") or
-                                         target.get("pic", {}).get("large", "")),
-                    "vod_remarks": str(target.get("rating", {}).get("value", "")) or "",
-                })
-            return {"list": items, "page": page, "pagecount": page + 1}
-        except Exception:
-            return {"list": []}
+        start = (page - 1) * 20
+        url = ("%s/rexxar/api/v2/search?q=%s&type=movie&start=%d&count=20"
+               % (self.HOST, quote(str(key)), start))
+        data = self._get_json(url, headers={"Referer": self.HOST + "/"})
+        lst = self._parse_items(data)
+        return {"list": lst, "page": page,
+                "pagecount": page + 1 if len(lst) >= 20 else page}
 
     # ---------- 详情 ----------
     def detailContent(self, ids):
         vid = str(ids[0] if isinstance(ids, list) else ids or "").strip()
         if not vid:
             return {"list": []}
-        url = "https://movie.douban.com/subject/%s/" % vid
-        html = self._get(url)
-        if not html or not BeautifulSoup:
-            return {"list": []}
 
-        soup = BeautifulSoup(html, "html.parser")
+        # 优先 JSON API
+        data = self._get_json(
+            self.HOST + "/rexxar/api/v2/movie/%s" % vid,
+            headers={"Referer": self.HOST + "/"})
 
-        # 标题
-        title_el = soup.select_one("span[property='v:itemreviewed']")
-        title = self._clean(title_el.get_text()) if title_el else vid
+        title = ""
+        pic = ""
+        content = ""
+        type_name = ""
+        year = ""
+        area = ""
+        actors = ""
+        director = ""
 
-        # 图片
-        pic_el = soup.select_one("#mainpic img")
-        pic = pic_el.get("src") if pic_el else ""
+        if isinstance(data, dict):
+            title = str(data.get("title") or "")
+            pic_obj = data.get("pic") or {}
+            if isinstance(pic_obj, dict):
+                pic = pic_obj.get("large") or pic_obj.get("normal") or ""
+            elif isinstance(pic_obj, str):
+                pic = pic_obj
+            content = str(data.get("intro") or data.get("summary") or "")
+            # 年份
+            year = str(data.get("year") or "")
+            # 类型
+            genres = data.get("genres") or []
+            if isinstance(genres, list):
+                type_name = " ".join(str(x) for x in genres[:3])
+            # 地区
+            countries = data.get("countries") or []
+            if isinstance(countries, list):
+                area = " ".join(str(x) for x in countries[:2])
+            # 演员
+            casts = data.get("casts") or []
+            if isinstance(casts, list):
+                actors = "/".join(
+                    str(c.get("name") or "") for c in casts[:8]
+                    if isinstance(c, dict))
+            # 导演
+            dirs = data.get("directors") or []
+            if isinstance(dirs, list):
+                director = "/".join(
+                    str(d.get("name") or "") for d in dirs[:3]
+                    if isinstance(d, dict))
 
-        # 信息
-        info = {}
-        info_el = soup.select_one("#info")
-        if info_el:
-            for line in info_el.get_text("\n").split("\n"):
-                line = line.strip()
-                if ":" in line:
-                    k, v = line.split(":", 1)
-                    info[k.strip()] = v.strip()
+        # JSON 失败，回退 HTML
+        if not title:
+            html = self._get_text("https://movie.douban.com/subject/%s/" % vid)
+            m = re.search(r'<span[^>]*property="v:itemreviewed"[^>]*>([^<]+)</span>', html)
+            if m:
+                title = self._clean(m.group(1))
+            m = re.search(r'id="mainpic"[^>]*>\s*<img[^>]+src="([^"]+)"', html)
+            if m:
+                pic = m.group(1)
+            m = re.search(r'<span[^>]*property="v:summary"[^>]*>([\s\S]*?)</span>', html)
+            if m:
+                content = self._clean(re.sub(r"<[^>]+>", " ", m.group(1)))
 
-        # 简介
-        intro_el = soup.select_one("span[property='v:summary']") or soup.select_one("#link-report span")
-        content = self._clean(intro_el.get_text()) if intro_el else ""
+        if not title:
+            title = vid
 
         return {"list": [{
             "vod_id": vid,
             "vod_name": title,
             "vod_pic": self._pic(pic),
-            "type_name": info.get("类型", ""),
-            "vod_year": info.get("上映日期", "")[:4],
-            "vod_area": info.get("制片国家/地区", ""),
-            "vod_actor": info.get("主演", ""),
-            "vod_director": info.get("导演", ""),
+            "type_name": type_name,
+            "vod_year": year,
+            "vod_area": area,
+            "vod_actor": actors,
+            "vod_director": director,
             "vod_content": content,
-            "vod_play_from": "",  # 豆瓣无播放源
+            "vod_play_from": "",
             "vod_play_url": "",
         }]}
 
+    # ---------- 播放（豆瓣无播放源） ----------
     def playerContent(self, flag, vid, vipFlags):
         return {"parse": 0, "url": "", "header": ""}
 
@@ -234,115 +315,3 @@ class Spider(BaseSpider):
 
     def localProxy(self, param):
         return None
-
-
-# ============ 弹幕补丁（追加到文件末尾） ============
-import re as _dm_re
-import json as _dm_json
-from urllib.parse import quote as _dm_quote
-
-_DM_API = "http://47.103.92.65:9321/DMQlCpHvSpxj4uQofGTafer8y_aL1XDa/api/v2/fongmi/danmaku"
-_DM_CACHE = {}
-
-
-def _dm_clean(name):
-    s = str(name or "")
-    s = _dm_re.sub(r'正在播放\s*[:：]?', ' ', s)
-    s = _dm_re.sub(r'\[.*?\]', ' ', s)
-    s = _dm_re.sub(r'【.*?】', ' ', s)
-    s = _dm_re.sub(r'\([^)]*\)', ' ', s)
-    s = _dm_re.sub(r'(1080p|720p|480p|2160p|4k|8k|hd|sd|uhd|fhd)', ' ', s, flags=_dm_re.I)
-    s = _dm_re.sub(r'(国语|粤语|中字|中英|繁体|简体|完整版|未删减|蓝光|高清|超清)', ' ', s)
-    s = _dm_re.sub(r'第\s*\d+\s*[集期话].*$', '', s)
-    s = _dm_re.sub(r'\s+', ' ', s).strip()
-    return s or str(name or '')
-
-
-def _dm_search(api, name, episode):
-    if not api or not name:
-        return []
-    cname = _dm_clean(name)
-    ep = str(episode or '第1集').strip() or '第1集'
-    key = cname + '||' + ep
-    if key in _DM_CACHE:
-        return _DM_CACHE[key]
-    try:
-        import requests
-        url = '%s?name=%s&episode=%s' % (
-            api.rstrip('/'),
-            _dm_quote(cname, safe=''),
-            _dm_quote(ep, safe=''),
-        )
-        r = requests.get(url, timeout=6, verify=False)
-        data = r.json()
-        items = []
-        if isinstance(data, list):
-            items = data
-        elif isinstance(data, dict):
-            items = data.get('list') or data.get('data') or data.get('danmaku') or []
-        out = []
-        for it in items:
-            if isinstance(it, dict) and it.get('url'):
-                out.append({
-                    'name': str(it.get('name') or '弹幕')[:80],
-                    'url': str(it['url']),
-                })
-        if len(_DM_CACHE) > 50:
-            _DM_CACHE.clear()
-        _DM_CACHE[key] = out
-        return out
-    except Exception as e:
-        print('[dm] search failed: %s' % e)
-        return []
-
-
-_orig_init = Spider.init
-_orig_detailContent = Spider.detailContent
-_orig_playerContent = Spider.playerContent
-
-
-def _patched_init(self, *args, **kwargs):
-    _orig_init(self, *args, **kwargs)
-    self._cur_vod = ''
-    self.danmaku_api = _DM_API
-    ext = getattr(self, 'extend', '') or ''
-    if ext:
-        try:
-            obj = _dm_json.loads(ext) if isinstance(ext, str) else {}
-            if isinstance(obj, dict) and obj.get('danmu'):
-                self.danmaku_api = str(obj['danmu']).strip()
-        except Exception:
-            pass
-
-
-def _patched_detailContent(self, *args, **kwargs):
-    result = _orig_detailContent(self, *args, **kwargs)
-    try:
-        if result and isinstance(result, dict) and result.get('list'):
-            first = result['list'][0]
-            if isinstance(first, dict):
-                self._cur_vod = first.get('vod_name', '') or ''
-    except Exception:
-        pass
-    return result
-
-
-def _patched_playerContent(self, *args, **kwargs):
-    result = _orig_playerContent(self, *args, **kwargs)
-    try:
-        if isinstance(result, dict) and result.get('danmaku'):
-            return result
-        if not getattr(self, '_cur_vod', ''):
-            return result
-        dm = _dm_search(self.danmaku_api, self._cur_vod, '第1集')
-        if dm:
-            result['danmaku'] = dm
-    except Exception as e:
-        print('[dm] attach failed: %s' % e)
-    return result
-
-
-Spider.init = _patched_init
-Spider.detailContent = _patched_detailContent
-Spider.playerContent = _patched_playerContent
-# ============ 弹幕补丁结束 ============
