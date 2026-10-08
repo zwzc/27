@@ -829,13 +829,14 @@ def isVideoFormat(url):
 
 def manualSniffer(needGoto):
     return False
-# ============ 弹幕补丁（追加到文件末尾） ============
+# ============ 弹幕模块 v3（反查集数，更稳） ============
 import re as _dm_re
 import json as _dm_json
-from urllib.parse import quote as _dm_quote
+from urllib.parse import quote as _dm_quote, unquote as _dm_unquote
 
 _DM_API = "http://47.103.92.65:9321/DMQlCpHvSpxj4uQofGTafer8y_aL1XDa/api/v2/fongmi/danmaku"
 _DM_CACHE = {}
+_DM_CACHE_MAX = 80
 
 
 def _dm_clean(name):
@@ -843,19 +844,53 @@ def _dm_clean(name):
     s = _dm_re.sub(r'正在播放\s*[:：]?', ' ', s)
     s = _dm_re.sub(r'\[.*?\]', ' ', s)
     s = _dm_re.sub(r'【.*?】', ' ', s)
-    s = _dm_re.sub(r'\([^)]*\)', ' ', s)
+    s = _dm_re.sub(r'[\(（][^)）]*[\)）]', ' ', s)
     s = _dm_re.sub(r'(1080p|720p|480p|2160p|4k|8k|hd|sd|uhd|fhd)', ' ', s, flags=_dm_re.I)
-    s = _dm_re.sub(r'(国语|粤语|中字|中英|繁体|简体|完整版|未删减|蓝光|高清|超清)', ' ', s)
+    s = _dm_re.sub(r'\b(x264|x265|h\.?264|h\.?265|hevc|av1)\b', ' ', s, flags=_dm_re.I)
+    s = _dm_re.sub(r'\b(web-?dl|blu-?ray|bdrip|hdrip|hdtv|remux|webrip)\b', ' ', s, flags=_dm_re.I)
+    s = _dm_re.sub(r'(国语|粤语|中字|中英|繁体|简体|完整版|未删减|蓝光|高清|超清|双语)', ' ', s)
     s = _dm_re.sub(r'第\s*\d+\s*[集期话].*$', '', s)
+    s = _dm_re.sub(r'第\s*[零〇一二三四五六七八九十百两]+\s*[集期话].*$', '', s)
     s = _dm_re.sub(r'\s+', ' ', s).strip()
     return s or str(name or '')
+
+
+def _dm_norm_ep(ep):
+    """归一化集数名"""
+    s = str(ep or '').strip()
+    if not s:
+        return '第1集'
+    m = _dm_re.search(r'第\s*(\d+)\s*([集期话])', s)
+    if m:
+        return '第%s集' % m.group(1)
+    m = _dm_re.search(r'^0*(\d+)$', s)
+    if m:
+        return '第%s集' % m.group(1)
+    m = _dm_re.search(r'(?:ep|e)\s*0*(\d+)', s, _dm_re.I)
+    if m:
+        return '第%s集' % m.group(1)
+    m = _dm_re.search(r'第\s*([零〇一二三四五六七八九十百两]+)\s*[集期话]', s)
+    if m:
+        cn = m.group(1)
+        table = {'零':0,'〇':0,'一':1,'二':2,'两':2,'三':3,'四':4,
+                 '五':5,'六':6,'七':7,'八':8,'九':9,'十':10}
+        if cn == '十':
+            return '第10集'
+        if cn.startswith('十'):
+            return '第%d集' % (10 + (table.get(cn[1:], 0)))
+        if '十' in cn:
+            a, _, b = cn.partition('十')
+            return '第%d集' % ((table.get(a, 0) * 10) + (table.get(b, 0) if b else 0))
+        if cn in table:
+            return '第%d集' % table[cn]
+    return s
 
 
 def _dm_search(api, name, episode):
     if not api or not name:
         return []
     cname = _dm_clean(name)
-    ep = str(episode or '第1集').strip() or '第1集'
+    ep = _dm_norm_ep(episode)
     key = cname + '||' + ep
     if key in _DM_CACHE:
         return _DM_CACHE[key]
@@ -880,24 +915,29 @@ def _dm_search(api, name, episode):
                     'name': str(it.get('name') or '弹幕')[:80],
                     'url': str(it['url']),
                 })
-        if len(_DM_CACHE) > 50:
+        if len(_DM_CACHE) > _DM_CACHE_MAX:
             _DM_CACHE.clear()
         _DM_CACHE[key] = out
         return out
     except Exception as e:
-        print('[dm] search failed: %s' % e)
+        print('[dm] search fail: %s' % e)
         return []
 
 
+# ========== 猴子补丁 ==========
 _orig_init = Spider.init
-_orig_detailContent = Spider.detailContent
-_orig_playerContent = Spider.playerContent
+_orig_detail = Spider.detailContent
+_orig_player = Spider.playerContent
 
 
-def _patched_init(self, *args, **kwargs):
-    _orig_init(self, *args, **kwargs)
-    self._cur_vod = ''
+def _dm_patch_init(self, *args, **kwargs):
+    try:
+        result = _orig_init(self, *args, **kwargs)
+    except Exception:
+        result = None
     self.danmaku_api = _DM_API
+    self._cur_vod = ''
+    self._play_map = {}      # play_id -> 集数名
     ext = getattr(self, 'extend', '') or ''
     if ext:
         try:
@@ -906,34 +946,110 @@ def _patched_init(self, *args, **kwargs):
                 self.danmaku_api = str(obj['danmu']).strip()
         except Exception:
             pass
+    return result
 
 
-def _patched_detailContent(self, *args, **kwargs):
-    result = _orig_detailContent(self, *args, **kwargs)
+def _dm_build_play_map(self, vod_play_url):
+    """
+    从 vod_play_url 反查映射：
+      '第1集$pid1#第2集$pid2' -> {'pid1': '第1集', 'pid2': '第2集'}
+    多条线路用 $$$ 分隔，都取出来。
+    """
     try:
-        if result and isinstance(result, dict) and result.get('list'):
+        m = {}
+        if not vod_play_url:
+            return m
+        for line in str(vod_play_url).split('$$$'):
+            for ep in line.split('#'):
+                if not ep or '$' not in ep:
+                    continue
+                name, _, pid = ep.partition('$')
+                name = name.strip()
+                pid = pid.strip()
+                # 去掉可能附加的 ||xxx
+                if '||' in pid:
+                    pid = pid.split('||')[0]
+                if pid and name:
+                    m[pid] = name
+                    # 也记录原始 id（不带 ||）以便反查
+        return m
+    except Exception as e:
+        print('[dm] build play_map fail: %s' % e)
+        return {}
+
+
+def _dm_patch_detail(self, *args, **kwargs):
+    result = _orig_detail(self, *args, **kwargs)
+    try:
+        if isinstance(result, dict) and result.get('list'):
             first = result['list'][0]
             if isinstance(first, dict):
                 self._cur_vod = first.get('vod_name', '') or ''
-    except Exception:
-        pass
+                # 反查映射
+                self._play_map = _dm_build_play_map(
+                    self, first.get('vod_play_url', ''))
+                # 打印看看拿到了什么（调试用，可删）
+                print('[dm] play_map size: %d' % len(self._play_map))
+                if self._play_map:
+                    sample_keys = list(self._play_map.keys())[:3]
+                    sample_vals = [self._play_map[k] for k in sample_keys]
+                    print('[dm] sample: %s -> %s' % (sample_keys, sample_vals))
+    except Exception as e:
+        print('[dm] patch detail fail: %s' % e)
     return result
 
 
-def _patched_playerContent(self, *args, **kwargs):
-    result = _orig_playerContent(self, *args, **kwargs)
+def _dm_patch_player(self, *args, **kwargs):
+    result = _orig_player(self, *args, **kwargs)
     try:
-        if not getattr(self, '_cur_vod', ''):
+        # 已有弹幕就不覆盖
+        if isinstance(result, dict) and result.get('danmaku'):
             return result
-        dm = _dm_search(self.danmaku_api, self._cur_vod, '第1集')
+        vod = getattr(self, '_cur_vod', '') or ''
+        if not vod:
+            return result
+
+        # 拿到播放 id
+        vid = args[1] if len(args) > 1 else kwargs.get('id', '')
+        vid_s = str(vid or '').strip()
+
+        # 去掉可能的 ||xxx 附加
+        if '||' in vid_s:
+            vid_s = vid_s.split('||')[0].strip()
+
+        # 反查集数名
+        ep = '第1集'
+        play_map = getattr(self, '_play_map', {}) or {}
+        if vid_s in play_map:
+            ep = play_map[vid_s]
+        else:
+            # 尝试去重前缀（有些播放器给 id 加前缀）
+            for k, v in play_map.items():
+                if vid_s.endswith(k) or k.endswith(vid_s):
+                    ep = v
+                    break
+            else:
+                # 都没匹配到，尝试从 id 抓数字
+                m = _dm_re.search(r'(\d+)', vid_s)
+                if m:
+                    ep = '第%s集' % m.group(1)
+
+        print('[dm] play id: %s -> ep: %s' % (vid_s[:40], ep))
+
+        dm = _dm_search(getattr(self, 'danmaku_api', _DM_API), vod, ep)
+        if not dm and ep != '第1集':
+            # 搜不到当前集，回退第1集
+            dm = _dm_search(getattr(self, 'danmaku_api', _DM_API), vod, '第1集')
+            print('[dm] fallback to 第1集')
+
         if dm:
             result['danmaku'] = dm
     except Exception as e:
-        print('[dm] attach failed: %s' % e)
+        print('[dm] attach fail: %s' % e)
     return result
 
 
-Spider.init = _patched_init
-Spider.detailContent = _patched_detailContent
-Spider.playerContent = _patched_playerContent
-# ============ 弹幕补丁结束 ============
+Spider.init = _dm_patch_init
+Spider.detailContent = _dm_patch_detail
+Spider.playerContent = _dm_patch_player
+# ============ 弹幕模块 v3 结束 ============
