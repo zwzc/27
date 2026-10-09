@@ -8,7 +8,7 @@
     {"key": "drpy_js_豆瓣","name": "搜索 • 豆瓣","type": 3,"api": "./lib/drpy2.min.js","ext": "./js/drpy.js","searchable": 1,"quickSearch": 0,"changeable": 0},
     {"key":"YangShiPin","name":"央视频直播","type":3,"api":"./py/央视频.py","searchable":1,"quickSearch":0,"filterable":0,"changeable":1},
     {"key":"JRKAN","name":"体育直播","type":3,"api":"./js/JRKAN.js","searchable":0,"quickSearch":0,"filterable":0,"changeable":0},
-    {"key":"Czzy","name":"厂长资源","type":3,"api":"./js/csp_Czzy.js","ext":"https://czzy.app","searchable":1,"quickSearch":1,"filterable":1,"danmaku":"http://47.103.92.65:9321/DMQlCpHvSpxj4uQofGTafer8y_aL1XDa/api/v2/fongmi/danmaku?name={name}&episode={episode}"},
+    {"key":"Czzy","name":"厂长资源","type":3,"api":"./js/csp_Czzy.js","ext":"https://czzy.app","searchable":1,"quickSearch":1,"filterable":1},
     {"key":"ReBo","name":"热播资源","type":3,"api":"./js/csp_ReBo.js","ext":"http://v.rbotv.cn","playerType":2,"searchable":1,"quickSearch":1,"filterable":1},
     {"key":"csp_DuBoKu","name":"独播库","type":3,"api":"./js/csp_DuBoKu.js","searchable":1,"quickSearch":1,"filterable":1,"changeable":1,"ext":"https://api.dbokutv.com"},
     {"key":"新闪雷","name":"新闪雷 • MP4","type":3,"api":"./lib/drpy2.min.js","ext":"./js/新闪雷.js","header":{"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0"}},
