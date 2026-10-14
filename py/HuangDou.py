@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
-# 黄果短剧 融合版（维修版）
-# 维修内容：
-#   - 多 host 自动切换（每请求失败自动换镜像）
-#   - recommend / newest / AI 四类多路径尝试
-#   - BeautifulSoup 多选择器兜底（网站改版也能抓到）
-#   - 可选调试日志
+# 黄果短剧 融合版
+# 融合优势：
+#   - 动态/多域名容灾 + 官方主站优先
+#   - 分类 JSON API（最稳） + HTML 回退
+#   - 完整分类：精选/上新/AI四类/专题/排行/吃瓜/作者
+#   - 封面 AES 解密 + 本地图片代理（Referer 防盗链）
+#   - 播放优先 videoInitialData JSON 直取 m3u8（parse:0）
+#   - 吃瓜文章多源支持
+#   - BeautifulSoup + 正则双解析
 # 依赖：requests, beautifulsoup4, pycryptodome (或 Crypto)
 # 适配 TVBox / 类 TVBox 壳
 
@@ -56,13 +59,11 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
 TIMEOUT = 18
 PAGE_SIZE = 24
-# 调试开关：改成 True 可在日志看到每次请求
-_DEBUG = False
 # AES 封面解密（站点 CDN 加密）
 _AES_KEY = b'f5d965df75336270'
 _AES_IV = b'97b60394abc2fbe1'
 _PLACEHOLDER_GIF = base64.b64decode(
-    'R0lGODlhAQABAIAAAAAAAP///y5BAEAAAAALAAAAAABAAEAAAIBRAA7')
+    'R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')
 _PROXY_PORT = [0]
 _TAG_RE = re.compile(r'<[^>]+>')
 
@@ -80,7 +81,8 @@ try:
     from http.server import BaseHTTPRequestHandler, HTTPServer
 
     def _fetch_img_raw(u, referer):
-        headers = {"User-Agent": UA, "Referer": referer, "Accept": "image/*"}
+        headers = {"User-Agent": UA, "Referer": referer,
+                   "Accept": "image/*"}
         try:
             rr = rq.get(u, headers=headers, timeout=15, verify=False,
                         allow_redirects=True)
@@ -202,13 +204,6 @@ class Spider(Spider):
         except Exception:
             pass
 
-    def _log(self, msg):
-        if _DEBUG:
-            try:
-                print("[黄果] " + str(msg))
-            except Exception:
-                pass
-
     def _pick_host(self):
         """优先主站，其次备用镜像。检测页面是否有剧集特征。"""
         for h in HOSTS:
@@ -219,12 +214,10 @@ class Spider(Spider):
                 t = r.text or ""
                 if any(k in t for k in ('hg-drama-card', 'hg-topic-card',
                                         'hg-web-detail', 'videoInitialData',
-                                        '黄果', 'huangguo')):
-                    self._log("pick_host OK: %s" % h)
+                                        '黄果', 'huangguo')) or len(t) > 1500:
                     return h.rstrip('/')
             except Exception:
                 continue
-        self._log("pick_host fallback: %s" % HOSTS[0])
         return HOSTS[0].rstrip('/')
 
     def _safe_host(self):
@@ -247,58 +240,25 @@ class Spider(Spider):
         except Exception:
             return url
 
-    def _get(self, path, ref="/", try_mirrors=True):
-        """多 host 自动切换的 GET。"""
+    # ============================================================
+    # 关键改动 1：_get 保持原版单 host，不重试
+    # ============================================================
+    def _get(self, path, ref="/"):
         host = self._safe_host()
-        # 完整 URL
-        if path.startswith('http'):
-            try:
-                headers = {"User-Agent": UA, "Referer": host + "/"}
-                if getattr(self, 's', None) is not None:
-                    r = self.s.get(path, timeout=TIMEOUT, allow_redirects=True,
-                                   headers=headers)
-                else:
-                    r = rq.get(path, timeout=TIMEOUT, verify=False,
+        url = host + path if path.startswith('/') else path
+        try:
+            headers = {"User-Agent": UA,
+                       "Referer": host + (ref if ref.startswith('/') else '/' + ref)}
+            if getattr(self, 's', None) is not None:
+                r = self.s.get(url, timeout=TIMEOUT, allow_redirects=True,
                                headers=headers)
-                if r.status_code == 200 and r.text:
-                    r.encoding = 'utf-8'
-                    return r.text
-            except Exception:
-                pass
-            return ""
-
-        if not path.startswith('/'):
-            path = '/' + path
-
-        tried = []
-        if try_mirrors:
-            hosts_try = [host] + [h.rstrip('/') for h in HOSTS
-                                  if h.rstrip('/') != host]
-        else:
-            hosts_try = [host]
-
-        for h in hosts_try:
-            if h in tried:
-                continue
-            tried.append(h)
-            full = h + path
-            try:
-                headers = {"User-Agent": UA,
-                           "Referer": h + (ref if ref.startswith('/') else '/' + ref)}
-                if getattr(self, 's', None) is not None:
-                    r = self.s.get(full, timeout=TIMEOUT,
-                                   allow_redirects=True, headers=headers)
-                else:
-                    r = rq.get(full, timeout=TIMEOUT, verify=False,
-                               headers=headers)
-                if r.status_code == 200 and r.text and len(r.text) > 100:
-                    r.encoding = 'utf-8'
-                    self._log("OK  %s (len=%d)" % (full, len(r.text)))
-                    return r.text
-                self._log("BAD %s HTTP %s len=%s"
-                          % (full, r.status_code, len(r.text or "")))
-            except Exception as e:
-                self._log("ERR %s -> %s" % (full, e))
+            else:
+                r = rq.get(url, timeout=TIMEOUT, verify=False, headers=headers)
+            if r.status_code == 200 and r.text:
+                r.encoding = 'utf-8'
+                return r.text
+        except Exception:
+            pass
         return ""
 
     def isVideoFormat(self, url):
@@ -341,6 +301,8 @@ class Spider(Spider):
                 ]}],
             }
         }
+        if filter:
+            pass
         try:
             html = self._get("/")
             if html:
@@ -351,16 +313,16 @@ class Spider(Spider):
 
     def homeVideoContent(self):
         try:
-            for path in ["/recommend/1/", "/", "/newest/1/"]:
-                html = self._get(path)
-                v = self._parse_list(html)
-                if v:
-                    return {"list": v}
-            return {"list": []}
+            html = self._get("/recommend/1/")
+            if not html:
+                html = self._get("/")
+            return {"list": self._parse_list(html)}
         except Exception:
             return {"list": []}
 
-    # ---------- 分类 ----------
+    # ============================================================
+    # 关键改动 2：categoryContent 里 recommend/newest 多路径尝试
+    # ============================================================
     def categoryContent(self, tid, pg=1, filter=False, extend=""):
         try:
             pg = int(str(pg or 1))
@@ -375,63 +337,43 @@ class Spider(Spider):
         videos, pages, total = [], 9999, 0
 
         try:
-            # 专题文件夹
             if cid.startswith("dir_topic_"):
                 slug = cid.replace("dir_topic_", "")
-                for path in [f"/topics/{slug}/?page={pg}",
-                             f"/topics/{slug}/",
-                             f"/topic/{slug}/"]:
-                    html = self._get(path)
-                    videos = self._parse_list(html, mode="drama")
-                    if videos:
-                        break
+                html = self._get(f"/topics/{slug}/?page={pg}")
+                videos = self._parse_list(html, mode="drama")
                 return self._result(videos, pg, 9999)
 
-            # AI 四分类：API + HTML 多路径
             if cid in ("ai-duanju", "ai-manju", "ai-huanlian", "ai-mogai"):
                 videos, pages, total = self._category_api(cid, pg)
-                self._log("AI %s api -> %d" % (cid, len(videos)))
                 if not videos:
-                    candidates = [
-                        f"/{cid}/" if pg <= 1 else f"/{cid}/{pg}/",
-                        f"/category/{cid}/" if pg <= 1 else f"/category/{cid}/{pg}/",
-                        f"/list/{cid}/" if pg <= 1 else f"/list/{cid}/{pg}/",
-                        f"/{cid}/page/{pg}/",
-                        f"/type/{cid}/" if pg <= 1 else f"/type/{cid}/{pg}/",
-                    ]
-                    for path in candidates:
-                        html = self._get(path)
-                        v2 = self._parse_list(html)
-                        if v2:
-                            self._log("AI %s HTML %s -> %d"
-                                      % (cid, path, len(v2)))
-                            videos = v2
-                            ps = [int(x) for x in re.findall(
-                                r'/' + re.escape(cid) + r'/(\d+)/', html)]
-                            if ps:
-                                pages = max(ps)
-                            break
+                    path = f"/{cid}/" if pg <= 1 else f"/{cid}/{pg}/"
+                    html = self._get(path)
+                    videos = self._parse_list(html)
+                    ps = [int(x) for x in re.findall(
+                        r'/' + re.escape(cid) + r'/(\d+)/', html or "")]
+                    if ps:
+                        pages = max(ps)
                 if len(videos) > PAGE_SIZE:
                     videos = videos[:PAGE_SIZE]
                 return self._result(videos, pg, pages or 9999, total)
 
-            # recommend / newest 多路径尝试
+            # ============ 改动：recommend/newest 多路径 ============
             if cid == "recommend":
                 for path in [f"/recommend/{pg}/", "/recommend/", "/",
-                             f"/newest/{pg}/", f"/videos/{pg}/", "/index/"]:
+                             f"/newest/{pg}/", f"/videos/{pg}/"]:
                     html = self._get(path)
                     videos = self._parse_list(html)
                     if videos:
-                        self._log("recommend %s -> %d" % (path, len(videos)))
                         break
             elif cid == "newest":
-                for path in [f"/newest/{pg}/", "/newest/", f"/new/{pg}/",
-                             f"/latest/{pg}/", f"/recommend/{pg}/"]:
+                for path in [f"/newest/{pg}/", "/newest/",
+                             f"/recommend/{pg}/", f"/new/{pg}/",
+                             f"/latest/{pg}/"]:
                     html = self._get(path)
                     videos = self._parse_list(html)
                     if videos:
-                        self._log("newest %s -> %d" % (path, len(videos)))
                         break
+            # ============ 改动结束 ============
             elif cid == "topic":
                 html = self._get("/topics/")
                 videos = self._parse_list(html, mode="topic")
@@ -454,8 +396,7 @@ class Spider(Spider):
                 html = self._get(path)
                 videos = self._parse_list(html)
 
-        except Exception as e:
-            self._log("categoryContent exception: %s" % e)
+        except Exception:
             videos = []
 
         return self._result(videos, pg, pages, total)
@@ -888,7 +829,9 @@ class Spider(Spider):
                 pass
         return p if p.startswith("http") else ""
 
-    # ---------- 列表解析 ----------
+    # ============================================================
+    # 关键改动 3：_parse_bs4 加多选择器兜底
+    # ============================================================
     def _parse_list(self, html, mode="drama"):
         if not html or len(html) < 150:
             return []
@@ -907,6 +850,7 @@ class Spider(Spider):
             doc = BeautifulSoup(html, "html.parser")
 
         if mode == "drama" or mode == "search":
+            # ============ 改动：多选择器兜底 ============
             card_selectors = [
                 "div.hg-drama-card",
                 "div.drama-card",
@@ -923,7 +867,6 @@ class Spider(Spider):
                     cs = doc.select(sel)
                     if cs:
                         cards = cs
-                        self._log("parse_bs4 %s -> %d" % (sel, len(cs)))
                         break
                 except Exception:
                     continue
@@ -998,6 +941,7 @@ class Spider(Spider):
                             "vod_pic": self._wrap_pic(pic),
                             "vod_remarks": remark or "在线观看",
                         })
+            # ============ 改动结束 ============
 
         elif mode == "rank":
             for item in doc.select("div.hg-rank-item"):
@@ -1113,15 +1057,3 @@ class Spider(Spider):
                 "vod_remarks": remark,
             })
         return result
-
-
-# ---------- 自测（可选，电脑跑） ----------
-if __name__ == "__main__":
-    sp = Spider()
-    sp.init()
-    print("host:", sp.host)
-    for cid in ["recommend", "newest", "ai-duanju", "ai-manju",
-                "ai-huanlian", "ai-mogai", "topic", "ranks",
-                "chigua", "author"]:
-        r = sp.categoryContent(cid, 1, False, {})
-        print("%-12s -> %d 条" % (cid, len(r.get("list", []))))
