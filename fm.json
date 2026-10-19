@@ -35,7 +35,7 @@
   {"key":"QianQian","name":"🎬┃影视┃千千影视","type":3,"api":"./py/QianQian.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
   //{"key":"JuOK","name":"🎬┃影视┃JuOK","type":3,"api":"./py/JuOK.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
   {"key":"dyx","name":"🎬┃影视┃电影侠","type":3,"api":"./py/dyx.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
-  //{"key":"huangdou","name":"🍓┃短剧┃黄豆短剧","type":3,"api":"./py/HuangDou.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":0},
+  {"key":"huangdou","name":"🍓┃短剧┃黄豆短剧","type":3,"api":"./py/HuangDou.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":0},
   {"key":"huangguo","name":"🍓┃短剧┃黄果短剧","type":3,"api":"./py/HuangGuo.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":0},
   {"key":"hongguo","name":"🍓┃短剧┃红果短剧","type":3,"api":"./py/hongguo.py","searchable":1,"quickSearch":1,"filterable":0,"changeable":0},
   //{"key":"fjcgs","name":"🎬┃影视┃TVB云播2","type":3,"api":"./py/fjcgs_tvb.py","searchable":1,"quickSearch":1,"filterable":0,"changeable":1},
