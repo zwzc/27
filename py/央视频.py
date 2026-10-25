@@ -1,16 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-兼容 IJK / ExoPlayer / MPV 三种播放器的 HLS 直播版本:
-    - playlist 带 #EXT-X-PROGRAM-DATE-TIME, Exo/MPV 才能定位直播点
-    - 带 #EXT-X-START:TIME-OFFSET=-15, 从直播点前 15 秒开始播
-    - playlist 窗口 8 片 (~50 秒), 兼顾 IJK 小窗口特性与 Exo 最小窗口要求
-    - 分片 URL 指向本地 /chunk/<slug>/<seq>.ts, 由本地实时转发
-    - 后台每 2 秒刷新, playlist 请求不触发额外刷新 (避免 media-seq 跳变)
-    - 每个频道带台标封面: 自动探测可用图源, 全部失败时由本地 /logo 兜底出图
+兼容 IJK / ExoPlayer / MPV 三种播放器的 HLS 直播版本
 
-协议: JCE PidTimeShift + bkliveinfo(cKey) 自动切换
-仅标准库。
+★ 点播: 保留原有全部逻辑 (homeContent/categoryContent/detailContent/playerContent)
+★ 直播: liveContent 只吐 ext.channels 里的 m3u, 原样
+★ 本地服务: 动态端口 (LOCAL_PORT_PREFERRED 起, 顺序找空)
+★ 固定转发: 21079 端口 -> 动态端口, 供 m3u 里写死地址
+★ 日志写 /sdcard/Download/ysp_debug.log
 """
 
 import base64, gzip, json, os, random, re, struct, threading, time
@@ -25,6 +22,29 @@ except ImportError:
         def getCache(self, key): return None
         def setCache(self, key, value): return "fail"
         def delCache(self, key): return "fail"
+
+
+# ================================================================ 日志 (写本地文件)
+
+LOG_FILE = "/sdcard/TVBox/ysp_debug.log"
+_LOG_LOCK = threading.Lock()
+_LOG_INIT = False
+
+
+def _log(msg):
+    global _LOG_INIT
+    try:
+        line = "[%s] %s\n" % (time.strftime("%m-%d %H:%M:%S"), msg)
+        with _LOG_LOCK:
+            # 进程内第一次写, 清空旧文件
+            if not _LOG_INIT:
+                _LOG_INIT = True
+                with open(LOG_FILE, "w", encoding="utf-8") as f:
+                    f.write("")
+            with open(LOG_FILE, "a", encoding="utf-8") as f:
+                f.write(line)
+    except Exception:
+        pass
 
 
 def format_remarks(brand="央视频", meta=""):
@@ -342,40 +362,71 @@ CHANNELS = [
     ('cctvfyjc', 'CCTV 风云剧场', '2025637103', '600099658', 'shd'),
     ('cctvdyjc', 'CCTV 第一剧场', '2026874203', '600099655', 'shd'),
     ('cctvhjjc', 'CCTV 怀旧剧场', '2026874303', '600099620', 'shd'),
-    ('bjws', '北京卫视', '2024052703', '600002309', 'fhd'),
+    ('hnws', '湖南卫视', '2024054803', '600002475', 'fhd'),
+    ('zjws', '浙江卫视', '2024054703', '600002520', 'fhd'),
     ('jsws', '江苏卫视', '2024171103', '600002521', 'fhd'),
     ('dfws', '东方卫视', '2024054503', '600002483', 'fhd'),
-    ('zjws', '浙江卫视', '2024054703', '600002520', 'fhd'),
-    ('hnws', '湖南卫视', '2024054803', '600002475', 'fhd'),
-    ('hbws', '湖北卫视', '2024171203', '600002508', 'fhd'),
+    ('bjws', '北京卫视', '2024052703', '600002309', 'fhd'),
     ('gdws', '广东卫视', '2024060903', '600002485', 'fhd'),
-    ('gxws', '广西卫视', '2024060703', '600002509', 'fhd'),
-    ('hljws', '黑龙江卫视', '2029797003', '600002498', 'fhd'),
-    ('hainanws', '海南卫视', '2024055603', '600002506', 'fhd'),
-    ('cqws', '重庆卫视', '2024061103', '600002531', 'fhd'),
     ('szws', '深圳卫视', '2024061303', '600002481', 'fhd'),
-    ('scws', '四川卫视', '2024061403', '600002516', 'fhd'),
-    ('henanws', '河南卫视', '2029797303', '600002525', 'fhd'),
-    ('dnws', '东南卫视', '2024061503', '600002484', 'fhd'),
-    ('gzws', '贵州卫视', '2024061603', '600002490', 'fhd'),
-    ('jxws', '江西卫视', '2024061703', '600002503', 'fhd'),
     ('lnws', '辽宁卫视', '2024171303', '600002505', 'fhd'),
-    ('ahws', '安徽卫视', '2024171403', '600002532', 'fhd'),
-    ('hebws', '河北卫视', '2024171503', '600002493', 'fhd'),
-    ('sdws', '山东卫视', '2029787903', '600002513', 'fhd'),
-    ('tjws', '天津卫视', '2019927003', '600152137', 'fhd'),
     ('jlws', '吉林卫视', '2025561503', '600190405', 'fhd'),
-    ('saxws', '陕西卫视', '2029795103', '600190400', 'fhd'),
-    ('nxws', '宁夏卫视', '2025608503', '600190737', 'fhd'),
-    ('nmgws', '内蒙古卫视', '2025561203', '600190401', 'fhd'),
-    ('ynws', '云南卫视', '2025561303', '600190402', 'fhd'),
+    ('tjws', '天津卫视', '2019927003', '600152137', 'fhd'),
+    ('ahws', '安徽卫视', '2024171403', '600002532', 'fhd'),
+    ('sdws', '山东卫视', '2029787903', '600002513', 'fhd'),
+    ('hbws', '湖北卫视', '2024171203', '600002508', 'fhd'),
+    ('hebws', '河北卫视', '2024171503', '600002493', 'fhd'),
+    ('henanws', '河南卫视', '2029797303', '600002525', 'fhd'),
+    ('jxws', '江西卫视', '2024061703', '600002503', 'fhd'),
     ('shanxiws', '山西卫视', '2025560803', '600190407', 'fhd'),
+    ('saxws', '陕西卫视', '2029795103', '600190400', 'fhd'),
+    ('scws', '四川卫视', '2024061403', '600002516', 'fhd'),
+    ('cqws', '重庆卫视', '2024061103', '600002531', 'fhd'),
+    ('gxws', '广西卫视', '2024060703', '600002509', 'fhd'),
+    ('ynws', '云南卫视', '2025561303', '600190402', 'fhd'),
+    ('gzws', '贵州卫视', '2024061603', '600002490', 'fhd'),
+    ('dnws', '东南卫视', '2024061503', '600002484', 'fhd'),
+    ('hainanws', '海南卫视', '2024055603', '600002506', 'fhd'),
+    ('nxws', '宁夏卫视', '2025608503', '600190737', 'fhd'),
     ('qhws', '青海卫视', '2025559103', '600190406', 'fhd'),
-    ('xizangws', '西藏卫视', '2025558003', '600190403', 'fhd'),
     ('xjws', '新疆卫视', '2019927403', '600152138', 'fhd'),
+    ('xizangws', '西藏卫视', '2025558003', '600190403', 'fhd'),
+    ('hljws', '黑龙江卫视', '2029797003', '600002498', 'fhd'),
+    ('nmgws', '内蒙古卫视', '2025561203', '600190401', 'fhd'),
     ('cetv1', 'CETV-1', '2022823801', '600171827', 'fhd'),
     ('guoxue', '国学频道', '2029360403', '600213139', 'fhd'),
 ]
+
+
+YSPTP_CHANNELS = {
+    'cctv1':    {'live_id': 'Live1717729995180256', 'name': 'CCTV-1 综合',      'group': '央视'},
+    'cctv2':    {'live_id': 'Live1718261577870260', 'name': 'CCTV-2 财经',      'group': '央视'},
+    'cctv3':    {'live_id': 'Live1718261955077261', 'name': 'CCTV-3 综艺',      'group': '央视'},
+    'cctv4':    {'live_id': 'Live1718276148119264', 'name': 'CCTV-4 中文国际',  'group': '央视'},
+    'cctv5':    {'live_id': 'Live1719474204987287', 'name': 'CCTV-5 体育',      'group': '央视'},
+    'cctv5p':   {'live_id': 'Live1719473996025286', 'name': 'CCTV-5+ 体育赛事', 'group': '央视'},
+    'cctv7':    {'live_id': 'Live1718276412224269', 'name': 'CCTV-7 国防军事',  'group': '央视'},
+    'cctv8':    {'live_id': 'Live1718276458899270', 'name': 'CCTV-8 电视剧',    'group': '央视'},
+    'cctv9':    {'live_id': 'Live1718276503187272', 'name': 'CCTV-9 纪录',      'group': '央视'},
+    'cctv10':   {'live_id': 'Live1718276550002273', 'name': 'CCTV-10 科教',     'group': '央视'},
+    'cctv11':   {'live_id': 'Live1718276603690275', 'name': 'CCTV-11 戏曲',     'group': '央视'},
+    'cctv12':   {'live_id': 'Live1718276623932276', 'name': 'CCTV-12 社会与法', 'group': '央视'},
+    'cctv13':   {'live_id': 'Live1718276575708274', 'name': 'CCTV-13 新闻',     'group': '央视'},
+    'cctv14':   {'live_id': 'Live1718276498748271', 'name': 'CCTV-14 少儿',     'group': '央视'},
+    'cctv15':   {'live_id': 'Live1718276319614267', 'name': 'CCTV-15 音乐',     'group': '央视'},
+    'cctv16':   {'live_id': 'Live1718276256572265', 'name': 'CCTV-16 奥林匹克', 'group': '央视'},
+    'cctv17':   {'live_id': 'Live1718276138318263', 'name': 'CCTV-17 农业农村', 'group': '央视'},
+    'cctv4k':   {'live_id': 'Live1767871224782105', 'name': 'CCTV-4K 超高清',   'group': '央视'},
+    'cctv8k':   {'live_id': 'Live1688400593818102', 'name': 'CCTV-8K 超高清',   'group': '央视'},
+    'cctv164k': {'live_id': 'Live1704966749996185', 'name': 'CCTV-16 4K',       'group': '央视'},
+    'cctv4kb':  {'live_id': 'Live1704872878572161', 'name': 'CCTV-4K 备用',     'group': '央视'},
+    'cgtnen':   {'live_id': 'Live1719392219423280', 'name': 'CGTN 英语频道',    'group': 'CGTN'},
+    'cgtnfr':   {'live_id': 'Live1719392670442283', 'name': 'CGTN 法语频道',    'group': 'CGTN'},
+    'cgtnru':   {'live_id': 'Live1719392779653284', 'name': 'CGTN 俄语频道',    'group': 'CGTN'},
+    'cgtnar':   {'live_id': 'Live1719392885692285', 'name': 'CGTN 阿拉伯语频道', 'group': 'CGTN'},
+    'cgtnes':   {'live_id': 'Live1719392560433282', 'name': 'CGTN 西班牙语频道', 'group': 'CGTN'},
+    'cgtndoc':  {'live_id': 'Live1719392360336281', 'name': 'CGTN 纪录频道',    'group': 'CGTN'},
+}
 
 UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36'
 
@@ -383,9 +434,14 @@ WINDOW = 300
 REFRESH_INTERVAL = 2
 IDLE_TIMEOUT = 300
 MAX_SEGS = 400
-PLAYLIST_WINDOW = 8               # 8 片 (~50 秒), 兼顾 IJK 与 Exo/MPV
+PLAYLIST_WINDOW = 8
+
+# ============ 本地服务: 动态端口 ============
 LOCAL_PORT_PREFERRED = 19876
 LOCAL_PORT_RANGE = 50
+
+# ============ 固定转发: m3u 里写死这个端口 ============
+FIXED_PROXY_PORT = 21079
 
 CHANNEL_MAP = {c[0]: {'slug': c[0], 'name': c[1], 'sid': c[2], 'pid': c[3], 'defn': c[4]} for c in CHANNELS}
 
@@ -403,9 +459,39 @@ BACKEND_CHANNELS = {
 TRUE_4K_CHANNELS = {'cctv4k', 'cctv8k', 'cctv164k'}
 
 
-# ================================================================ 频道台标 / 封面
+# ================================================================ 读取 ext.channels (直播用)
 
-# 台标图源 (fanmingming/live 仓库 tv/ 目录的多个镜像), 按顺序探测取第一个可用
+def _fetch_text(src):
+    s = str(src).strip()
+    _log("_fetch_text: %r" % s)
+
+    if s.startswith('http://') or s.startswith('https://'):
+        # URL 里可能有中文, 请求前先编码
+        try:
+            s_quoted = urllib.parse.quote(s, safe=':/?&=#%')
+        except Exception:
+            s_quoted = s
+        req = urllib.request.Request(s_quoted, headers={'User-Agent': UA})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            data = r.read().decode('utf-8', 'replace')
+            _log("http 读到 %d 字符" % len(data))
+            return data, r.geturl()
+
+    path = s
+    if path.startswith('file://'):
+        path = urllib.request.url2pathname(urllib.parse.urlparse(path).path)
+    elif path.startswith('./') or path.startswith('../'):
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        path = os.path.join(script_dir, path[2:] if path.startswith('./') else path)
+
+    with open(path, 'r', encoding='utf-8', errors='replace') as f:
+        data = f.read()
+    _log("本地读到 %d 字符" % len(data))
+    return data, path
+
+
+# ================================================================ 台标 / 封面
+
 LOGO_MIRRORS = [
     'https://cdn.jsdmirror.com/gh/fanmingming/live@main/tv/',
     'https://jsd.onmicrosoft.cn/gh/fanmingming/live@main/tv/',
@@ -414,18 +500,17 @@ LOGO_MIRRORS = [
     'https://ghproxy.net/https://raw.githubusercontent.com/fanmingming/live/main/tv/',
     'https://live.fanmingming.com/tv/',
 ]
-LOGO_PROBE_FILE = 'CCTV1.png'      # 用于探测图源是否可用的样本文件
-LOGO_TIMEOUT = 8                   # 单次请求超时 (秒)
-LOGO_MODE = 'auto'                 # auto: 直链优先, 图源全挂则回落到本地出图; 也可强制 'direct' / 'local'
+LOGO_PROBE_FILE = 'CCTV1.png'
+LOGO_TIMEOUT = 8
+LOGO_MODE = 'auto'
 
-_LOGO_BASE = LOGO_MIRRORS[0]       # 探测完成前先用第一个镜像
+_LOGO_BASE = LOGO_MIRRORS[0]
 _LOGO_DONE = threading.Event()
 _LOGO_START_LOCK = threading.Lock()
 _LOGO_STARTED = False
-_LOGO_CACHE = {}                   # slug -> PNG bytes (本地出图缓存)
+_LOGO_CACHE = {}
 _LOGO_CACHE_LOCK = threading.Lock()
 
-# 兜底封面: 320x180 PNG, 任何图源都取不到时使用, 保证卡片一定有封面
 _LOGO_PLACEHOLDER = base64.b64decode((
     'iVBORw0KGgoAAAANSUhEUgAAAUAAAAC0CAMAAADSOgUjAAAAwFBMVEX////+/v6QorsgSX8lSHggSHwgRnkfR3weRnwfRHcfQnMd'
     'RHgeQXIcQ3cbQHMbPm0ZPm8YPW4XPG4WO2wXOmkXOGQVOmwVOWoVOGcUO20UOmwUOWoUOGkTOGkTN2gTN2cVNWETNWUSNWQSNGIU'
@@ -495,12 +580,11 @@ _LOGO_PLACEHOLDER = base64.b64decode((
     'vYvKn7iSJW9nnZ29I8LT2k4r7mPM2dn7IjxtmLDFgF8rqiqYvjgLnba4vn6tGvG48mo1YFlCx/yvFvDrFlfJRar88NqXwrXVgJXM'
     'Nz1Q/2uA1S3UoH6FAP95r/WlmXq/gA0ZvmvAJhjR8RZVXQhl/tWO/wJR2IQB57bu1AAAAABJRU5ErkJggg=='))
 
-# 仓库文件名与频道 slug 无法直接推导的, 在这里显式指定
 _LOGO_OVERRIDE = {
     'cctv5p': 'CCTV5+.png',
     'cctv4k': 'CCTV4K.png',
     'cctv8k': 'CCTV8K.png',
-    'cctv164k': 'CCTV16.png',        # 仓库无 "CCTV16 4K", 用 CCTV16 台标
+    'cctv164k': 'CCTV16.png',
     'cgtn': 'CGTN.png',
     'cgtnfr': 'CGTN法语.png',
     'cgtnru': 'CGTN俄语.png',
@@ -516,14 +600,13 @@ _LOGO_OVERRIDE = {
 
 
 def _logo_file(slug, name=''):
-    """slug -> 台标文件名, 找不到返回空串"""
     if slug in _LOGO_OVERRIDE:
         return _LOGO_OVERRIDE[slug]
     m = re.match(r'^cctv(\d+)$', slug)
     if m:
         return 'CCTV%s.png' % m.group(1)
     if name and slug.endswith('ws'):
-        return name + '.png'          # 地方卫视: 仓库文件名就是频道中文名
+        return name + '.png'
     return ''
 
 
@@ -549,7 +632,6 @@ def _probe_logo_source():
 
 
 def _ensure_logo_source(wait=3.0):
-    """启动一次图源探测, 最多等 wait 秒; 返回当前可用图源前缀 (空串表示都不可用)"""
     global _LOGO_STARTED
     with _LOGO_START_LOCK:
         if not _LOGO_STARTED:
@@ -565,7 +647,6 @@ def _local_logo_url(slug):
 
 
 def _logo_url(slug, name=''):
-    """返回可直接放进 vod_pic 的封面地址"""
     base = _ensure_logo_source()
     fname = _logo_file(slug, name)
     direct = (base + urllib.parse.quote(fname)) if (base and fname) else ''
@@ -577,7 +658,6 @@ def _logo_url(slug, name=''):
 
 
 def _fetch_logo_bytes(slug, name):
-    """本地出图: 依次尝试各镜像抓台标, 全失败返回内置兜底封面"""
     fname = _logo_file(slug, name)
     if fname:
         bases = ([_LOGO_BASE] if _LOGO_BASE else []) + [b for b in LOGO_MIRRORS if b != _LOGO_BASE]
@@ -616,13 +696,6 @@ class _ChannelState:
 
 
 CHANNEL_STATE = {c[0]: _ChannelState(c[0], c[1], c[2], c[3], c[4]) for c in CHANNELS}
-
-
-def _log(msg):
-    try:
-        print('[ysp] %s' % msg, flush=True)
-    except Exception:
-        pass
 
 
 def _seg_key(url, pdt):
@@ -758,7 +831,7 @@ def _ensure_channel(ch):
             ch._starting = False
 
 
-# ================================================================ 本地 HTTP 服务
+# ================================================================ 本地 HTTP 服务 (动态端口)
 
 _LOCAL_PORT = None
 _LOCAL_LOCK = threading.Lock()
@@ -831,6 +904,8 @@ class _LocalHandler(BaseHTTPRequestHandler):
                     n = len(ch.order)
                 lines.append('%s mode=%s segs=%d err=%s' % (slug, ch.mode, n, ch.last_error))
             lines.append('logo_source=%s' % (_LOGO_BASE or '(none)'))
+            lines.append('local_port=%s' % _LOCAL_PORT)
+            lines.append('fixed_proxy_port=%s' % FIXED_PROXY_PORT)
             self._send(200, '\n'.join(lines) + '\n')
             return
 
@@ -856,8 +931,6 @@ class _LocalHandler(BaseHTTPRequestHandler):
 
         self._send(404, 'not found\n')
 
-    # ---------- 台标 / 封面 ----------
-
     def _serve_logo(self, slug):
         info = CHANNEL_MAP.get(slug)
         if not info:
@@ -871,8 +944,6 @@ class _LocalHandler(BaseHTTPRequestHandler):
                 _LOGO_CACHE[slug] = data
         self._send(200, data, 'image/png', cache=True)
 
-    # ---------- HLS playlist ----------
-
     def _serve_m3u8(self, slug):
         ch = CHANNEL_STATE.get(slug)
         if not ch:
@@ -880,8 +951,6 @@ class _LocalHandler(BaseHTTPRequestHandler):
             return
         _ensure_channel(ch)
 
-        # ★ 不在请求时刷新, 由后台线程负责, 避免 media-seq 跳变
-        #   但也等待后台线程至少跑过一次, 保证有分片
         for _ in range(60):
             with ch.lock:
                 if ch.order:
@@ -908,17 +977,15 @@ class _LocalHandler(BaseHTTPRequestHandler):
             '#EXT-X-TARGETDURATION:%d' % target,
             '#EXT-X-MEDIA-SEQUENCE:%d' % window[0][0],
             '#EXT-X-DISCONTINUITY-SEQUENCE:0',
-            '#EXT-X-START:TIME-OFFSET=-15.0',   # ★ 从直播点前 15 秒开始 (Exo/MPV)
+            '#EXT-X-START:TIME-OFFSET=-15.0',
         ]
         for seq, dur, pdt, _url in window:
             if pdt:
-                out.append('#EXT-X-PROGRAM-DATE-TIME:' + pdt)   # ★ 加回 PDT
+                out.append('#EXT-X-PROGRAM-DATE-TIME:' + pdt)
             out.append('#EXTINF:%.3f,' % dur)
             out.append('http://127.0.0.1:%d/chunk/%s/%d.ts' % (port, slug, seq))
 
         self._send(200, '\n'.join(out) + '\n', 'application/vnd.apple.mpegurl')
-
-    # ---------- 分片转发 ----------
 
     def _serve_chunk(self, slug, seq):
         ch = CHANNEL_STATE.get(slug)
@@ -952,8 +1019,6 @@ class _LocalHandler(BaseHTTPRequestHandler):
             self._send(e.code, 'chunk HTTP %d\n' % e.code)
         except Exception as e:
             self._send(502, 'chunk error: %s\n' % e)
-
-    # ---------- TS 无限流中继 (备用) ----------
 
     def _serve_ts(self, slug):
         ch = CHANNEL_STATE.get(slug)
@@ -1065,6 +1130,72 @@ def _ensure_local_server():
         raise RuntimeError('无法绑定端口: %s' % last_err)
 
 
+# ================================================================ 固定转发服务 (21079 -> 动态端口)
+
+_fixed_proxy_started = False
+_fixed_proxy_lock = threading.Lock()
+
+
+class _FixedProxyHandler(BaseHTTPRequestHandler):
+    protocol_version = 'HTTP/1.1'
+    server_version = 'ysp-fixed-proxy'
+
+    def log_message(self, fmt, *args):
+        pass
+
+    def do_GET(self):
+        target_port = _LOCAL_PORT
+        if not target_port:
+            self.send_response(503)
+            self.send_header('Content-Length', '0')
+            self.end_headers()
+            return
+
+        url = 'http://127.0.0.1:%d%s' % (target_port, self.path)
+        try:
+            req = urllib.request.Request(url, headers={
+                'User-Agent': UA,
+                'Referer': 'https://live.cctv.cn/',
+            })
+            with urllib.request.urlopen(req, timeout=25) as r:
+                data = r.read()
+                ctype = r.headers.get('Content-Type', 'application/octet-stream')
+            self.send_response(200)
+            self.send_header('Content-Type', ctype)
+            self.send_header('Content-Length', str(len(data)))
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.send_header('Cache-Control', 'no-cache, no-store')
+            self.end_headers()
+            self.wfile.write(data)
+        except Exception:
+            try:
+                self.send_response(502)
+                self.send_header('Content-Length', '0')
+                self.end_headers()
+            except Exception:
+                pass
+
+    def do_HEAD(self):
+        self.send_response(200)
+        self.end_headers()
+
+
+def _start_fixed_proxy():
+    global _fixed_proxy_started
+    with _fixed_proxy_lock:
+        if _fixed_proxy_started:
+            return
+        _fixed_proxy_started = True
+
+    try:
+        srv = ThreadingHTTPServer(('127.0.0.1', FIXED_PROXY_PORT), _FixedProxyHandler)
+        srv.daemon_threads = True
+        threading.Thread(target=srv.serve_forever, daemon=True).start()
+        _log('fixed proxy started: http://127.0.0.1:%d/' % FIXED_PROXY_PORT)
+    except OSError as e:
+        _log('fixed proxy bind failed (%d): %s' % (FIXED_PROXY_PORT, e))
+
+
 # ================================================================ Spider
 
 class Spider(SpiderBase):
@@ -1072,22 +1203,48 @@ class Spider(SpiderBase):
         super(Spider, self).__init__()
         self.brandActor = "📺 央视频直播"
         self.brandDirector = "ysp-live"
+        self.ext = {}
 
     def init(self, extend=""):
+        _log("==================== init ====================")
+        _log("init extend 类型=%s 值=%r" % (type(extend).__name__, extend))
+
+        try:
+            if isinstance(extend, str) and extend.strip():
+                self.ext = json.loads(extend)
+            elif isinstance(extend, dict):
+                self.ext = extend
+            else:
+                self.ext = {}
+        except Exception as e:
+            _log("ext 解析失败: %s" % e)
+            self.ext = {}
+        _log("self.ext = %r" % self.ext)
+
         try:
             _ensure_local_server()
         except Exception as e:
             _log('本地服务启动失败: %s' % e)
+
         try:
-            _ensure_logo_source(wait=0)   # 后台探测台标图源, 不阻塞
+            _start_fixed_proxy()
+        except Exception as e:
+            _log('固定转发启动失败: %s' % e)
+
+        try:
+            _ensure_logo_source(wait=0)
         except Exception:
             pass
+
+        _log("==================== init 结束 ====================")
         return True
 
     def getName(self): return "央视频直播"
     def isVideoFormat(self, url): return True
     def manualVideoCheck(self): return False
     def destroy(self): pass
+
+    # ======================== 点播部分 (原样保留) ========================
 
     def homeContent(self, filter):
         return {"class": [
@@ -1204,8 +1361,44 @@ class Spider(SpiderBase):
         return {"page": 1, "pagecount": 1, "limit": len(cards), "total": len(cards), "list": cards}
 
     def action(self, action): return {"msg": "ok"}
-    def liveContent(self): return ""
     def localProxy(self, params): return [404, "text/plain; charset=utf-8", "Proxy not configured"]
+
+    # ======================== 直播部分: 原样吐 ext.channels ========================
+
+    def liveContent(self, url=""):
+        _log("liveContent 被调用, url=%r" % url)
+
+        try:
+            _ensure_local_server()
+        except Exception as e:
+            _log("liveContent 本地服务失败: %s" % e)
+
+        try:
+            _start_fixed_proxy()
+        except Exception as e:
+            _log("liveContent 固定转发失败: %s" % e)
+
+        try:
+            src = self.ext.get('channels', '') if isinstance(self.ext, dict) else ''
+            _log("liveContent channels = %r" % src)
+            if not src:
+                return "#EXTM3U\n"
+
+            sources = [x.strip() for x in re.split(r'[\n,;]+', str(src)) if x.strip()]
+            out = []
+            for one in sources:
+                try:
+                    text, _ = _fetch_text(one)
+                    out.append(text)
+                except Exception as e:
+                    _log("读源失败 %s: %s" % (one, e))
+
+            result = '\n'.join(out)
+            _log("liveContent 返回 %d 行" % len(result.splitlines()))
+            return result
+        except Exception as e:
+            _log("liveContent 异常: %s" % e)
+            return "#EXTM3U\n"
 
 
 # ================================================================ 本地调试
@@ -1216,33 +1409,22 @@ if __name__ == '__main__':
     ap.add_argument('--port', type=int, default=LOCAL_PORT_PREFERRED)
     ap.add_argument('--once', action='store_true')
     ap.add_argument('--test-slug', default='cctv1')
+    ap.add_argument('--channels', default='')
     args = ap.parse_args()
     LOCAL_PORT_PREFERRED = args.port
 
-    sp = Spider(); sp.init()
+    sp = Spider()
+    sp.init(json.dumps({"channels": args.channels}) if args.channels else "")
     print("homeContent:", json.dumps(sp.homeContent({}), ensure_ascii=False))
     cc = sp.categoryContent('cctv', 1, {}, {})
     print("cctv: %d 个频道" % cc['total'])
-    dc = sp.detailContent([args.test_slug])
-    if dc['list']:
-        print("detail:", dc['list'][0]['vod_name'], dc['list'][0]['vod_play_url'])
-    pc = sp.playerContent('', args.test_slug, [])
-    print("playerContent:", json.dumps(pc, ensure_ascii=False))
+    print("liveContent 前 500 字:")
+    print(sp.liveContent("")[:500])
 
-    if args.once:
-        time.sleep(3)
-        try:
-            with urllib.request.urlopen(pc['url'], timeout=10) as r:
-                print(r.read().decode('utf-8', 'replace')[:800])
-        except Exception as e:
-            print("错误:", e)
-        sys.exit(0)
-
-    port = _LOCAL_PORT
     print("\n" + "=" * 60)
     print("常驻模式 (Ctrl+C 退出)")
-    print("  m3u8 : http://127.0.0.1:%d/%s.m3u8" % (port, args.test_slug))
-    print("  diag : http://127.0.0.1:%d/diag" % port)
+    print("  local  : http://127.0.0.1:%d/" % _LOCAL_PORT)
+    print("  fixed  : http://127.0.0.1:%d/" % FIXED_PROXY_PORT)
     print("=" * 60)
     try:
         while True:
