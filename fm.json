@@ -78,6 +78,7 @@
   ],
   "lives": [
     {"name":"Kimentanm【不能看点此切换】","type":0,"url":"https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u","playerType":1},
+    {"name":"daili【不能看点此切换】","type":0,"url":"https://dl.djian.top/zb","playerType":1},
     {"name": "央视频1","type": 3,"api": "./py/央视频.py", "ext": {"channels": "./sub/央视频.m3u"}},
     {
       "name": "央視頻2",
