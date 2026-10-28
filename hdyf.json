@@ -6,6 +6,7 @@
 "sites":[
 {"key":"点我切源","name":"天才赵┃片单","type": 3, "api": "csp_DouDouGuard","indexs":1,"searchable": 0,"quickSearch": 0,"changeable":0},
   {"key":"NewDouBan","name":"🐼┃JS(新)┃豆瓣","type":3,"api":"./js/csp_NewDouBan.js","searchable":0,"quickSearch":0,"filterable":1,"changeable":0},
+  {"key": "hongguojs","name": "🍓┃短剧┃红果js","type": 3,"api": "./js/Hongguojs_vod.js","searchable": 1,"quickSearch": 1,"filterable": 1,"changeable":1},
   {"key":"YangShiPin","name":"📡┃直播┃央视频","type":3,"api":"./py/央视频.py","searchable":0,"quickSearch":0,"filterable":0,"changeable":0},
   {"key":"JRKAN","name":"📡┃直播┃体育直播","type":3,"api":"./js/JRKAN.js","searchable":0,"quickSearch":0,"filterable":0,"changeable":0},
   {"key":"YueTingBa","name":"📚┃听书┃悦听吧","type":3,"api":"./py/悦听吧.py","searchable":1,"quickSearch":1,"filterable":0,"changeable":1},
@@ -74,6 +75,24 @@
 {"name":"Kimentanm","type":0,"url":"https://ghproxy.net/https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u","playerType":2},
 {"name":"综合直播","type":0,"url":"http://193.123.86.190:14888/TV/iptv.php","ua":"bingcha/1.1 (mianfeifenxiang)","playerType":2},
 {"name":"牛播一","url":"http://127.0.0.1:9978/proxy?do=cctva","timeZone":"Asia/Shanghai"},
+{"name":"daili【不能看点此切换】","type":0,"url":"https://dl.djian.top/zb","playerType":1},
+    {"name": "央视频1","type": 3,"api": "./py/央视频.py", "ext": {"channels": "./sub/央视频.m3u"}},
+    {
+      "name": "央視頻2",
+      "url": "https://capi.yangshipin.cn/api/oms/pc/navigation/home_top_nav",
+      "api": "./json/yangshipin.py",
+      "ext": "./json/yangshipin.json",
+      "epg": "https://github.com/litiande03/epg/raw/refs/heads/master/pl.xml.gz",
+      "timeZone": "Asia/Shanghai",
+      "timeout": 30
+    },
+    {
+      "name": "央視官網",
+      "url": "https://tv.cctv.com/live/",
+      "api": "./json/cctv.py",
+      "ext": "./json/cctv.json",
+      "timeout": 20
+    },
 {"name": "央视频","type": 3,"api": "./py/央视频.py", "ext": {"channels": "./sub/央视频.m3u"}},
 {"name":"湖北联通源【不能看点此切换】","type":0,"url":"./sub/hblt.txt","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
 //{"name":"湖北联通源2【不能看点此切换】","type":0,"url":"./sub/alist.txt","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
