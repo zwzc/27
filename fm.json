@@ -78,7 +78,23 @@
   ],
   "lives": [
     {"name":"Kimentanm【不能看点此切换】","type":0,"url":"https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u","playerType":1},
-    {"name": "央视频","type": 3,"api": "./py/央视频.py", "ext": {"channels": "./sub/央视频.m3u"}},
+    {"name": "央视频1","type": 3,"api": "./py/央视频.py", "ext": {"channels": "./sub/央视频.m3u"}},
+    {
+      "name": "央視頻2",
+      "url": "https://capi.yangshipin.cn/api/oms/pc/navigation/home_top_nav",
+      "api": "./json/yangshipin.py",
+      "ext": "./json/yangshipin.json",
+      "epg": "https://github.com/litiande03/epg/raw/refs/heads/master/pl.xml.gz",
+      "timeZone": "Asia/Shanghai",
+      "timeout": 30
+    },
+    {
+      "name": "央視官網",
+      "url": "https://tv.cctv.com/live/",
+      "api": "./json/cctv.py",
+      "ext": "./json/cctv.json",
+      "timeout": 20
+    },
     {"name":"catvod【不能看点此切换】","type":0,"url":"https://live.catvod.com/playlist.m3u?tk=4dd9743d7087eed4d6bdc386db6b2a5b","playerType":2},
     {"name":"湖北联通源【不能看点此切换】","type":0,"url":"./sub/hblt.txt","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
     {"name":"湖北移动源【不能看点此切换】","type":0,"url":"./sub/Live.txt","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
