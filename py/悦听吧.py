@@ -1,7 +1,4 @@
 # coding=utf-8
-#!/usr/bin/env python3
-"""TVBox / 影视仓 Python 源: 悦听吧有声书。"""
-
 import base64
 import hashlib
 import html as html_lib
@@ -41,6 +38,8 @@ class Spider(BaseSpider):
                 'Chrome/120.0.0.0 Safari/537.36'
             ),
             'Referer': self.site + '/',
+            'Accept': 'application/json, text/plain, */*',
+            'Accept-Language': 'zh-CN,zh;q=0.9',
         })
         self.cateManual = {
             '玄幻': '1', '都市': '4', '历史': '2', '名著': '6',
@@ -85,9 +84,11 @@ class Spider(BaseSpider):
             result['list'] = self._parse_books(page_html)
             total_match = re.search(r'共\s*(\d+)\s*条', page_html)
             total = int(total_match.group(1)) if total_match else len(result['list'])
-            result['total'] = total
-            result['limit'] = 10
-            result['pagecount'] = max(page, (total + 9) // 10)
+            result.update({
+                'total': total,
+                'limit': 10,
+                'pagecount': max(page, (total + 9) // 10),
+            })
         except Exception as error:
             print('categoryContent error: %s' % error)
             result.update({'total': 0, 'limit': 10, 'pagecount': page})
@@ -204,81 +205,47 @@ class Spider(BaseSpider):
         response.encoding = response.apparent_encoding or 'utf-8'
         return response
 
-    def _parse_books(self, page_html):
-        videos = []
-        seen = set()
-        pattern = re.compile(
-            r'<div[^>]+class="[^"]*section-box-list-item[^"]*"[^>]*>(.*?)'
-            r'(?=<div[^>]+class="[^"]*section-box-list-item|</section>|<div class="pagelist")',
-            re.S,
-        )
-        for block in pattern.findall(page_html):
-            link = re.search(r'href=["\']/book/detail/([^/"\']+)/\d+["\']', block)
-            title = re.search(
-                r'box-list-item-text-title[^>]*>\s*<a[^>]*>(.*?)</a>', block, re.S
-            )
-            image = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', block)
-            if not link or not title:
-                continue
-            book_id = link.group(1)
-            if book_id in seen:
-                continue
-            seen.add(book_id)
-            author_speaker = [self._clean(value) for value in re.findall(
-                r'<span[^>]+title=["\']([^"\']+)["\']', block
-            )]
-            remark = ' / '.join(author_speaker[:2])
-            videos.append({
-                'vod_id': book_id,
-                'vod_name': self._clean(title.group(1)),
-                'vod_pic': urljoin(self.site, image.group(1)) if image else '',
-                'vod_remarks': remark,
-            })
-        return videos
-
-    def _parse_episodes(self, page_html):
-        episodes = []
-        for episode_id, block in re.findall(
-            r'<div[^>]+id="item_([0-9a-f-]{36})"[^>]*class="[^"]*ting-list-content-item[^"]*"[^>]*>(.*?)</div>\s*</div>',
-            page_html, re.S | re.I,
-        ):
-            titles = re.findall(r'<a[^>]+title="([^"]+)"', block, re.S)
-            name = self._clean(titles[-1]) if titles else episode_id
-            episodes.append((name, episode_id))
-        return episodes
-
     def _resolve_audio(self, episode_id):
-        data = self._get(
-            '/api/app/docs-listen/%s/ting-with-efi' % episode_id
-        ).json()
-        if not isinstance(data, dict):
-            raise ValueError('音频接口返回非对象: %r' % (data,))
-        efi = data.get('efi') or data.get('efiStr')
-        if not efi:
-            raise ValueError('音频接口缺少 efi 字段: %r' % (data,))
+        # 1. 请求接口，兼容字段可能的变化
+        resp = self._get('/api/app/docs-listen/%s/ting-with-efi' % episode_id)
+        try:
+            data = resp.json()
+        except Exception:
+            raise ValueError('ting-with-efi 返回非 JSON: %s' % resp.text[:200])
 
-        book_id = data.get('bookId')
+        if not isinstance(data, dict):
+            raise ValueError('接口返回非对象: %r' % (data,))
+
+        # 兼容 efi / efiStr / encryptedUrl 等常见字段名
+        efi = data.get('efi') or data.get('efiStr') or data.get('encryptedUrl') or ''
+        if not efi:
+            raise ValueError('缺少 efi 字段，接口 keys: %s' % list(data.keys()))
+
+        book_id = data.get('bookId') or data.get('book_id') or ''
         if not book_id:
-            raise ValueError('音频接口缺少 bookId')
-        # assl/py 是书籍级参数, 所有分页一致, 固定读第 0 页即可
+            raise ValueError('缺少 bookId，接口 keys: %s' % list(data.keys()))
+
+        # 2. 获取书籍级运行时参数（servers / py）
         runtime = self._book_runtime(book_id, 0)
 
-        raw_id = data.get('id') or episode_id
+        # 3. 准备解密参数（id 与 creationTime）
+        raw_id = data.get('id') or data.get('listenId') or episode_id
         plain_id = str(raw_id).replace('-', '')
         if len(plain_id) != 32:
-            raise ValueError('episode id 长度异常: %r' % raw_id)
+            raise ValueError('id 长度异常: %r' % raw_id)
 
         creation_time = (
             data.get('creationTime')
             or data.get('createTime')
             or data.get('CreationTime')
+            or data.get('publishTime')
             or ''
         )
+        # 只保留数字，并按原始长度取模（对齐 JS 的 t[i % t.length]）
         compact_time = re.sub(r'[^0-9]', '', str(creation_time))
         if not compact_time:
-            raise ValueError('creationTime 为空/无数字: %r' % creation_time)
+            raise ValueError('creationTime 为空或无数字: %r' % creation_time)
 
-        # 严格对齐 JS: key 用 t[i % t.length], iv 对越界索引按 0 处理
         tlen = len(compact_time)
         key = bytes(
             (ord(plain_id[i]) + int(compact_time[i % tlen])) & 0xff
@@ -289,10 +256,12 @@ class Spider(BaseSpider):
             for i in range(20, 4, -1)
         )
 
-        source_path = self._aes_decrypt(efi, key, iv).decode('utf-8').strip()
+        # 4. AES 解密
+        source_path = self._aes_decrypt(efi, key, iv).decode('utf-8', errors='ignore').strip()
         if not source_path:
-            raise ValueError('efi 解密结果为空')
+            raise ValueError('efi 解密结果为空，请检查 key/iv 与 ciphertext')
 
+        # 5. 提取文件名并选择服务器
         filename = unquote(source_path.rstrip('/').split('/')[-1])
         server = self._pick_server(runtime['servers'], book_id)
 
@@ -304,6 +273,7 @@ class Spider(BaseSpider):
                 runtime['py'], book_id, filename,
             )
 
+        # 6. 生成带 token / expire 的最终 URL
         expires = int(time.time()) + 600
         signature = hashlib.md5(
             ('%s|%s|%s' % (filename, expires, self._assl_marker)).encode('utf-8')
@@ -368,7 +338,7 @@ class Spider(BaseSpider):
             padded = decryptor.update(encrypted) + decryptor.finalize()
         padding_size = padded[-1]
         if padding_size < 1 or padding_size > 16:
-            raise ValueError('AES 填充无效')
+            raise ValueError('AES 填充无效 (len=%d)，key/iv 可能不匹配' % padding_size)
         return padded[:-padding_size]
 
     @staticmethod
