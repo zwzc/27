@@ -239,7 +239,7 @@ class Spider(BaseSpider):
     def _parse_episodes(self, page_html):
         episodes = []
         for episode_id, block in re.findall(
-            r'<div id="item_([0-9a-f-]{36})" class="ting-list-content-item">(.*?)</div>\s*</div>',
+            r'<div[^>]+id="item_([0-9a-f-]{36})"[^>]*class="[^"]*ting-list-content-item[^"]*"[^>]*>(.*?)</div>\s*</div>',
             page_html, re.S | re.I,
         ):
             titles = re.findall(r'<a[^>]+title="([^"]+)"', block, re.S)
@@ -251,29 +251,55 @@ class Spider(BaseSpider):
         data = self._get(
             '/api/app/docs-listen/%s/ting-with-efi' % episode_id
         ).json()
-        book_id = data['bookId']
-        ting_no = int(data.get('tingNo') or 1)
-        offset = ((ting_no - 1) // 200) * 200
-        runtime = self._book_runtime(book_id, offset)
+        if not isinstance(data, dict):
+            raise ValueError('音频接口返回非对象: %r' % (data,))
+        efi = data.get('efi') or data.get('efiStr')
+        if not efi:
+            raise ValueError('音频接口缺少 efi 字段: %r' % (data,))
 
-        plain_id = data['id'].replace('-', '')
-        compact_time = re.sub(r'[-:T. ]', '', data['creationTime']).ljust(20, '0')
+        book_id = data.get('bookId')
+        if not book_id:
+            raise ValueError('音频接口缺少 bookId')
+        # assl/py 是书籍级参数, 所有分页一致, 固定读第 0 页即可
+        runtime = self._book_runtime(book_id, 0)
+
+        raw_id = data.get('id') or episode_id
+        plain_id = str(raw_id).replace('-', '')
+        if len(plain_id) != 32:
+            raise ValueError('episode id 长度异常: %r' % raw_id)
+
+        creation_time = (
+            data.get('creationTime')
+            or data.get('createTime')
+            or data.get('CreationTime')
+            or ''
+        )
+        compact_time = re.sub(r'[^0-9]', '', str(creation_time))
+        if not compact_time:
+            raise ValueError('creationTime 为空/无数字: %r' % creation_time)
+
+        # 严格对齐 JS: key 用 t[i % t.length], iv 对越界索引按 0 处理
+        tlen = len(compact_time)
         key = bytes(
-            (ord(plain_id[index]) + int(compact_time[index % 20])) & 0xff
-            for index in range(len(plain_id))
+            (ord(plain_id[i]) + int(compact_time[i % tlen])) & 0xff
+            for i in range(len(plain_id))
         )
         iv = bytes(
-            (ord(plain_id[index]) + int(compact_time[index - 1])) & 0xff
-            for index in range(20, 4, -1)
+            (ord(plain_id[i]) + (int(compact_time[i - 1]) if i - 1 < tlen else 0)) & 0xff
+            for i in range(20, 4, -1)
         )
-        source_path = self._aes_decrypt(data['efi'], key, iv).decode('utf-8').strip()
+
+        source_path = self._aes_decrypt(efi, key, iv).decode('utf-8').strip()
+        if not source_path:
+            raise ValueError('efi 解密结果为空')
+
         filename = unquote(source_path.rstrip('/').split('/')[-1])
         server = self._pick_server(runtime['servers'], book_id)
 
         path = source_path
-        if '_p' in server['Name']:
+        if '_p' in server.get('Name', ''):
             path = '/%s_%s/%s' % (runtime['py'], book_id, filename)
-        elif '_b' in server['Name']:
+        elif '_b' in server.get('Name', ''):
             path = '/myfiles/host/listen/booksdir/%s_%s/%s' % (
                 runtime['py'], book_id, filename,
             )
@@ -308,10 +334,11 @@ class Spider(BaseSpider):
             item for item in servers
             if str(item.get('AsType')) == '1' and item.get('Type') == 'A'
         ]
-        group = book_id.split('-')[4]
+        parts = book_id.split('-')
+        group = parts[4] if len(parts) > 4 else ''
         dedicated = [
             item for item in available
-            if item.get('BookIds') and group in item['BookIds']
+            if group and item.get('BookIds') and group in item['BookIds']
         ]
         if dedicated:
             available = dedicated
@@ -347,7 +374,8 @@ class Spider(BaseSpider):
     @staticmethod
     def _js_var(page_html, name):
         match = re.search(
-            r'\b(?:var|let|const)\s+%s\s*=\s*["\']([^"\']*)["\']' % re.escape(name),
+            r'(?:(?:var|let|const)\s+|window\.)?%s\s*=\s*["\']([^"\']*)["\']'
+            % re.escape(name),
             page_html,
         )
         if not match:
