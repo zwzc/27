@@ -9,49 +9,22 @@ class Spider(_BaseSpider):
             self.device_id = pair["device_id"]
             self.install_id = pair["install_id"]
 
-    def isVideoFormat(self, url):
-        u = str(url or "").lower()
-        return (
-            ".mp4" in u
-            or "video_mp4" in u
-            or "m3u8" in u
-            or "mime_type=video" in u
-            or "qznovelvod" in u
-        )
-
-    def manualVideoCheck(self):
-        return False
-
-    def getDependence(self):
-        return []
-
-    def download(self, path, url):
-        return ""
-
-    def isVPAYard(self, flag):
-        return False
-
-    def action(self, action):
-        return {}
-
     def init(self, extend=""):
         try:
             _hg_cache_cleanup(False)
         except Exception:
             pass
+        return None
 
     def destroy(self):
         try:
             _hg_cache_cleanup(False)
         except Exception:
             pass
+        return None
 
-    def liveContent(self, url=""):
-        return {}
-
-    def danmaku(self, id, emit):
-        """红果官方无公开弹幕接口；保留入口以兼容壳调用，返回可调用的停止函数。"""
-        return lambda: None
+    def getDependence(self):
+        return []
 
     def homeContent(self, filter):
         class_list = [{"type_id": k, "type_name": n} for k, n, _ in _HG_CONTENT_TYPES]
@@ -64,6 +37,9 @@ class Spider(_BaseSpider):
                     "value": [{"n": nm, "v": v} for v, nm in cats],
                 }]
         return {"class": class_list, "filters": filters}
+
+    def homeVideoContent(self):
+        return {"list": []}
 
     def categoryContent(self, tid, pg, filter, extend):
         try:
@@ -239,9 +215,7 @@ class Spider(_BaseSpider):
             }
         proxy = ""
         try:
-            getter = getattr(self, "proxyUrl", None) or getattr(self, "getProxyUrl", None)
-            if getter is not None:
-                proxy = (getter() or "").strip()
+            proxy = (self.proxyUrl() or "").strip()
         except Exception:
             proxy = ""
         if proxy:
@@ -394,3 +368,31 @@ class Spider(_BaseSpider):
         except Exception as exc:
             msg = "hg proxy failed: %s\n%s" % (exc, traceback.format_exc())
             return [500, "text/plain; charset=utf-8", msg.encode("utf-8")]
+
+    def liveContent(self, url):
+        return {}
+
+    def manualVideoCheck(self):
+        return False
+
+    def isVideoFormat(self, url):
+        u = str(url or "").lower()
+        return (
+            ".mp4" in u
+            or "video_mp4" in u
+            or "m3u8" in u
+            or "mime_type=video" in u
+            or "qznovelvod" in u
+        )
+
+    def action(self, action):
+        return {}
+
+    def danmaku(self, id, emit):
+        return lambda: None
+
+    def download(self, path, url):
+        return ""
+
+    def isVPAYard(self, flag):
+        return False
