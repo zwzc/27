@@ -5,8 +5,8 @@
 "danmaku": "http://47.103.92.65:9321/DMQlCpHvSpxj4uQofGTafer8y_aL1XDa/api/v2/fongmi/danmaku?name={name}&episode={episode}",
 "sites":[
 {"key":"点我切源","name":"天才赵2026┃片单","type": 3, "api": "csp_DouDouGuard","indexs":1,"searchable": 0,"quickSearch": 0,"changeable":0},
-  {"key":"NewDouBan","name":"🐼┃JS(新)┃豆瓣","type":3,"api":"./js/csp_NewDouBan.js","searchable":0,"quickSearch":0,"filterable":1,"changeable":0},
-  {"key": "hongguojs","name": "🍓┃短剧┃红果js","type": 3,"api": "./js/Hongguojs_vod.js","searchable": 1,"quickSearch": 1,"filterable": 1,"changeable":1},
+  //{"key":"NewDouBan","name":"🐼┃JS(新)┃豆瓣","type":3,"api":"./js/csp_NewDouBan.js","searchable":0,"quickSearch":0,"filterable":1,"changeable":0},
+  {"key":"hongguo","name":"🍓┃短剧┃红果短剧","type":3,"api":"./fm/py/hongguo.py","searchable":1,"quickSearch":1,"filterable":0,"changeable":0},
   {"key":"YangShiPin","name":"📡┃直播┃央视频","type":3,"api":"./py/央视频.py","searchable":0,"quickSearch":0,"filterable":0,"changeable":0},
   {
       "key": "直播",
@@ -21,8 +21,8 @@
       "timeout": 30
     },
   {"key":"JRKAN","name":"📡┃直播┃体育直播","type":3,"api":"./js/JRKAN.js","searchable":0,"quickSearch":0,"filterable":0,"changeable":0},
-  {"key":"华数","name":"❤️┃优秀┃华数影视","type":3,"api":"./py/华数.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
-  {"key":"华谊影视","name":"❤️┃优秀┃华谊影视","type":3,"api":"./py/华谊影视.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
+  //{"key":"华数","name":"❤️┃优秀┃华数影视","type":3,"api":"./py/华数.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
+  //{"key":"华谊影视","name":"❤️┃优秀┃华谊影视","type":3,"api":"./py/华谊影视.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
   {"key":"Didahd","name":"❤️┃优秀┃嘀嗒影视","type":3,"api":"./py/Didahd.py","searchable":1,"quickSearch":1,"filterable":0,"changeable":1},
   {"key":"HuDie","name":"❤️┃优秀┃蝴蝶影视","type":3,"api":"./py/HuDie.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
   {"key":"QianRun","name":"❤️┃优秀┃哔嘀视频","type":3,"api":"./py/QianRun.py","searchable":0,"quickSearch":0,"filterable":1,"changeable":1},
