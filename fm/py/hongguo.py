@@ -11,7 +11,13 @@ class Spider(_BaseSpider):
 
     def isVideoFormat(self, url):
         u = str(url or "").lower()
-        return (".mp4" in u) or ("video_mp4" in u) or ("m3u8" in u) or ("mime_type=video" in u) or ("qznovelvod" in u)
+        return (
+            ".mp4" in u
+            or "video_mp4" in u
+            or "m3u8" in u
+            or "mime_type=video" in u
+            or "qznovelvod" in u
+        )
 
     def manualVideoCheck(self):
         return False
@@ -21,9 +27,6 @@ class Spider(_BaseSpider):
 
     def download(self, path, url):
         return ""
-
-    def liveContent(self):
-        return {}
 
     def isVPAYard(self, flag):
         return False
@@ -43,8 +46,14 @@ class Spider(_BaseSpider):
         except Exception:
             pass
 
+    def liveContent(self, url=""):
+        return {}
+
+    def danmaku(self, id, emit):
+        """红果官方无公开弹幕接口；保留入口以兼容壳调用，返回可调用的停止函数。"""
+        return lambda: None
+
     def homeContent(self, filter):
-        """分类=官方四套内容类型（真人剧/漫剧/AI剧/漫画），二级分类取官方分类路由。"""
         class_list = [{"type_id": k, "type_name": n} for k, n, _ in _HG_CONTENT_TYPES]
         filters = {}
         for k, _n, cats in _HG_CONTENT_TYPES:
@@ -57,20 +66,12 @@ class Spider(_BaseSpider):
         return {"class": class_list, "filters": filters}
 
     def categoryContent(self, tid, pg, filter, extend):
-        """走官方分类页 /category/{route}/{item}?page=N，标题取官方 series_name。"""
         try:
             page = max(1, int(pg))
         except (TypeError, ValueError):
             page = 1
         route = _hg_route_of(tid)
-        ext = {}
-        if isinstance(extend, str) and extend:
-            try:
-                ext = json.loads(extend)
-            except Exception:
-                ext = {}
-        elif isinstance(extend, dict):
-            ext = dict(extend)
+        ext = dict(extend) if isinstance(extend, dict) else {}
         cat = str(ext.get("cat") or ext.get("分类") or "").strip()
         if isinstance(filter, dict):
             f2 = str(filter.get("cat") or filter.get("分类") or "").strip()
@@ -92,7 +93,7 @@ class Spider(_BaseSpider):
             "list": [_cat_item(x) for x in rows],
         }
 
-    def searchContent(self, key, quick=False, pg="1"):
+    def searchContent(self, key, quick, pg="1"):
         try:
             page = max(1, int(pg))
         except (TypeError, ValueError):
@@ -138,7 +139,10 @@ class Spider(_BaseSpider):
 
     def _detail(self, sid):
         sid = str(sid).replace("hg-series-v1:", "")
-        p = ((_data(SITE + "/detail?series_id=" + quote(sid, safe="")).get("loaderData") or {}).get("detail_page") or {})
+        p = (
+            (_data(SITE + "/detail?series_id=" + quote(sid, safe="")).get("loaderData") or {})
+            .get("detail_page") or {}
+        )
         s = p.get("seriesDetail") or {}
         vids = s.get("vid_list") or []
         actors = [
@@ -235,7 +239,9 @@ class Spider(_BaseSpider):
             }
         proxy = ""
         try:
-            proxy = (self.proxyUrl() or "").strip()
+            getter = getattr(self, "proxyUrl", None) or getattr(self, "getProxyUrl", None)
+            if getter is not None:
+                proxy = (getter() or "").strip()
         except Exception:
             proxy = ""
         if proxy:
@@ -268,7 +274,6 @@ class Spider(_BaseSpider):
         }
 
     def proxy(self, params):
-        """本地代理：优先读缓存；无原生 AES 时避免一上来就解 1080 整集导致超时失败。"""
         import traceback
         params = params or {}
         self._adopt_working_pair()
