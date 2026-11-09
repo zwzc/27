@@ -8,6 +8,18 @@
   {"key":"NewDouBan","name":"🐼┃JS(新)┃豆瓣","type":3,"api":"./js/csp_NewDouBan.js","searchable":0,"quickSearch":0,"filterable":1,"changeable":0},
   {"key": "hongguojs","name": "🍓┃短剧┃红果js","type": 3,"api": "./js/Hongguojs_vod.js","searchable": 1,"quickSearch": 1,"filterable": 1,"changeable":1},
   {"key":"YangShiPin","name":"📡┃直播┃央视频","type":3,"api":"./py/央视频.py","searchable":0,"quickSearch":0,"filterable":0,"changeable":0},
+  {
+      "key": "直播",
+      "name": "直播",
+      "type": 3,
+      "api": "./fm/vod/game_live.py",
+      "lang": "zh-CN",
+      "searchable": 1,
+      "quickSearch": 0,
+      "filterable": 1,
+      "changeable": 0,
+      "timeout": 30
+    },
   {"key":"JRKAN","name":"📡┃直播┃体育直播","type":3,"api":"./js/JRKAN.js","searchable":0,"quickSearch":0,"filterable":0,"changeable":0},
   {"key":"YueTingBa","name":"📚┃听书┃悦听吧","type":3,"api":"./py/悦听吧.py","searchable":1,"quickSearch":1,"filterable":0,"changeable":1},
   {"key":"华数","name":"❤️┃优秀┃华数影视","type":3,"api":"./py/华数.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
@@ -76,20 +88,27 @@
 {"name":"综合直播","type":0,"url":"http://193.123.86.190:14888/TV/iptv.php","ua":"bingcha/1.1 (mianfeifenxiang)","playerType":2},
     {"name": "央视频1","type": 3,"api": "./py/央视频.py", "ext": {"channels": "./sub/央视频.m3u"}},
     {
-      "name": "央視頻2",
+      "name": "央视频2",
       "url": "https://capi.yangshipin.cn/api/oms/pc/navigation/home_top_nav",
-      "api": "./json/yangshipin.py",
-      "ext": "./json/yangshipin.json",
+      "api": "./fm/live/yangshipin.py",
+      "ext": "./fm/live/yangshipin.json",
       "epg": "https://github.com/litiande03/epg/raw/refs/heads/master/pl.xml.gz",
       "timeZone": "Asia/Shanghai",
       "timeout": 30
     },
     {
-      "name": "央視官網",
+      "name": "央视官网",
       "url": "https://tv.cctv.com/live/",
-      "api": "./json/cctv.py",
-      "ext": "./json/cctv.json",
+      "api": "./fm/live/cctv.py",
+      "ext": "./fm/live/cctv.json",
       "timeout": 20
+    },
+    {
+      "name": "广东电视",
+      "url": "https://api.itouchtv.cn/liveservice/v7/tvCategoryList?pageSize=100&pageNumber=1",
+      "api": "./fm/live/gdtv.py",
+      "timeZone": "Asia/Shanghai",
+      "timeout": 30
     },
 {"name": "央视频","type": 3,"api": "./py/央视频.py", "ext": {"channels": "./sub/央视频.m3u"}},
 {"name":"湖北联通源【不能看点此切换】","type":0,"url":"./sub/hblt.txt","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
