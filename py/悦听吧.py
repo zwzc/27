@@ -1,6 +1,6 @@
 # coding=utf-8
 #!/usr/bin/env python3
-"""TVBox / 影视仓 Python 源: 悦听吧有声书（新 API 迁移版）。"""
+"""TVBox / 影视仓 Python 源: 悦听吧有声书（稳定修复版）。"""
 
 import base64
 import hashlib
@@ -192,27 +192,11 @@ class Spider(BaseSpider):
         page = self._page_number(pg)
         result = {'list': [], 'parse': 0, 'jx': 0, 'page': page}
         try:
-            data = self.net.json(urljoin(self.site + '/', '/Search'), {
-                'params': {'type': '1', 'name': key, 'pageIndex': page},
-                'timeout': 5000,
-            })
-            # 如果 Search 接口回傳的是 HTML 頁面或 JSON 需相容處理
-            if isinstance(data, str):
-                page_html = data
-            elif isinstance(data, dict):
-                # 假設有時回傳 JSON 結構，此處以防萬一
-                page_html = data.get('html', '')
-            else:
-                page_html = ''
-                
-            # 若 Search 是標準 GET 請求返回 HTML
             response = self.net.req(urljoin(self.site + '/', '/Search'), {
                 'params': {'type': '1', 'name': key, 'pageIndex': page},
                 'timeout': 5000,
             })
-            if not response.get('error') and 200 <= response.get('code', 0) < 300:
-                page_html = response['content']
-
+            page_html = response['content'] if not response.get('error') else ''
             result['list'] = self._parse_books(page_html)
             total_match = re.search(r'共\s*(\d+)\s*条', page_html)
             total = int(total_match.group(1)) if total_match else len(result['list'])
@@ -285,11 +269,11 @@ class Spider(BaseSpider):
         runtime = self._book_runtime(book_id, offset)
 
         plain_id = data.get('id', '').replace('-', '')
-        creation_time = data.get('creationTime', '')
+        creation_time = data.get('creationTime', '') or str(int(time.time()))
         compact_time = re.sub(r'[-:T. ]', '', creation_time).ljust(20, '0')
         
-        if not plain_id or not compact_time:
-            raise ValueError('API 返回数据缺少 id 或 creationTime')
+        if not plain_id:
+            raise ValueError('API 返回数据缺少 id')
 
         key = bytes(
             (ord(plain_id[index]) + int(compact_time[index % 20])) & 0xff
@@ -375,15 +359,20 @@ class Spider(BaseSpider):
         if dedicated:
             available = dedicated
         else:
-            available = [
+            fallback_available = [
                 item for item in available
                 if int(item.get('Ratio') or 0) > 0
                 and not str(item.get('BookIds') or '').strip()
             ]
+            if fallback_available:
+                available = fallback_available
+        if not available:
+            # 如果没有完全匹配的服务器，放宽条件获取任意可用服务器
+            available = [item for item in servers if item.get('Value')]
         if not available:
             raise ValueError('没有可用的音频服务器')
-        weights = [max(0, int(item.get('Ratio') or 0)) for item in available]
-        return random.choices(available, weights=weights or None, k=1)[0]
+        weights = [max(1, int(item.get('Ratio') or 1)) for item in available]
+        return random.choices(available, weights=weights, k=1)[0]
 
     @staticmethod
     def _aes_decrypt(cipher_text, key, iv):
