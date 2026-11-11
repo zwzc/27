@@ -1468,18 +1468,16 @@ def _working_device_pair() -> dict[str, str] | None:
 
 
 def _video_model_rotating(video_id: str, config: Mapping[str, Any]) -> dict[str, Any]:
+    current_cfg = dict(config or {})
     try:
-        return _video_model(video_id, config)
+        return _video_model(video_id, current_cfg)
     except Exception as err:
         if not _is_empty_model_error(err):
             raise
     pair = _rotate_stream_device()
-    try:
-        config["device_id"] = pair["device_id"]
-        config["install_id"] = pair["install_id"]
-    except (TypeError, AttributeError):
-        config = pair
-    return _video_model(video_id, config)
+    current_cfg["device_id"] = pair["device_id"]
+    current_cfg["install_id"] = pair["install_id"]
+    return _video_model(video_id, current_cfg)
 
 
 def _stream_session(video_id: str, config: Mapping[str, Any], quality: str = "1080") -> "_StreamSession":
@@ -1674,7 +1672,8 @@ def _start_stream_server() -> int:
             return int(_STREAM_STATE["port"])
         for port in range(_STREAM_PORT_RANGE[0], _STREAM_PORT_RANGE[1]):
             try:
-                server = ThreadingHTTPServer(("127.0.0.1", port), _StreamHandler)
+                # 绑定 0.0.0.0 避免部分 Android 容器网络将 127.0.0.1 隔离
+                server = ThreadingHTTPServer(("0.0.0.0", port), _StreamHandler)
             except OSError:
                 continue
             server.daemon_threads = True
