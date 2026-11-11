@@ -673,9 +673,6 @@ def _hg_cache_put(vid: str, quality: str, data: bytes) -> None:
             pass
 
 
-def _aes_is_fast() -> bool:
-    return AES_BACKEND in ("cryptography", "pycryptodome")
-
 
 def _aes_is_fast() -> bool:
     return AES_BACKEND in ("cryptography", "pycryptodome")
@@ -1663,7 +1660,7 @@ class _StreamHandler(BaseHTTPRequestHandler):
         try:
             for block in session.iter_range(start, end):
                 self.wfile.write(block)
-                except (BrokenPipeError, ConnectionResetError):
+        except (BrokenPipeError, ConnectionResetError):
             self.close_connection = True
         except Exception as exc:
             import traceback
