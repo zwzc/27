@@ -3,6 +3,7 @@ from __future__ import annotations
 import base64
 import binascii
 import bisect
+import gzip
 import hashlib
 import json
 import os
@@ -14,6 +15,7 @@ import tempfile
 import concurrent.futures
 import threading
 import time
+import uuid
 from collections.abc import Mapping
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from html.parser import HTMLParser
@@ -49,7 +51,249 @@ elif CryptoAES is not None:
     AES_BACKEND = "pycryptodome"
 else:
     AES_BACKEND = "none"
+# ============================================================
+# [2026-11] tt-data 加密注册 + 五头播放签名 + 设备身份缓存
+# ============================================================
 
+def _write_diag(name: str, text: str) -> None:
+    try:
+        with open("/sdcard/Download/" + name, "a", encoding="utf-8") as fh:
+            fh.write("\n[%s] %s\n" % (time.strftime("%F %T"), text))
+    except Exception:
+        pass
+
+
+# ---- tt-data 封套常量（与 _decrypt_spade_url 里 CONST 一致）----
+TT_CONST = bytes.fromhex(
+    "4dd4c2e6b83162090e52b3c7a6733ba4"
+    "1cb2462b829ab58a196b39db57177524"
+    "f49baf7f08e8d68d26a72e37c1a95a2f"
+    "1f05a51892aef2949732b62a38aadd58"
+)
+
+# ⚠️ 文档只给出首尾 8 字节（3176c9b6 / 3fa25a），中间 25 字节
+#    需从 PhoenixReadApi/Infrastructure/Crypto/TtEncrypt.cs 的 PREFIX 常量补全
+TT_PREFIX = bytes.fromhex(
+    "3176c9b6"
+    + "00000000000000000000000000000000000000000000000000"  # 25 字节占位
+    + "3fa25a"
+)
+
+
+def _tt_key_iv() -> tuple:
+    first = hashlib.sha512(TT_PREFIX).digest()
+    second = hashlib.sha512(first + TT_CONST).digest()
+    return second[:16], second[16:32]
+
+
+def _tt_aes_cbc_encrypt(key: bytes, iv: bytes, data: bytes) -> bytes:
+    pad = 16 - len(data) % 16
+    data = data + bytes([pad]) * pad
+    if AES_BACKEND == "cryptography" and Cipher is not None and algorithms is not None:
+        try:
+            enc = Cipher(algorithms.AES(key), modes.CBC(iv)).encryptor()
+            return enc.update(data) + enc.finalize()
+        except Exception:
+            pass
+    if AES_BACKEND == "pycryptodome" and CryptoAES is not None:
+        try:
+            return CryptoAES.new(key, CryptoAES.MODE_CBC, iv).encrypt(data)
+        except Exception:
+            pass
+    aes = _PureAES128(key)
+    out = bytearray()
+    prev = iv
+    for i in range(0, len(data), 16):
+        block = bytes(a ^ b for a, b in zip(data[i:i + 16], prev))
+        enc = aes.encrypt_block(block)
+        out.extend(enc)
+        prev = enc
+    return bytes(out)
+
+
+def tt_encrypt(data: bytes) -> bytes:
+    key, iv = _tt_key_iv()
+    plain = hashlib.sha512(data).digest() + data
+    body = _tt_aes_cbc_encrypt(key, iv, plain)
+    return b"\x74\x63\x05\x10\x00\x00" + TT_PREFIX + body
+
+
+def tt_gzip_encrypt(data: bytes) -> bytes:
+    return tt_encrypt(gzip.compress(data, 9))
+
+
+def register_device():
+    try:
+        openudid = "".join(random.choice("0123456789abcdef") for _ in range(16))
+        clientudid = str(uuid.uuid4())
+        cdid = str(uuid.uuid4())
+        header = {
+            "display_name": "红果免费短剧", "aid": 8662,
+            "app_version": "6.9.1.32", "version_code": 69132,
+            "manifest_version_code": 69132, "update_version_code": 69132,
+            "channel": "update_64", "package": "com.phoenix.read",
+            "app_language": "zh", "os": "Android",
+            "os_version": "17", "os_api": 37,
+            "device_model": "WKL-AN20", "device_brand": "HONOR",
+            "device_manufacturer": "HONOR", "cpu_abi": "arm64-v8a",
+            "density_dpi": 360, "display_density": "xxhdpi",
+            "resolution": "1320x2868", "language": "zh",
+            "timezone": 8, "access": "wifi",
+            "openudid": openudid, "clientudid": clientudid, "cdid": cdid,
+            "region": "CN", "tz_name": "Asia/Shanghai", "tz_offset": 28800,
+            "sim_region": "cn", "device_platform": "android",
+            "not_request_sender": 0, "is_system_app": 0, "sdk_flavor": "china",
+            "rom": "OS2.0", "rom_version": "BP2A.250605.031.A3",
+        }
+        body_json = json.dumps({
+            "magic_tag": "ss_app_log", "header": header,
+            "_gen_time": int(time.time() * 1000),
+        }).encode("utf-8")
+        encrypted = tt_gzip_encrypt(body_json)
+        qs = urlencode({"req_id": str(uuid.uuid4()), "_rticket": int(time.time() * 1000)})
+        headers = {
+            "User-Agent": APP_UA, "Accept": "application/json",
+            "Content-Type": "application/octet-stream; tt-data=a",
+            "log-encode-type": "gzip", "sdk-version": "2",
+            "passport-sdk-version": "5051452",
+            "x-vc-bdturing-sdk-version": "4.0.3.cn", "x-ss-dp": "8662",
+            "X-SS-STUB": hashlib.md5(encrypted).hexdigest().upper(),
+        }
+        resp = requests.post(DEVICE_REGISTER_URL + "?" + qs, data=encrypted, headers=headers, timeout=20)
+        if resp.status_code != 200:
+            _write_diag("hg_reg_err.txt", "status=%s body=%s" % (resp.status_code, resp.text[:400]))
+            return None
+        data = resp.json()
+        did = str(data.get("device_id_str") or data.get("device_id") or "")
+        iid = str(data.get("install_id_str") or data.get("install_id") or "")
+        if not (did.isdigit() and iid.isdigit() and did != "0" and iid != "0"):
+            _write_diag("hg_reg_err.txt", "bad body=%s" % (str(data)[:400],))
+            return None
+        return {
+            "device_id": did, "install_id": iid, "cdid": cdid,
+            "klink_egdi": str(data.get("klink_egdi") or ""),
+            "device_token": str(data.get("device_token") or ""),
+        }
+    except Exception as exc:
+        import traceback
+        _write_diag("hg_reg_err.txt", "%s\n%s" % (exc, traceback.format_exc()))
+        return None
+
+
+_HG_IDENTITY = {"value": None, "ts": 0.0}
+_HG_IDENTITY_TTL = 1800
+_HG_IDENTITY_LOCK = threading.Lock()
+
+
+def _hg_live_identity() -> dict:
+    with _HG_IDENTITY_LOCK:
+        val = _HG_IDENTITY["value"]
+        if val and (time.time() - _HG_IDENTITY["ts"]) < _HG_IDENTITY_TTL:
+            return val
+    fresh = register_device()
+    if fresh is None:
+        fresh = {
+            "device_id": str(random.randint(10**17, 10**18 - 1)),
+            "install_id": str(random.randint(10**17, 10**18 - 1)),
+            "cdid": str(uuid.uuid4()), "klink_egdi": "", "device_token": "",
+        }
+    with _HG_IDENTITY_LOCK:
+        _HG_IDENTITY["value"] = fresh
+        _HG_IDENTITY["ts"] = time.time()
+    return fresh
+
+
+# ---- x-gorgon（新算法）----
+_PLAYER_REQUEST_KEY = bytes([
+    68, 185, 185, 217, 164, 174, 249, 252, 164, 147,
+    170, 117, 124, 163, 194, 196, 164, 150, 147, 143,
+])
+
+
+def _rev_bits8(b: int) -> int:
+    b = ((b & 0xF0) >> 4) | ((b & 0x0F) << 4)
+    b = ((b & 0xCC) >> 2) | ((b & 0x33) << 2)
+    b = ((b & 0xAA) >> 1) | ((b & 0x55) << 1)
+    return b & 0xFF
+
+
+def _rotl8(b: int, n: int) -> int:
+    n &= 7
+    return ((b << n) | (b >> (8 - n))) & 0xFF if n else b
+
+
+def _player_gorgon(query: str, body: bytes, ts: int) -> str:
+    q_md5 = hashlib.md5(query.encode()).digest()[:4]
+    b_md5 = hashlib.md5(body).digest()[:4] if body else b"\x00\x00\x00\x00"
+    payload = bytearray(q_md5 + b_md5 + b"\x00\x00\x00\x00"
+                       + bytes([6, 11, 28, 0]) + ts.to_bytes(4, "big"))
+    for i in range(20):
+        payload[i] ^= _PLAYER_REQUEST_KEY[i]
+    for j in range(20):
+        v = _rotl8(payload[j], 4) ^ payload[(j + 1) % 20]
+        payload[j] = (_rev_bits8(v) ^ 0xFF ^ 20) & 0xFF
+    return "8404401c0000" + bytes(payload).hex()
+
+
+# ---- x-ladon ----
+def _player_ladon(ts: int, aid: int = 8662) -> str:
+    nonce = random.randint(0, 0xFFFFFFFF)
+    h = hashlib.md5(nonce.to_bytes(4, "little")[2:6] + str(aid).encode()).hexdigest()
+    v = int(h[:8], 16)
+    for i in range(34):
+        if i & 1:
+            v = ((v >> 7) | (v << 25)) & 0xFFFFFFFF
+        else:
+            v = ((v << 5) | (v >> 27)) & 0xFFFFFFFF
+        v ^= 0xFFFFFFFF if i % 3 == 0 else 0
+    raw = ("%d-1611921764-%d" % (ts, aid)).encode()
+    blob = h.encode() + v.to_bytes(4, "big") + raw
+    return base64.b64encode(blob).decode()
+
+
+# ---- x-argus ----
+_PLAYER_ARGUS_KEY = bytes.fromhex(
+    "ac1adaae95a7af94a5114ab3b3a97dd8"
+    "0050aa0a39314c40528caec95256c28c"
+)
+
+
+def _player_argus(ts: int, params: dict) -> str:
+    """
+    ⚠️ 占位实现，服务端不会通过（返回 200 + 空 body）。
+    真实算法需要从参考实现移植：
+      PhoenixReadApi/Infrastructure/Crypto/PhoenixReadRequestSigner.cs 中的 ArgusSigner
+    流程：protobuf(25字段) → Simon-64(72轮) → XOR mask → 逐字节反转 → AES-CBC
+         → 输出 "3ccc" + base64
+    派生 key 已就位：_player_argus_derived()
+    补全后请删除下面的 raise，换成真实实现。
+    """
+    raise NotImplementedError(
+        "x-argus 新算法未实现，请参考 PhoenixReadRequestSigner.cs 的 ArgusSigner 补全 "
+        "_player_argus()，然后重启配置"
+    )
+
+
+def _player_argus_derived() -> bytes:
+    return SM3(_PLAYER_ARGUS_KEY + b"3ccc567b" + _PLAYER_ARGUS_KEY).digest()
+
+
+def sign_playback(params: dict) -> dict:
+    ts = int(time.time())
+    query = urlencode(sorted(params.items()))
+    body = b""
+    signed = {
+        "x-khronos": str(ts),
+        "x-gorgon": _player_gorgon(query, body, ts),
+        "x-ladon": _player_ladon(ts),
+        "x-ss-stub": hashlib.md5(body).hexdigest().upper(),
+        "x-argus": "",
+    }
+    try:
+        signed["x-argus"] = _player_argus(ts, params)
+    except NotImplementedError as exc:
+        _write_diag("hg_stream_err.txt", "argus not implemented: %s" % exc)
+    return signed
 class _PureAES128:
     """纯 Python AES-128，供无 pycryptodome/cryptography 的壳使用。"""
 
@@ -198,25 +442,37 @@ def _pure_cbc_decrypt(key: bytes, iv: bytes, data: bytes) -> bytes:
 def _aes_ctr_decrypt(key: bytes, counter: bytes, data: bytes) -> bytes:
     if not data:
         return b""
-    if AES_BACKEND == "cryptography":
-        decryptor = Cipher(algorithms.AES(key), modes.CTR(counter)).decryptor()
-        return decryptor.update(data) + decryptor.finalize()
-    if AES_BACKEND == "pycryptodome":
-        cipher = CryptoAES.new(
-            key, CryptoAES.MODE_CTR, nonce=b"", initial_value=counter
-        )
-        return cipher.decrypt(data)
+    if AES_BACKEND == "cryptography" and Cipher is not None and algorithms is not None:
+        try:
+            decryptor = Cipher(algorithms.AES(key), modes.CTR(counter)).decryptor()
+            return decryptor.update(data) + decryptor.finalize()
+        except Exception:
+            pass
+    if AES_BACKEND == "pycryptodome" and CryptoAES is not None:
+        try:
+            cipher = CryptoAES.new(
+                key, CryptoAES.MODE_CTR, nonce=b"", initial_value=counter
+            )
+            return cipher.decrypt(data)
+        except Exception:
+            pass
     return _pure_ctr_decrypt(key, counter, data)
 
 
 def _aes_cbc_decrypt(key: bytes, iv: bytes, data: bytes) -> bytes:
     if not data:
         return b""
-    if AES_BACKEND == "cryptography":
-        decryptor = Cipher(algorithms.AES(key), modes.CBC(iv)).decryptor()
-        return decryptor.update(data) + decryptor.finalize()
-    if AES_BACKEND == "pycryptodome":
-        return CryptoAES.new(key, CryptoAES.MODE_CBC, iv).decrypt(data)
+    if AES_BACKEND == "cryptography" and Cipher is not None and algorithms is not None:
+        try:
+            decryptor = Cipher(algorithms.AES(key), modes.CBC(iv)).decryptor()
+            return decryptor.update(data) + decryptor.finalize()
+        except Exception:
+            pass
+    if AES_BACKEND == "pycryptodome" and CryptoAES is not None:
+        try:
+            return CryptoAES.new(key, CryptoAES.MODE_CBC, iv).decrypt(data)
+        except Exception:
+            pass
     return _pure_cbc_decrypt(key, iv, data)
 
 
@@ -586,10 +842,17 @@ def _hg_category_page(route, cat, page):
     p = ((v.get("loaderData") or {}).get("category_$") or {})
     return p
 
-VIDEO_URL = "https://api5-normal-sinfonlineb.fqnovel.com/novel/player/multi_video_model/v1/"
+# ===== 2026-11 改版后的新端点 =====
+VIDEO_URL = "https://api5-normal-sinfonlineb.fqnovel.com/reading/bookapi/video_tab/multi_video_model/v1/"
+DEVICE_REGISTER_URL = "https://log5-applog-lq.fqnovel.com/service/2/device_register/"
+
+APP_VERSION_NAME = "7.3.5.32"
+APP_VERSION_CODE = 73532
+
 UA = "Mozilla/5.0 (Linux; Android 12) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
-APP_UA = "com.phoenix.read/71332 (Linux; U; Android 16; zh_CN; 25053RT47C; Build/BP2A.250605.031.A3; Cronet/TTNetVersion:04657795 2026-01-23 QuicVersion:c67e9834 2025-09-08)"
-MEDIA_UA = "com.phoenix.read/71332"
+APP_UA = ("com.phoenix.read/73532 (Linux; U; Android 9; SM-N9860; "
+          "Build/PQ3A.190705.10241111;tt-ok/3.12.13.20)")
+MEDIA_UA = "com.phoenix.read/73532"
 
 
 
@@ -1400,9 +1663,11 @@ class _StreamHandler(BaseHTTPRequestHandler):
         try:
             for block in session.iter_range(start, end):
                 self.wfile.write(block)
-        except (BrokenPipeError, ConnectionResetError):
+                except (BrokenPipeError, ConnectionResetError):
             self.close_connection = True
-        except Exception:
+        except Exception as exc:
+            import traceback
+            _write_diag("hg_stream_err.txt", "serve failed: %s\n%s" % (exc, traceback.format_exc()))
             self.close_connection = True
 
 
@@ -3511,94 +3776,66 @@ def _device_config(config: Mapping[str, Any]) -> dict[str, str]:
     }
 
 def _video_model(video_id: str, config: Mapping[str, Any]) -> dict[str, Any]:
-    devices = _device_config(config)
+    identity = _hg_live_identity()
+    ts_ms = int(time.time() * 1000)
     params = {
-        "iid": devices["install_id"],
-        "device_id": devices["device_id"],
-        "ac": "wifi",
-        "channel": "update_64",
-        "aid": "8662",
+        "iid": identity["install_id"],
+        "device_id": identity["device_id"],
+        "cdid": identity["cdid"],
+        "ac": "wifi", "channel": "update_64", "aid": "8662",
         "app_name": "novelread",
-        "version_code": "71332",
-        "version_name": "7.1.3.32",
-        "device_platform": "android",
-        "os": "android",
-        "ssmix": "a",
-        "device_type": "25053RT47C",
-        "device_brand": "Redmi",
-        "language": "zh",
-        "os_api": "36",
-        "os_version": "16",
-        "manifest_version_code": "71332",
-        "resolution": "1280*2772",
-        "dpi": "520",
-        "update_version_code": "71332",
-        "host_abi": "arm64-v8a",
-        "dragon_device_type": "phone",
-        "pv_player": "71332",
-        "compliance_status": "0",
-        "need_personal_recommend": "1",
-        "player_so_load": "1",
-        "is_android_pad_screen": "0",
+        "version_code": str(APP_VERSION_CODE),
+        "version_name": APP_VERSION_NAME,
+        "device_platform": "android", "os": "android", "ssmix": "a",
+        "device_type": "25053RT47C", "device_brand": "Redmi", "language": "zh",
+        "os_api": "36", "os_version": "16",
+        "manifest_version_code": str(APP_VERSION_CODE),
+        "resolution": "1280*2772", "dpi": "520",
+        "update_version_code": str(APP_VERSION_CODE),
+        "host_abi": "arm64-v8a", "dragon_device_type": "phone",
+        "pv_player": str(APP_VERSION_CODE),
+        "compliance_status": "0", "need_personal_recommend": "1",
+        "player_so_load": "1", "is_android_pad_screen": "0",
+        "video_id": video_id, "video_id_type": "0",
+        "device_level": "1", "video_platform": "1024",
+        "need_all_video_definition": "1", "need_mp4_align": "0",
+        "use_os_player": "0", "source": "0", "from_video_id": "",
+        "_rticket": str(ts_ms),
     }
-    payload = {
-        "biz_param": {
-            "detail_page_version": 0,
-            "device_level": 3,
-            "disable_digg_stat": False,
-            "need_all_video_definition": True,
-            "need_mp4_align": False,
-            "use_os_player": False,
-            "use_server_dns": False,
-            "video_platform": 1024,
-        },
-        "mixed_video_id_map": {"1004": [video_id]},
-    }
-    request_headers = {
+    signed = sign_playback(params)
+    full_url = VIDEO_URL + "?" + urlencode(sorted(params.items()))
+    headers = {
         "User-Agent": APP_UA,
         "Accept": "application/json; charset=utf-8,application/x-protobuf",
-        "Content-Type": "application/json; charset=UTF-8",
-        "x-xs-from-web": "0",
-        "x-ss-req-ticket": str(int(time.time() * 1000)),
-        "x-tt-request-tag": "t=0;n=0",
-        "sdk-version": "2",
-        "passport-sdk-version": "50561",
-        "x-vc-bdturing-sdk-version": "3.7.2.cn",
+        "x-ss-req-ticket": str(ts_ms),
+        "x-khronos": signed["x-khronos"],
+        "x-gorgon": signed["x-gorgon"],
+        "x-argus": signed["x-argus"],
+        "x-ladon": signed["x-ladon"],
+        "x-ss-stub": signed["x-ss-stub"],
+        "Cookie": "store-region=cn-sd; store-region-src=did; install_id=" + identity["install_id"],
     }
-    if devices.get("cookie"):
-        request_headers["Cookie"] = devices["cookie"]
-    signed_headers, signed_url = _core_sixgod(
-        VIDEO_URL,
-        params,
-        devices,
-        payload,
-        request_headers,
-    )
-    body = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
-    response = requests.post(
-        signed_url,
-        headers=signed_headers,
-        data=body,
-        timeout=30,
-    )
-    response_data = _json_response(response)
-    data = response_data.get("data") or {}
+    try:
+        response = requests.get(full_url, headers=headers, timeout=30)
+        response.raise_for_status()
+        payload = response.json()
+    except Exception as exc:
+        import traceback
+        _write_diag("hg_stream_err.txt", "GET failed: %s\n%s" % (exc, traceback.format_exc()))
+        raise
+    data = payload.get("data") or {}
     if not isinstance(data, Mapping):
         raise HongguoPluginError("video_model 数据为空")
-    entry: Any = data.get(video_id)
-    if entry is None:
-        for value in data.values():
-            if isinstance(value, Mapping):
-                entry = value
-                break
-            if isinstance(value, list) and value and isinstance(value[0], Mapping):
-                entry = value[0]
+    vmd = data.get("video_model_data") or {}
+    entry = vmd.get(video_id) if isinstance(vmd, Mapping) else None
+    if entry is None and isinstance(vmd, Mapping):
+        for v in vmd.values():
+            if isinstance(v, Mapping):
+                entry = v
                 break
     if not isinstance(entry, Mapping):
         entry = data
     raw_model = entry.get("video_model") if isinstance(entry, Mapping) else None
-    if raw_model is None:
-        raw_model = data.get("video_model")
     if isinstance(raw_model, str):
         try:
             raw_model = json.loads(raw_model)
