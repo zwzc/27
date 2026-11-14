@@ -5,27 +5,7 @@
 "danmaku": "http://47.103.92.65:9321/DMQlCpHvSpxj4uQofGTafer8y_aL1XDa/api/v2/fongmi/danmaku?name={name}&episode={episode}",
 "sites":[
 {"key":"点我切源","name":"天才赵2026┃片单","type": 3, "api": "csp_DouDouGuard","indexs":1,"searchable": 0,"quickSearch": 0,"changeable":0},
-  //{"key":"NewDouBan","name":"🐼┃JS(新)┃豆瓣","type":3,"api":"./js/csp_NewDouBan.js","searchable":0,"quickSearch":0,"filterable":1,"changeable":0},
-  {"key":"hongguo","name":"🍓┃短剧┃红果短剧","type":3,"api":"./py/hongguo.py","searchable":1,"quickSearch":1,"filterable":0,"changeable":0},
-  {"key":"YangShiPin","name":"📡┃直播┃央视频","type":3,"api":"./py/央视频.py","searchable":0,"quickSearch":0,"filterable":0,"changeable":0},
-  {
-      "key": "直播",
-      "name": "直播",
-      "type": 3,
-      "api": "./fm/vod/game_live.py",
-      "lang": "zh-CN",
-      "searchable": 1,
-      "quickSearch": 0,
-      "filterable": 1,
-      "changeable": 0,
-      "timeout": 30
-    },
-  {"key":"JRKAN","name":"📡┃直播┃体育直播","type":3,"api":"./js/JRKAN.js","searchable":0,"quickSearch":0,"filterable":0,"changeable":0},
-  //{"key":"华数","name":"❤️┃优秀┃华数影视","type":3,"api":"./py/华数.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
-  //{"key":"华谊影视","name":"❤️┃优秀┃华谊影视","type":3,"api":"./py/华谊影视.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
-  {"key":"Didahd","name":"❤️┃优秀┃嘀嗒影视","type":3,"api":"./py/Didahd.py","searchable":1,"quickSearch":1,"filterable":0,"changeable":1},
-  {"key":"HuDie","name":"❤️┃优秀┃蝴蝶影视","type":3,"api":"./py/HuDie.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
-  {"key":"QianRun","name":"❤️┃优秀┃哔嘀视频","type":3,"api":"./py/QianRun.py","searchable":0,"quickSearch":0,"filterable":1,"changeable":1},
+  
 {"key":"MDrive","name":"🗂我的云盘┃配置","type":3,"api":"csp_MyDriveGuard","changeable":0,"indexs":0,"searchable":1,"style":{"type":"oval"},"ext":{"Cloud-drive":"tvfan/Cloud-drive.txt"}},
 {"key":"玩偶","name":"👽玩偶哥哥┃4K弹幕","type":3,"api":"csp_WoGGGuard","timeout":30,"searchable":1,"quickSearch":1,"changeable":1, "ext": {"Cloud-drive":"tvfan/Cloud-drive.txt"}},
 {"key":"YGP","name":"🚀荐影┃预告片","type":3,"api":"csp_YGPGuard","searchable":0,"quickSearch":0,"changeable":0},
@@ -85,30 +65,7 @@
 "lives":[
 {"name":"Kimentanm","type":0,"url":"https://ghproxy.net/https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u","playerType":2},
 {"name":"综合直播","type":0,"url":"http://193.123.86.190:14888/TV/iptv.php","ua":"bingcha/1.1 (mianfeifenxiang)","playerType":2},
-    {"name": "央视频1","type": 3,"api": "./py/央视频.py", "ext": {"channels": "./sub/央视频.m3u"}},
-    {
-      "name": "央视频2",
-      "url": "https://capi.yangshipin.cn/api/oms/pc/navigation/home_top_nav",
-      "api": "./fm/live/yangshipin.py",
-      "ext": "./fm/live/yangshipin.json",
-      "epg": "https://github.com/litiande03/epg/raw/refs/heads/master/pl.xml.gz",
-      "timeZone": "Asia/Shanghai",
-      "timeout": 30
-    },
-    {
-      "name": "央视官网",
-      "url": "https://tv.cctv.com/live/",
-      "api": "./fm/live/cctv.py",
-      "ext": "./fm/live/cctv.json",
-      "timeout": 20
-    },
-    {
-      "name": "广东电视",
-      "url": "https://api.itouchtv.cn/liveservice/v7/tvCategoryList?pageSize=100&pageNumber=1",
-      "api": "./fm/live/gdtv.py",
-      "timeZone": "Asia/Shanghai",
-      "timeout": 30
-    },
+
 {"name":"湖北联通源【不能看点此切换】","type":0,"url":"./sub/hblt.txt","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
 //{"name":"湖北联通源2【不能看点此切换】","type":0,"url":"./sub/alist.txt","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
 //{"name":"湖北移动源2【不能看点此切换】","type":0,"url":"./sub/hbyd.m3u","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
