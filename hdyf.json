@@ -6,7 +6,7 @@
 "sites":[
 {"key":"点我切源","name":"天才赵2026┃片单","type": 3, "api": "csp_DouDouGuard","indexs":1,"searchable": 0,"quickSearch": 0,"changeable":0},
   //{"key":"NewDouBan","name":"🐼┃JS(新)┃豆瓣","type":3,"api":"./js/csp_NewDouBan.js","searchable":0,"quickSearch":0,"filterable":1,"changeable":0},
-  {"key":"hongguo","name":"🍓┃短剧┃红果短剧","type":3,"api":"./fm/py/hongguo.py","searchable":1,"quickSearch":1,"filterable":0,"changeable":0},
+  {"key":"hongguo","name":"🍓┃短剧┃红果短剧","type":3,"api":"./py/hongguo.py","searchable":1,"quickSearch":1,"filterable":0,"changeable":0},
   {"key":"YangShiPin","name":"📡┃直播┃央视频","type":3,"api":"./py/央视频.py","searchable":0,"quickSearch":0,"filterable":0,"changeable":0},
   {
       "key": "直播",
