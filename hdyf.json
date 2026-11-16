@@ -4,7 +4,7 @@
 "wallpaper":"https://饭的动态壁纸.xxooo.cf/",
 "danmaku": "http://47.103.92.65:9321/DMQlCpHvSpxj4uQofGTafer8y_aL1XDa/api/v2/fongmi/danmaku?name={name}&episode={episode}",
 "sites":[
-{"key":"点我切源","name":"天才赵2026┃片单","type": 3, "api": "csp_DouDouGuard","indexs":1,"searchable": 0,"quickSearch": 0,"changeable":0},
+{"key":"点我切源","name":"天才赵2026.11┃片单","type": 3, "api": "csp_DouDouGuard","indexs":1,"searchable": 0,"quickSearch": 0,"changeable":0},
 {"key":"MDrive","name":"🗂我的云盘┃配置","type":3,"api":"csp_MyDriveGuard","changeable":0,"indexs":0,"searchable":1,"style":{"type":"oval"},"ext":{"Cloud-drive":"tvfan/Cloud-drive.txt"}},
 {"key":"玩偶","name":"👽玩偶哥哥┃4K弹幕","type":3,"api":"csp_WoGGGuard","timeout":30,"searchable":1,"quickSearch":1,"changeable":1, "ext": {"Cloud-drive":"tvfan/Cloud-drive.txt"}},
 {"key":"YGP","name":"🚀荐影┃预告片","type":3,"api":"csp_YGPGuard","searchable":0,"quickSearch":0,"changeable":0},
@@ -61,8 +61,8 @@
 "logo":"https://bdcache1-f1.v3mh.com/image/25-12-16/6941612717007.gif",
 "hosts":["fiizvfck.top=cmcc.vvvv.ee","sub.ottiptv.cc=cmcc.vvvv.ee"],
 "lives":[
-{"name":"Kimentanm","type":0,"url":"https://ghproxy.net/https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u","playerType":2},
-{"name":"综合直播","type":0,"url":"http://193.123.86.190:14888/TV/iptv.php","ua":"bingcha/1.1 (mianfeifenxiang)","playerType":2},
+{"name":"Kimentanm【不能看点此切换】","type":0,"url":"https://ghproxy.net/https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u","playerType":2},
+{"name":"综合直播【不能看点此切换】","type":0,"url":"http://193.123.86.190:14888/TV/iptv.php","ua":"bingcha/1.1 (mianfeifenxiang)","playerType":2},
 {"name":"湖北联通源【不能看点此切换】","type":0,"url":"./sub/hblt.txt","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
 //{"name":"湖北联通源2【不能看点此切换】","type":0,"url":"./sub/alist.txt","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
 //{"name":"湖北移动源2【不能看点此切换】","type":0,"url":"./sub/hbyd.m3u","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
