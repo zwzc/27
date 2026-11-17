@@ -6,7 +6,6 @@
   {"key":"点我切源","name":"天才赵2026┃片单","type": 3, "api": "csp_DouDouGuard","indexs":1,"searchable": 0,"quickSearch": 0,"changeable":0},
   {"key": "drpy_js_豆瓣","name": "🐼┃JS(老)┃豆瓣","type": 3,"api": "./lib/drpy2.min.js","ext": "./js/drpy.js","searchable":0,"quickSearch":0,"filterable":1,"changeable":0},
   {"key":"NewDouBan","name":"🐼┃JS(新)┃豆瓣","type":3,"api":"./js/csp_NewDouBan.js","searchable":0,"quickSearch":0,"filterable":1,"changeable":0},
-  {"key":"YangShiPin","name":"📡┃直播┃央视频","type":3,"api":"./json/yangshipin.py","searchable":0,"quickSearch":0,"filterable":0,"changeable":0},
   {"key":"migu","name":"📡┃直播┃咪咕视频","type":3,"api":"./py/migu.py","searchable":0,"quickSearch":0,"filterable":0,"changeable":0},
   {"key":"JRKAN","name":"📡┃直播┃体育直播","type":3,"api":"./js/JRKAN.js","searchable":0,"quickSearch":0,"filterable":0,"changeable":0},
   {"key":"AiDj","name":"❤️AI剧┃弹幕","type":3,"api":"csp_AiDjGuard","ext":{"type":"video","name":"短剧","danMu":false},"indexs":0,"quickSearch":1,"searchable":1,"changeable":0},
@@ -114,9 +113,22 @@
     {"name":"Kimentanm【不能看点此切换】","type":0,"url":"https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u","playerType":1},
     {"name":"综合","type":0,"url":"http://193.123.86.190:14888/TV/iptv.php","ua":"bingcha/1.1 (mianfeifenxiang)","playerType":2},
     {"name":"牛播一","url":"http://127.0.0.1:9978/proxy?do=cctva","timeZone":"Asia/Shanghai"},
-    {"name": "央视频1","type": 3,"api": "./py/央视频.py", "ext": {"channels": "./sub/央视频.m3u"}},
-    {"name": "央視頻2","url": "https://capi.yangshipin.cn/api/oms/pc/navigation/home_top_nav","api": "./json/yangshipin.py","ext": "./json/yangshipin.json","epg": "https://github.com/litiande03/epg/raw/refs/heads/master/pl.xml.gz","timeZone": "Asia/Shanghai","timeout": 30},
-    {"name": "央視官網","url": "https://tv.cctv.com/live/","api": "./json/cctv.py","ext": "./json/cctv.json","timeout": 20},
+    {
+      "name": "央視頻",
+      "url": "https://capi.yangshipin.cn/api/oms/pc/navigation/home_top_nav",
+      "api": "./fm/live/yangshipin.py",
+      "ext": "./fm/live/yangshipin.json",
+      "epg": "https://github.com/litiande03/epg/raw/refs/heads/master/pl.xml.gz",
+      "timeZone": "Asia/Shanghai",
+      "timeout": 30
+    },
+    {
+      "name": "央視官網",
+      "url": "https://tv.cctv.com/live/",
+      "api": "./fm/live/cctv.py",
+      "ext": "./fm/live/cctv.json",
+      "timeout": 20
+    },
     {"name":"catvod【不能看点此切换】","type":0,"url":"https://live.catvod.com/playlist.m3u?tk=48f40d2782d108288f3b019dc75a9c6a","playerType":2},
     {"name":"湖北联通源【不能看点此切换】","type":0,"url":"./sub/hblt.txt","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
     {"name":"湖北移动源【不能看点此切换】","type":0,"url":"./sub/Live.txt","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
