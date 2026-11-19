@@ -1,5 +1,5 @@
 {
-  "spider":"https://xiuxiu-pro-new.meitudata.com/posters/4dce101b32670f77664cd0f13f1a78b6.jpg;md5;b145c1db9db5f37d2be8f13a7de84464",
+  "spider":"https://xiuxiu-pro-new.meitudata.com/posters/8294c903c26c3efa4071e920a36c339e.jpg;md5;6ef2e95b434509eed5b943aa44bb3fdf",
   //"spider": "./JAR/fm.png;md5;9c8e45f60d3d413d8b140ec21811deb0",
   "danmaku": "http://47.103.92.65:9321/DMQlCpHvSpxj4uQofGTafer8y_aL1XDa/api/v2/fongmi/danmaku?name={name}&episode={episode}",
   "sites": [
@@ -112,8 +112,7 @@
 "lives": [
     {"name":"Kimentanm【不能看点此切换】","type":0,"url":"https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u","playerType":1},
     {"name":"综合","type":0,"url":"http://193.123.86.190:14888/TV/iptv.php","ua":"bingcha/1.1 (mianfeifenxiang)","playerType":2},
-    {"name":"牛播一","url":"http://127.0.0.1:9978/proxy?do=cctva","timeZone":"Asia/Shanghai"},
-    {
+     {
       "name": "央視頻",
       "url": "https://capi.yangshipin.cn/api/oms/pc/navigation/home_top_nav",
       "api": "./fm/live/yangshipin.py",
