@@ -13,7 +13,7 @@
       "key": "紅果",
       "name": "紅果",
       "type": 3,
-      "api": ".fm/vod/hongguo.js",
+      "api": "./fm/vod/hongguo.js",
       "lang": "zh-CN",
       "searchable": 1,
       "quickSearch": 0,
