@@ -140,7 +140,7 @@
       "ext": "./fm/live/cctv.json",
       "timeout": 20
     },
-    {"name":"catvod【不能看点此切换】","type":0,"url":"https://live.catvod.com/playlist.m3u?tk=48f40d2782d108288f3b019dc75a9c6a","playerType":2},
+    {"name":"catvod【不能看点此切换】","type":0,"url":"https://live.catvod.com/playlist.m3u?tk=af8d2d86056f05af14ccba72cd9f7e72","playerType":2},
     {"name":"湖北联通源【不能看点此切换】","type":0,"url":"./sub/hblt.txt","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
     {"name":"湖北移动源【不能看点此切换】","type":0,"url":"./sub/Live.txt","playerType":1,"epg":"http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}"},
     {"name":"mursor【不能看点此切换】","type":0,"url":"https://mursor.ottiptv.cc/iptv.m3u?userid=1659882510&sign=26481db6abd522b16c0ca7e5cc5c685a7c5808da1530cb88908963baa440d433ad50162e9dc228b764b0610c57603aa03c342cc25e78d8be3ac7980aa67b0ad342ea8e2350838b&auth_token=788c35b65a4a362988881089b907716c","playerType":1,"timeout":10,"ua":"qqlive"},
