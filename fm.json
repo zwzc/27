@@ -9,6 +9,7 @@
   {"key":"NewDouBan","name":"🐼┃JS(新)┃豆瓣","type":3,"api":"./js/csp_NewDouBan.js","searchable":0,"quickSearch":0,"filterable":1,"changeable":0},
   {"key":"migu","name":"📡┃直播┃咪咕视频","type":3,"api":"./py/migu.py","searchable":0,"quickSearch":0,"filterable":0,"changeable":0},
   {"key":"JRKAN","name":"📡┃直播┃体育直播","type":3,"api":"./js/JRKAN.js","searchable":0,"quickSearch":0,"filterable":0,"changeable":0},
+  {"key": "live","name": "📡┃直播┃电视直播","type": 3,"api": "./py/live.py","searchable": 1,"quickSearch": 1,"filterable": 0,"ext": {"timeout": 15,"epg": "https://zzf.new.tg/epg.xml"}},
   {"key":"AiDj","name":"❤️AI剧┃弹幕","type":3,"api":"csp_AiDjGuard","ext":{"type":"video","name":"短剧","danMu":false},"indexs":0,"quickSearch":1,"searchable":1,"changeable":0},   
   {"key": "紅果","name": "紅果┃FM","type": 3,"api": "./fm/vod/hongguo.js","lang": "zh-CN","searchable": 1,"quickSearch": 0,"filterable": 1,"changeable": 1,"timeout": 60},
   {"key":"Dm84","name":"🚌巴士┃动漫","type":3,"api":"csp_Dm84Guard","timeout":10,"searchable":1,"quickSearch":1,"changeable":1},
