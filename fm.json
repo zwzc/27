@@ -37,6 +37,7 @@
   {"key":"ZaiXianDuanJu","name":"🍓┃短剧┃在线短剧","type":3,"api":"./py/在线短剧.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
   {"key":"huangdou","name":"🍓┃短剧┃黄豆短剧","type":3,"api":"./py/HuangDou.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":0},
   {"key":"huangguo","name":"🍓┃短剧┃黄果短剧","type":3,"api":"./py/HuangGuo.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":0},
+  {"key":"yeguo","name":"🍓┃短剧┃野果短剧","type":3,"api":"./py/yeguo.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":0},
   {"key":"hongguo","name":"🍓┃短剧┃红果短剧","type":3,"api":"./py/hongguo.py","searchable":1,"quickSearch":1,"filterable":0,"changeable":0},
   {"key":"QianQian","name":"🎬┃影视┃千千影视","type":3,"api":"./py/QianQian.py","searchable":1,"quickSearch":1,"filterable":1,"changeable":1},
   {"key":"XiongDi","name":"🎬┃影视┃兄弟影视","type":3,"api":"./py/兄弟影视.py","searchable":1,"quickSearch":1,"filterable":0,"changeable":1},
